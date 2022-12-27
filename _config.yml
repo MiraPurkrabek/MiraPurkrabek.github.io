@@ -10,8 +10,7 @@
 ############################
 
 # Name of website
-title: 
-
+title: Miroslav Purkrabek
 # Your name to show in the footer
 author: Miroslav Purkrábek
 
@@ -20,7 +19,7 @@ author: Miroslav Purkrábek
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
+  # About Me: "aboutme"
   # Resources:
   #   - Beautiful Jekyll: "https://beautifuljekyll.com"
   #   - Learn markdown: "https://www.markdowntutorial.com/"
