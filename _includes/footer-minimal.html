@@ -3,6 +3,8 @@
     {% if site.author %}
       {{ site.author }}
       &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+      {{ page.last_modified_at }}
+      &nbsp;&nbsp;&bull;&nbsp;&nbsp;
     {% endif %}
     {% if page.date %}
       {{ page.date site.time }}

@@ -14,8 +14,10 @@
       {% if site.author %}
         {{ site.author }}
         &nbsp;&bull;&nbsp;
-      {% endif %}
-      {{ site.time | date: '%Y' }}
+        {% endif %}
+      {{ site.time | date: '%m:%h - %d. %M. %Y' }}
+      &nbsp;&bull;&nbsp;
+      {{ page.last_modified_at }}
 
       {% if site.url-pretty %}
         &nbsp;&bull;&nbsp;
