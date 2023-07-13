@@ -5,7 +5,7 @@
       &nbsp;&nbsp;&bull;&nbsp;&nbsp;
     {% endif %}
     {% if page.date %}
-      {{ page.date }}
+      {{ page.date site.time }}
     {% else %}
       {{ site.time | date: '%Y' }}
     {% endif %}
