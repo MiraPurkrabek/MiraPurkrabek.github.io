@@ -4,7 +4,10 @@ title: Projects & papers
 subtitle: What I did and what I'm working on
 ---
 
-Here, you will find a short list of research and innovative projects that form the core of my PhD studies. If anything catches your eye, feel free to contact me for more information.
+This section presents a collection of projects and papers, central to my PhD research, unified by the theme of human pose estimation and analysis. The work spans various applications, from forensic tools for image and video processing in criminal investigations to modeling infant sensorimotor development and tracking athletes in sports. These efforts reflect a blend of technical innovation and practical application, emphasizing the importance of accurately analyzing human poses and movements to derive meaningful insights across diverse fields.
+
+If anything catches your eye, feel free to contact me for more information.
+
 
 # Projects
 
@@ -55,4 +58,4 @@ This project extends my long-standing interest in sports analysis, a journey tha
 
 ![](/assets/img/bachelor_image.png){: height="180" }
 
-**Abstract**: In this thesis, we propose a new system for online person tracking by detection. The system focuses on tracking persons in top-view sports videos. A modified YOLO network serves as a person detector from top-view videos. A fine-tuned ResNet network works as a similarity metric allowing person reidentification by visual similarity. The proposed method achieves 94\% mAP in the detection and 90\% MOTA in the tracking on a new dataset from sports videos. The dataset is attached to the thesis along with a GUI application for data processing.
+**Abstract**: In this thesis, we propose a new system for online person tracking by detection. The system focuses on tracking persons in top-view sports videos. A modified YOLO network serves as a person detector from top-view videos. A fine-tuned ResNet network works as a similarity metric allowing person reidentification by visual similarity. The proposed method achieves 94% mAP in the detection and 90% MOTA in the tracking on a new dataset from sports videos. The dataset is attached to the thesis along with a GUI application for data processing.
