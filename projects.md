@@ -17,7 +17,8 @@ The project, a collaborative effort with VUT (Brno University of Technology), in
 
 ### Modeling infant sensorimotor development
 
-<img src="assets/img/Infants_image.png" alt="RePoGen" height="200"/>
+![](/assets/img/Infants_image.png){: height="180" }
+
 
 The project led by [Matej Hoffman](https://sites.google.com/site/matejhof), focuses on the behavior of infants to gain a deeper understanding of human development. My contribution to this project involves the precise estimation of 2D poses of babies in videos, a crucial aspect that helps in analyzing and interpreting infant movements and interactions. This work is part of a larger effort to model human behaviors, particularly in the early stages of life, providing valuable insights for various applications.
 
@@ -32,7 +33,8 @@ This project extends my long-standing interest in sports analysis, a journey tha
 **Miroslav Purkrabek, Jiri Matas**
 (preprint)
 
-<img src="assets/img/RePoGen_image.png" alt="RePoGen" height="200"/>
+![](/assets/img/RePoGen_image.png){: height="180" }
+
 
 **Abstract**: Human Pose Estimation is a thoroughly researched problem; however, most datasets focus on the side and front-view scenarios. We address the limitation by proposing a novel approach that tackles the challenges posed by extreme viewpoints and poses. We introduce a new method for synthetic data generation – RePoGen, RarE POses GENerator – with comprehensive control over pose and view to augment the COCO dataset. Experiments on a new dataset of real images show that adding RePoGen data to the COCO surpasses previous attempts to top-view pose estimation and significantly improves performance on the bottom-view dataset. Through an extensive ablation study on both the top and bottom view data, we elucidate the contributions of methodological choices and demonstrate improved performance. We will release the code and the datasets with the publication.
 
@@ -41,7 +43,8 @@ This project extends my long-standing interest in sports analysis, a journey tha
 **Miroslav Purkrabek**
 (master thesis)
 
-<img src="assets/img/master_image.png" alt="RePoGen" height="200"/>
+![](/assets/img/master_image.png){: height="180" }
+
 
 **Abstract**: This thesis proposes a new system for unsupervised person tracking by detection. The system focuses on tracking players in sports video, specifically floorball, using multiple cameras with different viewing angles. The new hard-negative mining technique leveraging time constraints enables us to train the identification network without labelled data. The proposed method generates tracklets with a low level of ID switches, and it is appropriate for generating labelled data for supervised training. Samples from the newly created dataset, which we used for evaluation, are attached to the thesis along with the code.
 
@@ -50,6 +53,6 @@ This project extends my long-standing interest in sports analysis, a journey tha
 **Miroslav Purkrabek**
 (bachelor thesis)
 
-<img src="assets/img/bachelor_image.png" alt="RePoGen" height="200"/>
+![](/assets/img/bachelor_image.png){: height="180" }
 
 **Abstract**: In this thesis, we propose a new system for online person tracking by detection. The system focuses on tracking persons in top-view sports videos. A modified YOLO network serves as a person detector from top-view videos. A fine-tuned ResNet network works as a similarity metric allowing person reidentification by visual similarity. The proposed method achieves 94\% mAP in the detection and 90\% MOTA in the tracking on a new dataset from sports videos. The dataset is attached to the thesis along with a GUI application for data processing.
