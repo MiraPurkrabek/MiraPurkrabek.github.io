@@ -34,7 +34,8 @@ This project extends my long-standing interest in sports analysis, a journey tha
 
 ### [Improving 2D Human Pose Estimation across Unseen Camera Views with Synthetic Data](https://mirapurkrabek.github.io/RePoGen-paper/)
 **Miroslav Purkrabek, Jiri Matas**
-(The 18th IEEE International Conference on Automatic Face and Gesture Recognition)
+
+The 18th IEEE International Conference on Automatic Face and Gesture Recognition
 
 ![](/assets/img/RePoGen_image.png){: height="180" }
 
@@ -44,7 +45,8 @@ This project extends my long-standing interest in sports analysis, a journey tha
 
 ### [Discovery, tracking and redection of floorball players from multiple cameras](https://dspace.cvut.cz/handle/10467/101411)
 **Miroslav Purkrabek**
-(master thesis)
+
+Master thesis
 
 ![](/assets/img/master_image.png){: height="180" }
 
@@ -54,7 +56,8 @@ This project extends my long-standing interest in sports analysis, a journey tha
 
 ### [Floorball Player Tracking from a Top-View Camera](https://dspace.cvut.cz/handle/10467/87891)
 **Miroslav Purkrabek**
-(bachelor thesis)
+
+Bachelor thesis
 
 ![](/assets/img/bachelor_image.png){: height="180" }
 
