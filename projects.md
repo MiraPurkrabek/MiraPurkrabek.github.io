@@ -34,7 +34,7 @@ This project extends my long-standing interest in sports analysis, a journey tha
 
 ### [Improving 2D Human Pose Estimation across Unseen Camera Views with Synthetic Data](https://mirapurkrabek.github.io/RePoGen-paper/)
 **Miroslav Purkrabek, Jiri Matas**
-(preprint)
+(The 18th IEEE International Conference on Automatic Face and Gesture Recognition)
 
 ![](/assets/img/RePoGen_image.png){: height="180" }
 
