@@ -32,7 +32,7 @@ This project extends my long-standing interest in sports analysis, a journey tha
 
 # Papers
 
-### [Improving 2D Human Pose Estimation across Unseen Camera Views with Synthetic Data](https://mirapurkrabek.github.io/RePoGen-paper/)
+### [Improving 2D Human Pose Estimation in Rare Camera Views with Synthetic Data](https://mirapurkrabek.github.io/RePoGen-paper/)
 **Miroslav Purkrabek, Jiri Matas**
 
 The 18th IEEE International Conference on Automatic Face and Gesture Recognition
@@ -40,7 +40,7 @@ The 18th IEEE International Conference on Automatic Face and Gesture Recognition
 ![](/assets/img/RePoGen_image.png){: height="180" }
 
 
-**Abstract**: Despite extensive research in human pose estimation, existing datasets focus predominantly on side- and front-view scenarios, limiting their applicability. We address the limitation by proposing a novel approach that tackles the challenges posed by dynamic environments with uncommon poses and extreme viewpoints. We introduce a new method for synthetic data generation for articulated objects - RePoGen, RarE POses GENerator - with comprehensive control over pose and view. Experiments on top-view datasets, as well as a new dataset of real images of diverse poses, show that adding RePoGen data to the standard COCO outperforms previous attempts at top-view pose estimation and significantly improves performance on the bottom-view dataset. Extensive ablation study on both the top and bottom view data clarify the contributions of the methodological choices and demonstrate improved performance. The introduced dataset and corresponding code are available on the [project website](https://mirapurkrabek.github.io/RePoGen-paper/).
+**Abstract**: Methods and datasets for human pose estimation focus predominantly on side- and front-view scenarios. We overcome the limitation by leveraging synthetic data and introduce RePoGen (RarE POses GENerator), an SMPL-based method for generating synthetic humans with comprehensive control over pose and view. Experiments on top-view datasets and a new dataset of real images with diverse poses show that adding the RePoGen data to the COCO dataset outperforms previous approaches to top- and bottom-view pose estimation without harming performance on common views. An ablation study shows that anatomical plausibility, a property prior research focused on, is not a prerequisite for effective performance. The introduced dataset and the corresponding code are available on the [project website](https://mirapurkrabek.github.io/RePoGen-paper/).
 
 
 ### [Discovery, tracking and redection of floorball players from multiple cameras](https://dspace.cvut.cz/handle/10467/101411)
