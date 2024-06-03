@@ -37,7 +37,7 @@ This project extends my long-standing interest in sports analysis, a journey tha
 **Miroslav Purkrabek, Jiri Matas**
 
 The 18th IEEE International Conference on Automatic Face and Gesture Recognition\
-*Best Poster Award*
+*Winner of the Best Poster Award*
 
 ![](/assets/img/RePoGen_image.png){: height="180" }
 
