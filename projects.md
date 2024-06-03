@@ -33,9 +33,11 @@ This project extends my long-standing interest in sports analysis, a journey tha
 # Papers
 
 ### [Improving 2D Human Pose Estimation in Rare Camera Views with Synthetic Data](https://mirapurkrabek.github.io/RePoGen-paper/)
+
 **Miroslav Purkrabek, Jiri Matas**
 
-The 18th IEEE International Conference on Automatic Face and Gesture Recognition
+The 18th IEEE International Conference on Automatic Face and Gesture Recognition\
+*Best Poster Award*
 
 ![](/assets/img/RePoGen_image.png){: height="180" }
 
