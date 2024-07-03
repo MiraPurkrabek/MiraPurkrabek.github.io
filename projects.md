@@ -30,6 +30,13 @@ The project led by [Matej Hoffman](https://sites.google.com/site/matejhof), focu
 This project extends my long-standing interest in sports analysis, a journey that began with my bachelor thesis and evolved through my master's work. As a coach in the highest league of floorball, my focus in this project is on developing sophisticated methods for tracking floorball players in videos. The aim is to harness video analysis to gain insights into player movements and team dynamics, enhancing coaching strategies and game understanding. This work not only aligns with my academic pursuits but also integrates my practical experience and passion for floorball, striving to bring a new level of analytical depth to the sport.
 
 
+### PoseAnnotator tool
+
+A lightweight, local alternative to CVAT and LabelStudio. Originally developed to create the [RePoGen dataset](https://mirapurkrabek.github.io/RePoGen-paper/), we have since used it for multiple datasets. This easy-to-use Python tool features a simple GUI for annotating 2D human poses in images. Ideal for researchers and developers, PoseAnnotator simplifies the data labeling process for human pose estimation projects. Feel free to use it for your research and contribute to its development. Your feedback and contributions are welcome!
+
+The tool is available on [GitHub](https://github.com/MiraPurkrabek/PoseAnnotator/)
+
+
 # Papers
 
 ### [Improving 2D Human Pose Estimation in Rare Camera Views with Synthetic Data](https://mirapurkrabek.github.io/RePoGen-paper/)
