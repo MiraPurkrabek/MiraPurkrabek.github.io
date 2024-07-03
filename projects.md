@@ -44,7 +44,7 @@ The tool is available on [GitHub](https://github.com/MiraPurkrabek/PoseAnnotator
 **Miroslav Purkrabek, Jiri Matas**
 
 The 18th IEEE International Conference on Automatic Face and Gesture Recognition\
-*Winner of the Best Poster Award*
+*Winner of the [Best Poster Award](https://fg2024.ieee-biometrics.org/awards/)*
 
 ![](/assets/img/RePoGen_image.png){: height="180" }
 
