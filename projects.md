@@ -39,6 +39,19 @@ The tool is available on [GitHub](https://github.com/MiraPurkrabek/PoseAnnotator
 
 # Papers
 
+### [Detection, Pose Estimation and Segmentation for Multiple Bodies: Closing the Virtuous Circle](https://mirapurkrabek.github.io/BBox-Mask-Pose/)
+
+**Miroslav Purkrabek, Jiri Matas**
+
+The 18th IEEE International Conference on Automatic Face and Gesture Recognition\
+*Winner of the [Best Poster Award](https://fg2024.ieee-biometrics.org/awards/)*
+
+![](/assets/img/004806_BMP_loop.gif){: height="180" }
+
+
+**Abstract**: Human pose estimation methods work well on separated people but struggle with multi-body scenarios. Recent work has addressed this problem by conditioning pose estimation with detected bounding boxes or bottom-up-estimated poses. Unfortunately, all of these approaches overlooked segmentation masks and their connection to estimated keypoints. We condition pose estimation model by segmentation masks instead of bounding boxes to improve instance separation. This improves top-down pose estimation in multi-body scenarios but does not fix detection errors. Consequently, we develop BBox-Mask-Pose (BMP), integrating detection, segmentation and pose estimation into self-improving feedback loop. We adapt detector and pose estimation model for conditioning by instance masks and use Segment Anything as pose-to-mask model to close the circle. With only small models, BMP is superior to top-down methods on OCHuman dataset and to detector-free methods on COCO dataset, combining the best from both approaches and matching state of art performance in both settings. Code and data for research purposes are available on the [project website](https://mirapurkrabek.github.io/RePoGen-paper/).
+
+
 ### [Improving 2D Human Pose Estimation in Rare Camera Views with Synthetic Data](https://mirapurkrabek.github.io/RePoGen-paper/)
 
 **Miroslav Purkrabek, Jiri Matas**
