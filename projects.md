@@ -49,6 +49,16 @@ The tool is available on [GitHub](https://github.com/MiraPurkrabek/PoseAnnotator
 **Abstract**: Human pose estimation methods work well on separated people but struggle with multi-body scenarios. Recent work has addressed this problem by conditioning pose estimation with detected bounding boxes or bottom-up-estimated poses. Unfortunately, all of these approaches overlooked segmentation masks and their connection to estimated keypoints. We condition pose estimation model by segmentation masks instead of bounding boxes to improve instance separation. This improves top-down pose estimation in multi-body scenarios but does not fix detection errors. Consequently, we develop BBox-Mask-Pose (BMP), integrating detection, segmentation and pose estimation into self-improving feedback loop. We adapt detector and pose estimation model for conditioning by instance masks and use Segment Anything as pose-to-mask model to close the circle. With only small models, BMP is superior to top-down methods on OCHuman dataset and to detector-free methods on COCO dataset, combining the best from both approaches and matching state of art performance in both settings. Code and data for research purposes are available on the [project website](https://mirapurkrabek.github.io/BBox-Mask-Pose/).
 
 
+### [ProbPose: A Probabilistic Approach to 2D Human Pose Estimation](https://mirapurkrabek.github.io/ProbPose/)
+
+**Miroslav Purkrabek, Jiri Matas**
+
+![](/assets/img/ProbPose_McLaughlin.png){: height="180" }
+
+
+**Abstract**: Current Human Pose Estimation methods have achieved significant improvements. However, state-of-the-art models ignore out-of-image keypoints and use uncalibrated heatmaps as keypoint location representation. To address these limitations, we propose ProbPose, which predicts for each keypoint: a calibrated probability of keypoint presence at each location in the activation window, the probability of being outside of it, and its predicted visibility. To address the lack of evaluation protocols for out-of-image keypoints, we introduce the CropCOCO dataset and the Extended OKS (Ex-OKS) metric, which extends OKS to out-of-image points. Tested on COCO, CropCOCO, and OCHuman, ProbPose shows significant gains in out-of-image keypoint localization while also improving in-image localization through data augmentation. Additionally, the model improves robustness along the edges of the bounding box and offers better flexibility in keypoint evaluation. The code and data for research purposes are available on the [project website](https://mirapurkrabek.github.io/ProbPose/).
+
+
 ### [Improving 2D Human Pose Estimation in Rare Camera Views with Synthetic Data](https://mirapurkrabek.github.io/RePoGen-paper/)
 
 **Miroslav Purkrabek, Jiri Matas**
