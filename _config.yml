@@ -20,8 +20,9 @@ author: Miroslav Purkrábek
 
 navbar-links:
   # About Me: "aboutme"
-  Projects & Papers: "projects"
-  Teaching: "teaching"
+  Projects: "Projects"
+  Papers: "Papers"
+  Teaching: "Teaching"
 
   # Resources:
   #   - Beautiful Jekyll: "https://beautifuljekyll.com"
@@ -250,7 +251,7 @@ date_format: "%B %-d, %Y"
 #################################################################################
 
 # Output options (more information on Jekyll's site)
-timezone: "America/Toronto"
+timezone: "Europe/Prague"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
