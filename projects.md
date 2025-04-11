@@ -9,8 +9,6 @@ This section presents a collection of projects and papers, central to my PhD res
 If anything catches your eye, feel free to contact me for more information.
 
 
-# Projects
-
 ### Set of Forensic Analytical Tools for Image and Video Processing for Criminal Police Service
 
 The project, a collaborative effort with VUT (Brno University of Technology), involves creating a suite of advanced forensic tools for the Czech Republic Police, funded by the Ministry of Interior. These tools focus on the automatic processing of images and videos, specifically honing in on human figures to enhance the efficiency and accuracy of criminal investigations. For more information about this innovative project, please feel free to reach out through any of the available contact methods.

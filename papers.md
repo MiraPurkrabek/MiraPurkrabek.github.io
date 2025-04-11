@@ -5,8 +5,6 @@ subtitle: Papers that I (co-)authored or (co-)supervised
 ---
 
 
-# Papers
-
 ### [Detection, Pose Estimation and Segmentation for Multiple Bodies: Closing the Virtuous Circle](https://mirapurkrabek.github.io/BBox-Mask-Pose/)
 
 **Miroslav Purkrabek, Jiri Matas**

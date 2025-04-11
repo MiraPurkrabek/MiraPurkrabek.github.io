@@ -20,9 +20,9 @@ author: Miroslav Purkrábek
 
 navbar-links:
   # About Me: "aboutme"
-  Projects: "Projects"
-  Papers: "Papers"
-  Teaching: "Teaching"
+  Projects: "projects"
+  Papers: "papers"
+  Teaching: "teaching"
 
   # Resources:
   #   - Beautiful Jekyll: "https://beautifuljekyll.com"
