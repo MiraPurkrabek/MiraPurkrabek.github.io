@@ -17,19 +17,30 @@ The project, a collaborative effort with VUT (Brno University of Technology), in
 
 [Grant description in Czech](https://starfos.tacr.cz/cs/projekty/VJ02010041)
 
+![](/assets/img/PCR.png){: height="180" }
 
 ----------
 ### Modeling infant sensorimotor development
 
-![](/assets/img/Infants_image.png){: height="180" }
-
-
 The project led by [Matej Hoffman](https://sites.google.com/site/matejhof), focuses on the behavior of infants to gain a deeper understanding of human development. My contribution to this project involves the precise estimation of 2D poses of babies in videos, a crucial aspect that helps in analyzing and interpreting infant movements and interactions. This work is part of a larger effort to model human behaviors, particularly in the early stages of life, providing valuable insights for various applications.
+
+![](/assets/img/Infants_image.png){: height="180" }
 
 ----------
 ### Advanced Video Analysis for Floorball Player Tracking
 
 This project extends my long-standing interest in sports analysis, a journey that began with my bachelor thesis and evolved through my master's work. As a coach in the highest league of floorball, my focus in this project is on developing sophisticated methods for tracking floorball players in videos. The aim is to harness video analysis to gain insights into player movements and team dynamics, enhancing coaching strategies and game understanding. This work not only aligns with my academic pursuits but also integrates my practical experience and passion for floorball, striving to bring a new level of analytical depth to the sport.
+
+![](/assets/img/master_image.png){: height="180" }
+
+
+----------
+### Detection, Identification and Monitoring of Animals by Advanced Computer Vision Methods
+The project led by Lukas Picek from University of West Bohemia focuses on the identification of wild animals (especially lynxes) in camera trap images.
+My contribution to this project involves the estimation of 2D poses of animals, which improves identification accuracy as each animal has a different texture on each side.
+The project is part of a larger effort to protect the environment using computer vision and AI.
+
+![](/assets/img/eurasian-lynx.jpg){: height="180" }
 
 ----------
 ### PoseAnnotator tool
@@ -38,6 +49,7 @@ A lightweight, local alternative to CVAT and LabelStudio. Originally developed t
 
 The tool is available on [GitHub](https://github.com/MiraPurkrabek/PoseAnnotator/)
 
+![](/assets/img/poseAnnotator_screenshot.png){: height="180" }
 
 # Papers
 
@@ -98,8 +110,6 @@ The 18th IEEE International Conference on Automatic Face and Gesture Recognition
 Master thesis
 
 ![](/assets/img/master_image.png){: height="180" }
-
-
 **Abstract**: This thesis proposes a new system for unsupervised person tracking by detection. The system focuses on tracking players in sports video, specifically floorball, using multiple cameras with different viewing angles. The new hard-negative mining technique leveraging time constraints enables us to train the identification network without labelled data. The proposed method generates tracklets with a low level of ID switches, and it is appropriate for generating labelled data for supervised training. Samples from the newly created dataset, which we used for evaluation, are attached to the thesis along with the code.
 
 
