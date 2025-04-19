@@ -78,7 +78,7 @@ Link: [Reference to AI + sport lecture if available]
 We talked about some of this in a podcast for SKV (in Czech).
 It covers coaching, my view on floorball and SKV and we even touched how AI and computer vision could impact the game.
 
-<a href="https://www.skvflorbal.cz/clanek/1972-skv-podcast-63-purkrabek-jsem-rad-ze-muzeme-navazat-na-minulou-sezonu" target="_blank" style="text-decoration: none; color: inherit;">
+<a href="https://www.skvflorbal.cz/c/skvely-podcast-2-miroslav-purkrabek-2430" target="_blank" style="text-decoration: none; color: inherit;">
   <div style="border: 1px solid #ccc; border-radius: 8px; overflow: hidden; display: flex; max-width: 600px; margin: 10px 0;">
     <img src="https://www.skvflorbal.cz/images/2023/10/skv-podcast.jpg" alt="SKV Podcast" style="width: 150px; height: auto;">
     <div style="padding: 10px;">
