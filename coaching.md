@@ -25,6 +25,10 @@ That season, we finished 9th after regular season and in playoffs reached the to
 
 I’m proud we’ve managed to make SKV a regular playoff team — even without big names or a big budget.
 
+[Florbal.cz: Purkrabek přebírá tým SKV](https://florbal.cz/92593-vinohrady-prebira-dosavadni-asistent-purkrabek-kapucian-zustane-poradcem/)
+
+[SKVFlorbal.cz: Rozhovor s trenérem Purkrábkem](https://www.skvflorbal.cz/c/miroslav-purkrabek-druha-pulka-sezony-vysledky-jsme-urvali-tymovosti-a-nasazenim-2547)
+
 ------------
 ### The Juniors
 
@@ -38,7 +42,7 @@ After Covid, in the 2021/22 season, we qualified for the top junior league and m
 Some of the guys I coached are now part of our Superliga team.
 That’s the most satisfying part of the job.
 
-Link: SKV interview after junior playoffs
+[SKVFlorbal.cz: Rozhovor s trenérem juniorů](https://www.skvflorbal.cz/c/trener-junioru-purkrabek-s-nelehkou-vyzvou-jsme-se-poprali-2033)
 
 ---------
 ### Beginnings in SKV
@@ -50,7 +54,7 @@ Before that, I coached kids in a local club - this was my first experience at th
 I was 20, new to the club, and honestly not sure if I was ready.
 Over time, I gained more responsibility, experience, and confidence.
 
-In my first season, we played in 1. liga (the second-highest league).
+In my first season with Michal Pazdera, we played in 1. liga (the second-highest league).
 We ended up winning it and earned promotion to the Superliga.
 In 2019, we managed to stay in the league by winning the first round of playdowns.
 
@@ -58,7 +62,7 @@ After that second season, Michal Kotlas and David Bouša took over the team, and
 That year, we finished 8th after the regular season and made it to the playoffs, for the first time in SKV’s history.
 Unfortunately, we didn’t get to play them, as the season was cancelled due to Covid.
 
-Link: SKV article on promotion to Superliga
+[iDnes.cz: Vinohrady poráží Znojmo v Livesport Superlize](https://www.idnes.cz/sport/ostatni/superliga-florbalistu-1-kolo.A180906_230419_florbal_par?setver=full)
 
 ------
 ### More than Coaching
@@ -69,8 +73,7 @@ I also hold a Czech coaching B license and used to referee women’s and youth g
 Outside the field, I study computer vision and AI at CTU.
 I use sport as a case study in my research and have shared some of it at coaching seminars.
 
-Image: seminar or presentation slide
-Link: [Reference to AI + sport lecture if available]
+[AI4Sports Seminar](https://www.dny.ai/event-2024/ai-4-sport)
 
 ---------
 ### If you’d like to know more…
