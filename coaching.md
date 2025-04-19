@@ -81,17 +81,12 @@ I use sport as a case study in my research and have shared some of it at coachin
 We talked about some of this in a podcast for SKV (in Czech).
 It covers coaching, my view on floorball and SKV and we even touched how AI and computer vision could impact the game.
 
-<a href="https://www.skvflorbal.cz/c/skvely-podcast-2-miroslav-purkrabek-2430" target="_blank" style="display: block; text-decoration: none; color: inherit;">
-  <table style="border: 1px solid #ccc; border-radius: 8px; overflow: hidden; max-width: 600px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-    <tr>
-      <td style="width: 150px;">
-        <img src="https://www.skvflorbal.cz/images/2023/10/skv-podcast.jpg" alt="SKV Podcast" style="width: 100%; height: auto; display: block; object-fit: cover;">
-      </td>
-      <td style="padding: 10px;">
-        <h4 style="margin: 0 0 8px; font-size: 1.1em;">SKV Podcast #2 – Miroslav Purkrábek</h4>
-        <p style="margin: 0; font-size: 0.95em;">Druhým hostem SKVělého podcastu byl 27letý trenér vinohradského áčka Miroslav Purkrábek.</p>
-        <p style="margin: 6px 0 0; font-size: 0.85em; color: #888;">www.skvflorbal.cz</p>
-      </td>
-    </tr>
-  </table>
-</a>
+<div onclick="window.open('https://www.skvflorbal.cz/c/skvely-podcast-2-miroslav-purkrabek-2430', '_blank')" 
+     style="cursor: pointer; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; display: flex; max-width: 600px; margin: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+  <img src="https://www.skvflorbal.cz/images/2023/10/skv-podcast.jpg" alt="SKV Podcast" style="width: 150px; object-fit: cover;">
+  <div style="padding: 10px; flex: 1;">
+    <h4 style="margin: 0 0 8px; font-size: 1.1em;">SKV Podcast #2 – Miroslav Purkrábek</h4>
+    <p style="margin: 0; font-size: 0.95em;">Druhým hostem SKVělého podcastu byl 27letý trenér vinohradského áčka Miroslav Purkrábek.</p>
+    <p style="margin: 6px 0 0; font-size: 0.85em; color: #888;">www.skvflorbal.cz</p>
+  </div>
+</div>
