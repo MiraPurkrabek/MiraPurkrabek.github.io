@@ -83,7 +83,7 @@ It covers coaching, my view on floorball and SKV and we even touched how AI and 
 
 <div onclick="window.open('https://www.skvflorbal.cz/c/skvely-podcast-2-miroslav-purkrabek-2430', '_blank')" 
      style="cursor: pointer; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; display: flex; max-width: 600px; margin: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-  <img src="https://www.skvflorbal.cz/images/2023/10/skv-podcast.jpg" alt="SKV Podcast" style="width: 150px; object-fit: cover;">
+  <img src="assets/img/skv_podcast.jpeg" alt="SKV Podcast #2" style="width: 150px; object-fit: cover;">
   <div style="padding: 10px; flex: 1;">
     <h4 style="margin: 0 0 8px; font-size: 1.1em;">SKV Podcast #2 – Miroslav Purkrábek</h4>
     <p style="margin: 0; font-size: 0.95em;">Druhým hostem SKVělého podcastu byl 27letý trenér vinohradského áčka Miroslav Purkrábek.</p>
