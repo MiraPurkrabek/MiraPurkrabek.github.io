@@ -159,4 +159,12 @@
     {% endfor %}
   {% endif %}
 
+  <!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="{{ site.favicon | relative_url }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ site.favicon-16x16 | relative_url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.favicon-32x32 | relative_url }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ site.apple-touch-icon | relative_url }}">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ site.android-chrome-192x192 | relative_url }}">
+<link rel="icon" type="image/png" sizes="512x512" href="{{ site.android-chrome-512x512 | relative_url }}">
+<link rel="manifest" href="{{ site.webmanifest | relative_url }}">
 </head>
