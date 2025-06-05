@@ -247,6 +247,16 @@ date_format: "%B %-d, %Y"
 # Facebook App ID
 #fb_app_id: ""
 
+# Favicon
+favicon: "/assets/icons/favicon.ico"
+# Optional: Additional favicon formats
+favicon-16x16: "/assets/icons/favicon-16x16.png"
+favicon-32x32: "/assets/icons/favicon-32x32.png"
+apple-touch-icon: "/assets/icons/apple-touch-icon.png"
+android-chrome-192x192: "/assets/icons/android-chrome-192x192.png"
+android-chrome-512x512: "/assets/icons/android-chrome-512x512.png"
+webmanifest: "/assets/icons/site.webmanifest"
+
 #################################################################################
 # --- You don't need to touch anything below here (but you can if you want) --- #
 #################################################################################
