@@ -70,7 +70,7 @@ The 26th Computer Vision Winter Workshop (CVWW) 2025
 The 18th IEEE International Conference on Automatic Face and Gesture Recognition\
 *Winner of the [Best Poster Award](https://fg2024.ieee-biometrics.org/awards/)*
 
-![](/assets/img/RePoGen_image.png){: height="180" }
+![](/assets/img/Duplantis.gif){: height="180" }
 
 
 <div style="text-align: justify;">
