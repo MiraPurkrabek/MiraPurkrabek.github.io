@@ -24,7 +24,7 @@ subtitle: Papers that I (co-)authored or (co-)supervised
 
 The IEEE/CVF Computer Vision and Pattern Recognition Conference (CVPR) 2025
 
-![](/assets/img/ProbPose_McLaughlin.png){: height="180" }
+![](/assets/img/McLaughlin.gif){: height="180" }
 
 
 <div style="text-align: justify;">
