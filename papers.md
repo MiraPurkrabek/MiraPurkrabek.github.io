@@ -39,7 +39,7 @@ The IEEE/CVF Computer Vision and Pattern Recognition Conference (CVPR) 2025
 
 The IEEE International Conference on Development and Learning (ICDL) 2025
 
-![](/assets/img/BLANKET_example.png){: height="180" }
+![](/assets/img/BLANKET_video.gif){: height="180" }
 
 
 <div style="text-align: justify;">
