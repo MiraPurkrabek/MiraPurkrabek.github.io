@@ -9,6 +9,8 @@ subtitle: Papers that I (co-)authored or (co-)supervised
 
 **Miroslav Purkrabek, Jiri Matas**
 
+IEEE/CVF International Conference on Computer Vision (ICCV) 2025
+
 ![](/assets/img/004806_BMP_loop.gif){: height="180" }
 
 
