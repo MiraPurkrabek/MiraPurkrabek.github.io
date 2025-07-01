@@ -10,6 +10,7 @@ Several people asked how I set up the live webcam demo for my CVPR poster.
 It's not complicated, so I’m sharing my process here in case others want to try something similar.
 This guide is especially relevant for people from VRG, as they can use the same compute setup, but it should be helpful more broadly too.
 </div>
+<br>
 
 <div style="background-color:#333333; color:#ffffff; padding:1em; border-left:4px solid #555; margin-bottom:1.5em;">
   <h3>TL; DR</h3>
@@ -37,10 +38,10 @@ At CVPR 2025, I used my iPad, attached it to the poster, and let the demo run fo
 
 <div style="text-align: justify;">
 Why does this matter?
-You’ve done the work, your paper got accepted—now you want to show it clearly.
+You’ve done the work, your paper got accepted — now you want to show it clearly.
 At big conferences like CVPR or ECCV, there are ~2 hours for ~500 posters.
 That’s ~14 seconds per poster if someone tried to visit them all.
-A live, interactive demo helps you stand out and communicate your work more effectively—especially for people (like me) who prefer visuals over dense text.
+A live, interactive demo helps you stand out and communicate your work more effectively — especially for people (like me) who prefer visuals over dense text.
 </div>
 
 <div style="text-align: justify;">
