@@ -12,16 +12,12 @@ Even though it is not a rocket science, I share here how I did it such that peop
 The how-to will be most suitable for people from VRG as they can use the same computational resources as I did but it might come handy to anyone.
 </div>
 
-
-<br>
-<div style="background-color:#666666; padding:1em; border-left:4px solid #ccc; margin-bottom:1.5em;text-align: justify;">
-<strong>TL;DR:</strong> Run your demo on a (powerfull) server with GPU(s) using Gradio.
-Use Gradio's public sharing feature to generate single-use website and connect the mobile device through internet.
-The mobile device is used as interaface sending images to the server and the server do the heavy computations.
-Run your code in two threads to make it real-time-ish.
-For example of <a href="https://MiraPurkrabek.github.io/ProbPose">ProbPose demo</a> and its code, see links at the end. 
-</div>
-
+> ### TL; DR
+> Run your demo on a (powerfull) server with GPU(s) using Gradio.
+> Use Gradio's public sharing feature to generate single-use website and connect the mobile device through internet.
+> The mobile device is used as interaface sending images to the server and the server do the heavy computations.
+> Run your code in two threads to make it real-time-ish.
+> For example of <a href="https://MiraPurkrabek.github.io/ProbPose">ProbPose demo</a> and its code, see links at the end.
 
 
 ### What is the result and why should I care?
@@ -65,14 +61,12 @@ First, I will briefly describe what constraints I considered and what "architect
 For each constraint and architecture, I'm giving you a brief description what are the pros, cons and why I did/didn't pick that one.
 </div>
 
-<br>
 
 Constraints:
 1. Display results on a mobile device. That is the main goal. Only mobile device are portable to make a fun presentation with. If you have power and table, show the demo on your laptop and be done with it.
 2. Run computation on a GPU; the more powerful the better. Usually, models are too big and slow to run on a mobile device directly so the computation should run on stronger hardware to make it real-time-ish.
 3. Transfer data between devices as simply as possible. WiFi at the conferences is often overloaded and is not fast/reliable enough. If possible, transfer data only locally.
 
-<br>
 <div style="text-align: justify;">
 With these constraints, I came up with several possible solutions:
 </div>
@@ -134,9 +128,16 @@ If you code everything allright, you should run the program on a server and see 
 My laptop was able to run the demo.
 </div>
 
-<div style="text-align:center; margin:2em 0;">
+```
+* Running on local URL: http://127.0.0.1:7860
+* Running on public URL: https://bed703ee0670aa48ce.gradio.live
+
+This share link expires in 1 week. For free permanent hosting and GPU upgrades, run `gradio deploy` from terminal in the working directory to deploy to Hugging Face Spaces (https://huggingface.co/spaces)
+```
+
+<!-- <div style="text-align:center; margin:2em 0;">
     <img src="/assets/img/webcam_demo_launch.png" alt="Webcam Demo Launch" style="max-width:100%; height:auto;">
-</div>
+</div> -->
 
 #### (2) Enable ICE Servers
 
@@ -150,4 +151,31 @@ You need to get your own credentials eg. on Twilio.com (free).
 Result of this step should be that the demo works on all devices including iOS.
 </div>
 
+> Note that iOS won't let you stream webcamera through unsecured http so debugging on local host is possible only with PC.
 
+#### Internet Connection
+
+<div style="text-align: justify;">
+As mentioned before, big venues are not known for high-speed reliable Internet.
+For CVPR, I used mobile data hotspot (many thank to <a href="https://jskvrna.github.io">Jan Skvrna</a>) for the first hour of the session and then switched to public WiFI once there were fewer people.
+</div>
+
+<div style="text-align: justify;">
+When measured in controlled environment, my CVPR demo took more tham 30 MB of data per minute.
+In practice, the first ~1 hour of the CVPR poster session took something about 1.3 GB and then I switched to the public WiFI.
+The two-thread approach is nice as slow internet will result in less fps but the visualization is still real-time-ish. 
+</div>
+
+
+#### Hanging the tablet on the poster board
+
+I have two options:
+1. My magnetic flip cover for magnetic boards -- just flip the cover such and stick it to the board, it holds like miracle.
+2. Or if you're unlucky as me and the board is not magnetic, go back to the good old pins. Just put a lot of them around your tablet and you'll be fine. You can see how I did it in the video above (pause it around 3-4 seconds).
+
+
+### Links
+
+- GitHub repository with my code for the demo -- [ProbPose -- branch 'feature_add-gradio-webcam-demo'](https://github.com/MiraPurkrabek/ProbPose_code/tree/feature_add-gradio-webcam-demo).
+
+- [How to on ICE servers and Twilio](https://www.twilio.com/docs/stun-turn)
