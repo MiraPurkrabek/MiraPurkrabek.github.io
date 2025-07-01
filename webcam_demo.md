@@ -10,7 +10,7 @@ Several people asked how I set up the live webcam demo for my CVPR poster.
 It's not complicated, so I’m sharing my process here in case others want to try something similar.
 This guide is especially relevant for people from <a href="https://vrg.fel.cvut.cz">VRG</a>, as they can use the same compute setup, but it should be helpful more broadly too.
 </div>
-<div style="height:0.5em;"></div>
+<div style="height:0.8em;"></div>
 
 <div style="background-color:#333333; color:#ffffff; padding:1em; border-left:4px solid #555; margin-bottom:1.5em;">
   <h3>TL; DR</h3>
