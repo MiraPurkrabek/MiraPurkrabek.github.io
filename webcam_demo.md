@@ -169,6 +169,4 @@ You have a few options:
 - GitHub repository with my demo code — [ProbPose — branch 'feature_add-gradio-webcam-demo'](https://github.com/MiraPurkrabek/ProbPose_code/tree/feature_add-gradio-webcam-demo)
 
 - [Guide on ICE servers and Twilio](https://www.twilio.com/docs/stun-turn)
-```
 
-Let me know if you'd like help condensing this further or turning it into a PDF or webpage.
