@@ -149,9 +149,6 @@ This share link expires in 1 week. For free permanent hosting and GPU upgrades, 
 Some devices like iPad wouldn't activate their webcamera if the connection is not set properly.
 You can see credentials loading at the beginning of the script.
 You need to get your own credentials eg. on Twilio.com (free).
-</div>
-
-<div style="text-align: justify;">
 Result of this step should be that the demo works on all devices including iOS.
 </div>
 
@@ -176,6 +173,7 @@ The two-thread approach is nice as slow internet will result in less fps but the
 I have two options:
 1. My magnetic flip cover for magnetic boards -- just flip the cover such and stick it to the board, it holds like miracle.
 2. Or if you're unlucky as me and the board is not magnetic, go back to the good old pins. Just put a lot of them around your tablet and you'll be fine. You can see how I did it in the video above (pause it around 3-4 seconds).
+3. Or if you feel fancy, you can buy one of those [tablet mounts](https://www.amazon.com/Tablet-Mounts/b?ie=UTF8&node=11548967011) and hang it on the poster board.
 
 
 ### Links
