@@ -12,12 +12,16 @@ Even though it is not a rocket science, I share here how I did it such that peop
 The how-to will be most suitable for people from VRG as they can use the same computational resources as I did but it might come handy to anyone.
 </div>
 
-> ### TL; DR
-> Run your demo on a (powerfull) server with GPU(s) using Gradio.
-> Use Gradio's public sharing feature to generate single-use website and connect the mobile device through internet.
-> The mobile device is used as interaface sending images to the server and the server do the heavy computations.
-> Run your code in two threads to make it real-time-ish.
-> For example of <a href="https://MiraPurkrabek.github.io/ProbPose">ProbPose demo</a> and its code, see links at the end.
+<div style="background-color:#333333; color:#ffffff; padding:1em; border-left:4px solid #555; margin-bottom:1.5em;">
+  <h3>TL; DR</h3>
+  <p style="margin-top:0.5em;text-align: justify;">
+    Run your demo on a (powerfull) server with GPU(s) using Gradio.
+    Use Gradio's public sharing feature to generate a single-use website and connect the mobile device through internet.
+    The mobile device is used as interface sending images to the server and the server does the heavy computations.
+    Run your code in two threads to make it real-time-ish.
+    For example of <a href="https://MiraPurkrabek.github.io/ProbPose">ProbPose demo</a> and its code, see links at the end.
+  </p>
+</div>
 
 
 ### What is the result and why should I care?
