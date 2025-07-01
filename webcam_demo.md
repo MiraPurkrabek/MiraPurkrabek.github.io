@@ -8,9 +8,9 @@ robots: noindex, nofolow # Make the page NOT indexed by Google and similar
 <div style="text-align: justify;">
 Several people asked how I set up the live webcam demo for my CVPR poster.
 It's not complicated, so I’m sharing my process here in case others want to try something similar.
-This guide is especially relevant for people from VRG, as they can use the same compute setup, but it should be helpful more broadly too.
+This guide is especially relevant for people from <a href="https://vrg.fel.cvut.cz">VRG</a>, as they can use the same compute setup, but it should be helpful more broadly too.
 </div>
-<br>
+<div style="height:0.5em;"></div>
 
 <div style="background-color:#333333; color:#ffffff; padding:1em; border-left:4px solid #555; margin-bottom:1.5em;">
   <h3>TL; DR</h3>
@@ -22,7 +22,7 @@ This guide is especially relevant for people from VRG, as they can use the same 
   </p>
 </div>
 
-### What is the result and why should I care?
+### What is the result and why should you care?
 
 <div style="text-align: justify;">
 The goal is to run a live webcam demo on a portable device that can be mounted on a poster.
@@ -170,4 +170,5 @@ You have a few options:
 - GitHub repository with my demo code — [ProbPose — branch 'feature_add-gradio-webcam-demo'](https://github.com/MiraPurkrabek/ProbPose_code/tree/feature_add-gradio-webcam-demo)
 
 - [Guide on ICE servers and Twilio](https://www.twilio.com/docs/stun-turn)
+
 
