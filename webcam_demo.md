@@ -2,7 +2,7 @@
 layout: page
 title: "Webcam Demo"
 subtitle: "How I Did My CVPR Poster Session Live Demo"
-robots: noindex, nofolow # Make the page NOT indexed by Google and similar
+# robots: noindex, nofolow # Make the page NOT indexed by Google and similar
 ---
 
 <div style="text-align: justify;">
