@@ -31,7 +31,7 @@ At CVPR 2025, I used my iPad, attached it to the poster, and let the demo run fo
 
 <div style="text-align:center; margin:2em 0;">
   <video controls autoplay loop muted style="max-width:100%; height:auto;">
-    <source src="/assets/videos/webcam_demo.mp4" type="video/mp4">
+    <source src="/assets/videos/webcam_demo_muted.mp4" type="video/mp4">
     Your browser doesn’t support HTML5 video.
   </video>
 </div>
