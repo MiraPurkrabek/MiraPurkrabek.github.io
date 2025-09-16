@@ -35,7 +35,7 @@ The IEEE/CVF Computer Vision and Pattern Recognition Conference (CVPR) 2025
 
 
 ----------
-### BLANKET: Anonymizing Faces in Infant Video Recordings
+### [BLANKET: Anonymizing Faces in Infant Video Recordings](https://github.com/ctu-vras/blanket-infant-face-anonym)
 
 **Ditmar Hadera, Jan Cech, Miroslav Purkrabek and Matej Hoffmann**
 
