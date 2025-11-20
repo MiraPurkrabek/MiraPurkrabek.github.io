@@ -11,10 +11,15 @@ So far, I've coached over 200 matches, including more than 100 in the Superliga.
 Over the years, we've achieved the best results in SKV's history by building a team based on clear roles, dedication, and team spirit.
 </div>
 
+<div style="margin-top: 10px; padding: 8px 12px; border-left: 3px solid #ddd; color: #777; font-size: 0.9em;">
+  Note: In summer 2025, I stepped down from my role as head coach to focus fully on my computer vision research career. 
+  I remain with Sokol Královské Vinohrady as a consultant to the team.
+</div>
+
 ------------
 ### Leading the Men's Team
 
-**2022 - today**
+**2022 - 2025**
 
 <div style="text-align: justify;">
 In 2022, I took over the SKV men's team alongside Jan Kapucián.
