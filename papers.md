@@ -5,6 +5,36 @@ subtitle: Papers that I (co-)authored or (co-)supervised
 ---
 
 
+### [BBoxMaskPose v2: Expanding Mutual Conditioning to 3D](https://mirapurkrabek.github.io/BBox-Mask-Pose/)
+
+**Miroslav Purkrabek, Constantin Kolomiiets, Jiri Matas**
+
+![](/assets/img/043+076+174.gif){: height="180" }
+
+
+<div style="text-align: justify;">
+<strong>Abstract</strong>: Most 2D human pose estimation benchmarks are nearly saturated, with the exception of crowded scenes. We introduce PMPose, a top-down 2D pose estimator that incorporates the probabilistic formulation and the mask-conditioning. PMPose improves crowded pose estimation without sacrificing performance on standard scenes. Building on this, we present BBoxMaskPose v2 (BMPv2) integrating PMPose and an enhanced SAM-based mask refinement module. BMPv2 surpasses state-of-the-art by 1.5 average precision (AP) points on COCO and 6 AP points on OCHuman, becoming the first method to exceed 50 AP on OCHuman. We demonstrate that BMP's 2D prompting of 3D model improves 3D pose estimation in crowded scenes and that advances in 2D pose quality directly benefit 3D estimation. Results on the new OCHuman-Pose dataset show that multi-person performance is more affected by pose prediction accuracy than by detection. The code, models, and data are available at the <a href="https://mirapurkrabek.github.io/BBox-Mask-Pose/">project website</a>.
+</div>
+
+
+----------
+### [SAM-pose2seg: Pose-Guided Human Instance Segmentation in Crowds](https://mirapurkrabek.github.io/BBox-Mask-Pose/)
+
+**Constantin Kolomiiets, Miroslav Purkrabek, Jiri Matas**
+
+The 29th Computer Vision Winter Workshop (CVWW)\
+*[Best Paper Award](https://cmp.felk.cvut.cz/cvww2026/proceedings.html#best-paper)*
+
+![](/assets/img/SAM-pose2seg_comparison.png){: height="180" }
+
+
+<div style="text-align: justify;">
+<strong>Abstract</strong>: Segment Anything (SAM) provides an unprecedented
+foundation for human segmentation, but may struggle under occlusion, where keypoints may be partially or fully invisible. We adapt SAM 2.1 for pose-guided segmentation with minimal encoder modifications, retaining its strong generalization. Using a fine-tuning strategy called PoseMaskRefine, we incorporate pose keypoints with high visibility into the iterative correction process originally employed by SAM, yielding improved robustness and accuracy across multiple datasets. During inference, we simplify prompting by selecting only the three keypoints with the highest visibility. This strategy reduces sensitivity to common errors, such as missing body parts or misclassified clothing, and allows accurate mask prediction from as few as a single keypoint. Our results demonstrate that pose-guided fine-tuning of SAM enables effective, occlusion-aware human segmentation while preserving the generalization capabilities of the original model. The code and pretrained models will be available at the <a href="https://mirapurkrabek.github.io/BBox-Mask-Pose/">project website</a>.
+</div>
+
+
+----------
 ### [Detection, Pose Estimation and Segmentation for Multiple Bodies: Closing the Virtuous Circle](https://mirapurkrabek.github.io/BBox-Mask-Pose/)
 
 **Miroslav Purkrabek, Jiri Matas**

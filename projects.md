@@ -60,3 +60,30 @@ A lightweight, local alternative to CVAT and LabelStudio. Originally developed t
 The tool is available on [GitHub](https://github.com/MiraPurkrabek/PoseAnnotator/)
 
 ![](/assets/img/poseAnnotator_screenshot.png){: height="180" }
+
+----------
+### Revie
+
+<div style="text-align: justify;">
+SKV Revie is a system for instant download of videos from the sports hall camera system. After pressing a button, the last 30 seconds of footage are saved, so you can download clips immediately after an interesting situation happens. The user interface is accessible from any device with a web browser, while the backend runs on a local mini PC. The system runs with latency below 0.5 seconds and can simultaneously handle (at least) 6 cameras in 4K resolution.
+
+We use Revie during both practices and matches in our floorball club. The system allows coaches to immediately analyze recent situations and provide feedback to players right after the end of a shift.
+
+The system is currently closed-source for internal club use. If you are interested in Revie, feel free to contact me — I am open to potential collaboration.
+</div>
+
+![](/assets/img/Revie-screenshot.png){: height="180" }
+
+----------
+### Automatic Download from SKV Cameras 
+
+<div style="text-align: justify;">
+An automated system for downloading videos from SKV's sports hall.
+The system interface is available on the public website, accessible only for SKV staff.
+It allows downloading videos from all our cameras with 30-day history.
+
+The backend runs on a local server and is connection of Python backend, Microsoft Power Automate and Microsoft OneDrive.
+The Python backend logs every activity and sends failure notifications to the developer (me) to allow almost real-time support.
+
+So far, the system downloded more than 400 videos.
+</div>
