@@ -87,3 +87,16 @@ The Python backend logs every activity and sends failure notifications to the de
 
 So far, the system downloded more than 400 videos.
 </div>
+
+----------
+### High Power Charging
+
+<div style="text-align: justify;">
+
+I was part of Porsche's team developing the world's most powerful EV charger, a breakthrough in charging speeds and efficiency. Our team was responsible for developing the software across all system components. For more details on this innovative technology, see [this article on 800-volt charging](https://www.smart-emotion.de/article/405-800-volts-explained-why-porsche-redefined-charging-times-and-efficiency/).  
+
+</div>
+
+![](/assets/img/Porsche_HPC.jpg){: height="180" }
+
+
