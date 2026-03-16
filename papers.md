@@ -23,7 +23,7 @@ subtitle: Papers that I (co-)authored or (co-)supervised
 **Constantin Kolomiiets, Miroslav Purkrabek, Jiri Matas**
 
 The 29th Computer Vision Winter Workshop (CVWW)\
-*[Best Paper Award](https://cmp.felk.cvut.cz/cvww2026/proceedings.html#best-paper)*
+*[Best Student Paper Award](https://cmp.felk.cvut.cz/cvww2026/proceedings.html#best-paper)*
 
 ![](/assets/img/SAM-pose2seg_comparison.png){: height="180" }
 
