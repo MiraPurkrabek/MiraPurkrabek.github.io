@@ -1,0 +1,28 @@
+# build output
+dist/
+.astro/
+
+# static assets served as-is
+public/
+
+# lockfile
+package-lock.json
+
+# Jekyll site (removed in PR-13)
+_layouts/
+_includes/
+_posts/
+_data/
+*.md
+index.html
+404.html
+Gemfile
+Gemfile.lock
+staticman.yml
+feed.xml
+tags.html
+Appraisals
+beautiful-jekyll-theme.gemspec
+CHANGELOG.md
+screenshot.png
+_config.yml

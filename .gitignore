@@ -11,3 +11,8 @@ ehthumbs.db
 Gemfile.lock
 
 beautiful-jekyll-theme-*.gem
+
+# Astro
+node_modules/
+dist/
+.astro/
