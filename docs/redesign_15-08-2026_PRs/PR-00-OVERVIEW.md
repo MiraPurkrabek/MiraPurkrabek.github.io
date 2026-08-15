@@ -8,6 +8,8 @@ Related input documents:
 
 - [Design brief](../redesign_15-08-2026_DESIGN_BRIEF.md) — visual system, section-by-section intent
 - [Tech stack](../redesign_15-08-2026_TECH_STACK.md) — Astro, CSS, content architecture, a11y, deployment
+- [Implementation notes](IMPLEMENTATION_NOTES.md) — decisions/deviations logged by earlier PRs;
+  check it before starting, add to it before finishing (see §6, "Definition of done")
 
 ---
 
@@ -168,6 +170,10 @@ implemented in any order once 02 and 03 are merged.
    affiliations or awards.** If something is missing, use the fallback copy the PR provides
    and list the gap in the PR description.
 7. PR description lists: what was built, screenshots (light + dark), open flags.
+8. Append a short entry (5-10 lines) to [IMPLEMENTATION_NOTES.md](IMPLEMENTATION_NOTES.md)
+   under a `## PR-NN — <slug>` heading: any deviation from that PR's doc, and any decision the
+   next PRs need to know about (new devDeps, naming, config choices). Skip it if there's
+   genuinely nothing to note.
 
 **Code conventions**
 
