@@ -90,22 +90,26 @@ Vertical list from the `experience` collection where `kind != 'leadership'`, new
 row per entry:
 
 ```text
-2026            QUALCOMM · AMSTERDAM
-                Research Intern, XR Labs
-                3D scene reconstruction and understanding
-───────────────────────────────────────────────────────────
-2025–2026       UNIVERSITY OF TÜBINGEN
-                Research Visit — Real Virtual Humans (prof. Gerard Pons-Moll)
-                3D human understanding
-───────────────────────────────────────────────────────────
-2023 — present  CTU PRAGUE · VISUAL RECOGNITION GROUP
-                PhD Candidate & Researcher (advisor: prof. Jiří Matas)
-                Robust human understanding in images and video
-───────────────────────────────────────────────────────────
-2020–2022       PORSCHE ENGINEERING
-                Software Developer
-                Production software for the high-power charging platform
+Jun – Dec 2026        QUALCOMM · AMSTERDAM
+                       Research Intern, XR Labs
+                       3D scene reconstruction and understanding
+──────────────────────────────────────────────────────────────────
+Dec 2025 – Mar 2026    UNIVERSITY OF TÜBINGEN
+                       Research Visit — Real Virtual Humans (prof. Gerard Pons-Moll)
+                       3D human understanding
+──────────────────────────────────────────────────────────────────
+2023 — present         CTU PRAGUE · VISUAL RECOGNITION GROUP
+                       PhD Candidate & Researcher (advisor: prof. Jiří Matas)
+                       Robust human understanding in images and video
+──────────────────────────────────────────────────────────────────
+2020–2022              PORSCHE ENGINEERING
+                       Software Developer — Taycan & High Power Charging
+                       Control-unit software for the Taycan and Porsche's
+                       High Power Charging platform
 ```
+
+Qualcomm is Miroslav's current position (as of writing). Tübingen is already completed — do not
+phrase it as ongoing. Neither date range is a placeholder; use them exactly.
 
 - Desktop: two columns — period (mono, `--text-subtle`, fixed ~160px) and the entry body.
   Mobile: period above the body, still mono and small.

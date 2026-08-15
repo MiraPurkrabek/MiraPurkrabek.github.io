@@ -41,10 +41,13 @@ Sections (each an `<h2>` with a stable `id`, because `/teaching` redirects to `#
    at Qualcomm in Amsterdam, what he works on, and the through-line: *making computer vision work
    where the benchmark assumptions stop holding.*
 2. **How I got here** (`#story`) — the trajectory as a narrative rather than a table: cybernetics
-   and robotics → sports video (BSc/BSc thesis on floorball tracking) → two years shipping
-   production software at Porsche Engineering → back to research for the PhD → research visit in
-   Tübingen → industry research at Qualcomm. Make the point explicitly: he chose research *after*
-   knowing what production feels like.
+   and robotics → sports video (BSc/MSc thesis on floorball tracking) → two years shipping
+   production software at Porsche Engineering (control units for the Taycan, then Porsche's High
+   Power Charging platform) → back to research for the PhD → a research visit in Tübingen
+   (Dec 2025 – Mar 2026) → industry research at Qualcomm (Jun – Dec 2026, current). Make the
+   point explicitly: he chose research *after* knowing what production feels like. Do not state a
+   PhD completion date anywhere in this section — see
+   [PR-00 §8](PR-00-OVERVIEW.md#facts-confirmed-by-miroslav-2026-08-15--supersedes-all-earlier--flags).
 3. **How I work** (`#how-i-work`) — the research-philosophy section, 3–5 short paragraphs or a
    compact list. Anchor ideas, all supported by real work:
    - The last 10% is the interesting part — out-of-image keypoints (ProbPose), crowded scenes
@@ -96,7 +99,7 @@ Changes to make:
   total in club history (2023/24), top-8 finish (2024/25), head-coach appointment in 2024.
 - Add a short "Back to /about" link at the end.
 - Page title/description positions it as leadership experience, not as a coaching CV:
-  `title: "Coaching — Miroslav Purkrábek"`, description mentioning Superliga head coach and what
+  `title: "Coaching — Mira Purkrábek"`, description mentioning Superliga head coach and what
   it taught him.
 
 ## Out of scope

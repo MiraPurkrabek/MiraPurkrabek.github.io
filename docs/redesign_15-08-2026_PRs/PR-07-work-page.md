@@ -52,7 +52,7 @@ h2  Applied systems
     · FACIS — forensic image and video tools for the Criminal Police Service
     · Revie — instant clip retrieval for a sports hall
     · Automatic download from SKV cameras
-    · Porsche High Power Charging
+    · Porsche — Taycan & High Power Charging
 
 h2  Tools & open source
     · PoseAnnotator
@@ -88,17 +88,24 @@ clickable.
 
 - **BBox-Mask-Pose** entry covers both the ICCV 2025 paper and the BMPv2 arXiv follow-up and the
   supervised SAM-pose2seg work — one coherent line of research, not three cards.
-- **FACIS** uses the conservative wording (see [PR-00 §8 ⚠](PR-00-OVERVIEW.md#8-fact-sheet-single-source-of-truth)):
-  built for the Criminal Police Service with BUT under a Ministry of the Interior grant, awarded
-  Excellent Research Results in 2025.
+- **FACIS** uses the confirmed wording (see
+  [PR-00 §8, "Facts confirmed by Miroslav"](PR-00-OVERVIEW.md#facts-confirmed-by-miroslav-2026-08-15--supersedes-all-earlier--flags)):
+  commissioned by the Ministry of the Interior for the Police of the Czech Republic's Criminal
+  Police Service, built with BUT, **now in active use by the Police**, awarded Excellent Research
+  Results in 2025. Do not add any claim about how the Police feel about it — usage is the
+  checkable fact.
 - **Revie** must carry its concrete numbers: under 0.5 s latency, 6+ simultaneous 4K cameras,
   30-second retro-clip, local mini-PC backend, used in matches and training. This entry is one of
   the strongest engineering signals on the site — write it properly.
 - **SKV camera download**: Python backend + Power Automate + OneDrive, 30-day history, logging
   and failure alerts, 400+ videos served.
-- **Porsche HPC**: team building the most powerful EV charger of its generation, software across
-  all system components; link the reference article. Do not repeat the unverified "100k+
-  vehicles" claim here.
+- **Porsche — Taycan & High Power Charging**: two years on Porsche's EV engineering team —
+  control-unit software for the Taycan (170,000+ delivered worldwide, 2020–2025, source: Porsche
+  sales figures) and software across the components of Porsche's High Power Charging platform,
+  one of the most powerful EV chargers of its generation. Link the reference article. Do **not**
+  state a charger count or claim the charging network is "currently running in Europe and
+  China" — Porsche's self-built China network is being wound down from March 2026 and no
+  reliable public figure exists for total installations.
 - **PoseAnnotator**: local alternative to CVAT/LabelStudio, built for the RePoGen dataset, reused
   across several datasets, open source with a GitHub link.
 - **Floorball player tracking** ties the BSc/MSc theses to the applied interest in sports video —

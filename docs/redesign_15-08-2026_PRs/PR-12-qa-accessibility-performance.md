@@ -83,6 +83,11 @@ with anchor targets, and images that grow beyond their container.
 - Diacritics consistent: Purkrábek, Jiří Matas, Královské Vinohrady, Skvrna, Suchánek.
 - Consistent venue formatting site-wide, consistent date formatting, consistent "PhD candidate"
   wording (never "PhD student" in one place and "candidate" in another).
+- Name register audit against
+  [PR-00, "Naming"](PR-00-OVERVIEW.md#naming-mira-vs-miroslav-purkrábek): grep the built `dist/`
+  for "Miroslav" and check every hit is one of the three sanctioned spots (hero caption, footer
+  copyright, publication/citation content) or JSON-LD; grep for "Mira " and confirm it's used
+  everywhere else a name is shown to a visitor, including the OG image and `<title>` tags.
 
 ## Out of scope
 

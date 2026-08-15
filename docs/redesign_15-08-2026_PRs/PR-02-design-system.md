@@ -186,9 +186,11 @@ Renders `<!doctype html>` … `<html lang="en" data-theme>` with:
 
 ### 6. `Header.astro`
 
-Desktop (≥ 900px): name on the left as a link to `/` (text wordmark,
+Desktop (≥ 900px): **"Mira Purkrábek"** on the left as a link to `/` (text wordmark,
 `font-weight: 600`, `--text-lg`, no avatar image — the old SKV club avatar is removed), nav on
-the right: **Work · Publications · About · CV↗ · [theme toggle]**.
+the right: **Work · Publications · About · CV↗ · [theme toggle]**. See
+[PR-00, "Naming"](PR-00-OVERVIEW.md#naming-mira-vs-miroslav-purkrábek) — the wordmark is casual
+register, always "Mira", never "Miroslav" here.
 
 - `CV` links to `/CV.pdf`, `target="_blank" rel="noopener"`, with the `download` icon and
   an accessible label "CV (PDF, opens in a new tab)".
@@ -208,14 +210,17 @@ framework, no island library.
 
 Three-part, stacking to one column on mobile:
 
-- Left: "Miroslav Purkrábek" + one line — *"Computer vision researcher and engineer. Prague ·
+- Left: "Mira Purkrábek" + one line — *"Computer vision researcher and engineer. Prague ·
   currently Amsterdam."* (Amsterdam mention is driven by `src/data/site.ts`, easy to change.)
 - Middle: page links (Work, Publications, About, Coaching, CV).
 - Right: icon+label links — Email, GitHub, Google Scholar, LinkedIn, ORCID (values in the
   [fact sheet](PR-00-OVERVIEW.md#8-fact-sheet-single-source-of-truth)). External links get
   `rel="noopener"` and the external icon.
 - Bottom line: `© <current year> Miroslav Purkrábek · Built with Astro`, `--text-xs`,
-  `--text-subtle`.
+  `--text-subtle`. **This one line stays the full legal name** — see
+  [PR-00, "Naming"](PR-00-OVERVIEW.md#naming-mira-vs-miroslav-purkrábek) — it is the
+  copyright/legal register and one of the site's three searchability anchors for "Miroslav
+  Purkrábek". Do not "fix" it to Mira.
 - Email is a real `mailto:` link with visible address (no obfuscation gymnastics).
 
 ### 8. `ThemeToggle.astro`
@@ -230,11 +235,14 @@ Three-part, stacking to one column on mobile:
 
 ### 9. `src/data/site.ts`
 
-Typed site config consumed by header/footer/SEO: name, role line, location line, emails
-(`primary` = `mira.purkrabek@gmail.com`, `university` = `miroslav.purkrabek@fel.cvut.cz`),
-socials, `cvPath: '/CV.pdf'`, `siteUrl`, default OG image path, and an `availability` object
-(`{ show: true, text: 'Open to applied scientist and research engineer roles' }`) used by later
-PRs so the line can be switched off in one place.
+Typed site config consumed by header/footer/SEO: **`name: 'Mira Purkrábek'`** (casual — everything
+in scope 1–9 above reads from this) and **`legalName: 'Miroslav Purkrábek'`** (official —
+footer copyright and JSON-LD `name` read from this; see
+[PR-00, "Naming"](PR-00-OVERVIEW.md#naming-mira-vs-miroslav-purkrábek)), role line, location
+line, emails (`primary` = `mira.purkrabek@gmail.com`, `university` =
+`miroslav.purkrabek@fel.cvut.cz`), socials, `cvPath: '/CV.pdf'`, `siteUrl`, default OG image
+path, and an `availability` object (`{ show: true, text: 'Open to applied scientist and research
+engineer roles' }`) used by later PRs so the line can be switched off in one place.
 
 ### 10. `/styleguide` page
 

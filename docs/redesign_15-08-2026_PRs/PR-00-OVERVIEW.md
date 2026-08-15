@@ -195,6 +195,46 @@ implemented in any order once 02 and 03 are merged.
   Vinohrady, Jan Skvrna.
 - Awards belong to the work, not to the ego: state venue, year, award name, nothing more.
 
+### Naming: "Mira" vs. "Miroslav Purkrábek"
+
+Two names, two registers. Every PR file below has been updated to match this rule — if you spot
+a stray full name in a casual context (or vice versa) after this point, it's a slip, not an
+exception.
+
+**"Mira Purkrábek" — everywhere the site is talking to a visitor:** header/nav wordmark, the
+homepage `<h1>`, footer signature line, body prose, the About/Coaching narrative voice, image
+`alt` text, button and contact copy, the OG image's large name, and every page `<title>` tag.
+This isn't really a new choice — it matches the GitHub handle and domain the site already uses
+(`MiraPurkrabek`, `mirapurkrabek.github.io`). The copy is just catching up to the URL.
+
+**"Miroslav Purkrábek" — everywhere the text is, or points to, an official record:** paper author
+lists, BibTeX, citations, thesis titles, the `schema.org/Person` `name` field (this is what has
+to match Google Scholar, ORCID and LinkedIn, which all say "Miroslav"), and the footer's
+copyright line. Never write "Mira" in an author list or citation — it wouldn't match the
+published paper.
+
+**Searchability:** "Miroslav Purkrábek" must still be real, crawlable text on the site so it's
+findable by either name. Three channels carry this, and that's enough — don't also stuff the
+full name into every page's meta description:
+
+1. A small `(Miroslav Purkrábek)` caption directly under the hero `<h1>` (PR-04).
+2. `schema.org/Person` on the homepage: `name: "Miroslav Purkrábek"`,
+   `alternateName: ["Mira Purkrábek", "Miroslav Purkrabek"]` (PR-11).
+3. The footer copyright line (PR-02).
+
+| Context | Name |
+|---|---|
+| Header/nav wordmark | Mira Purkrábek |
+| Hero `<h1>` | Mira Purkrábek, plus the small full-name caption underneath |
+| Body prose — About, Coaching, Contact, project copy | Mira |
+| Footer signature line | Mira Purkrábek |
+| Footer copyright line | Miroslav Purkrábek |
+| Image `alt` text | Mira Purkrábek |
+| Page `<title>` / OG title | Mira Purkrábek |
+| `schema.org/Person` `name` | Miroslav Purkrábek |
+| `schema.org/Person` `alternateName` | Mira Purkrábek · Miroslav Purkrabek (no diacritics) |
+| Paper/thesis author lists, BibTeX, citations | Miroslav Purkrábek |
+
 ---
 
 ## 8. Fact sheet (single source of truth)
@@ -204,7 +244,8 @@ provided fallback and flag them in the PR description; never silently guess.
 
 ### Identity
 
-- Miroslav Purkrábek — Computer-vision researcher and engineer; PhD candidate.
+- Full name Miroslav Purkrábek, goes by **Mira** — see "Naming" under §7. Computer-vision
+  researcher and engineer; PhD candidate.
 - Advisor: prof. Ing. Jiří Matas, Ph.D. — https://cmp.felk.cvut.cz/~matas/
 - Group: Visual Recognition Group (VRG), FEE, Czech Technical University in Prague —
   https://vrg.fel.cvut.cz/ , https://fel.cvut.cz/en
@@ -218,10 +259,10 @@ provided fallback and flag them in the PR description; never silently guess.
 
 | Period | Organisation | Role | Notes |
 |---|---|---|---|
-| 2026 (⚠ Apr–Oct 2026, 6 months) | Qualcomm, XR Labs, Amsterdam | Research Intern | 3D scene reconstruction and understanding |
-| 2025–2026 (⚠ started Dec 2025) | University of Tübingen — Real Virtual Humans (prof. Gerard Pons-Moll) | Research visit | 3D human understanding |
-| 2023– | CTU Prague, VRG | PhD candidate & researcher | Robust human understanding in images and video; state doctoral exam passed with distinction, Feb 2025 |
-| 2020–2022 | Porsche Engineering | Software developer | High Power Charging — software across system components of the most powerful EV charger |
+| Jun 2026 – Dec 2026 (current) | Qualcomm, XR Labs, Amsterdam | Research Intern | 3D scene reconstruction and understanding |
+| Dec 2025 – Mar 2026 (completed) | University of Tübingen — Real Virtual Humans (prof. Gerard Pons-Moll) | Research visit | 3D human understanding |
+| 2023– | CTU Prague, VRG | PhD candidate & researcher | Robust human understanding in images and video; state doctoral exam passed with distinction, Feb 2025. Expected completion not yet finalised — **never print a completion/graduation date** |
+| 2020–2022 | Porsche Engineering | Software developer | Two projects: control-unit software for the Porsche Taycan (170,000+ delivered worldwide 2020–2025), and software across the components of Porsche's High Power Charging platform |
 | 2017–2025 | Sokol Královské Vinohrady (floorball) | Assistant → head coach → consultant | Personal/leadership track, **not** part of the technical affiliation strip |
 
 Education: BSc Cybernetics and Robotics 2016–2020 · MSc Computer Science / Artificial
@@ -248,8 +289,9 @@ verbatim where a longer description is needed.
 ### Projects & systems
 
 - **FACIS — forensic analytical tools for image and video processing for the Criminal Police
-  Service.** With Brno University of Technology, funded by the Ministry of the Interior.
-  Automatic processing of images and video focused on human figures.
+  Service.** Commissioned by the Ministry of the Interior for the Police of the Czech Republic's
+  Criminal Police Service, with Brno University of Technology. Automatic processing of images
+  and video focused on human figures. **Now in active use by the Police.**
   Grant: https://starfos.tacr.cz/cs/projekty/VJ02010041 · image `PCR.png`
 - **Infant sensorimotor development modelling** (project led by Matej Hoffmann) — 2D pose
   estimation of babies in video; connected to the BLANKET anonymisation paper. Image `Infants_image.png`
@@ -265,8 +307,11 @@ verbatim where a longer description is needed.
   Image `Revie-screenshot.png`
 - **Automatic download from SKV cameras** — Python backend + Power Automate + OneDrive, 30-day
   history, logging and failure notifications; **400+ videos downloaded**.
-- **Porsche High Power Charging** — team developing the world's most powerful EV charger;
-  software across all system components. Reference article:
+- **Porsche — Taycan control units & High Power Charging** — two years on Porsche's EV
+  engineering team: control-unit software for the Taycan (170,000+ delivered worldwide,
+  2020–2025 — source: Porsche sales figures) and software across the components of Porsche's
+  High Power Charging platform, one of the most powerful EV chargers of its generation.
+  Reference article:
   https://www.smart-emotion.de/article/405-800-volts-explained-why-porsche-redefined-charging-times-and-efficiency/
   Image `Porsche_HPC.jpg`
 - **S23DR 2026 challenge winning solution** — with Jan Skvrna (https://jskvrna.github.io/);
@@ -307,17 +352,29 @@ verbatim where a longer description is needed.
   Erasmus in Ljubljana. Podcast (Czech): https://www.skvflorbal.cz/c/skvely-podcast-2-miroslav-purkrabek-2430
 - Interests: mountains and nature, travel, psychology, epic fantasy.
 
-### Claims that need confirmation before they go live (⚠)
+### Facts confirmed by Miroslav (2026-08-15) — supersedes all earlier ⚠ flags
 
-1. **"100k+ vehicles"** for Porsche — asserted in the design brief, but the current site
-   describes the High Power Charging *charger* project. Confirm the defensible wording.
-   Fallback used by PRs until confirmed: *"Two years shipping production software for
-   Porsche's high-power charging platform."*
-2. **Qualcomm internship dates** (Apr–Oct 2026?) and exact team name ("Qualcomm XR Labs").
-3. **Tübingen research-visit dates** — the old news list says "December 2026", which is almost
-   certainly a typo for December 2025.
-4. **Expected PhD completion year** — never stated on the current site; do not print a
-   graduation date anywhere until confirmed.
-5. **Czech Police wording** — confirm whether "used operationally by the Czech Police" is
-   accurate, or whether the safer "developed for the Criminal Police Service under a Ministry of
-   the Interior grant" should be used. PRs default to the safer version.
+All items below were open questions in the first draft of this document. They are now resolved;
+use this wording directly, no further hedging or PR-description flagging needed.
+
+1. **Porsche, 2020–2022, was two projects, not one.** Control-unit software for the Porsche
+   Taycan, and software for Porsche's High Power Charging platform. Taycan cumulative worldwide
+   deliveries 2020–2025: **170,000+** (Porsche sales figures, compiled at
+   https://en.wikipedia.org/wiki/Porsche_Taycan — 20,015 + 41,296 + 34,801 + 40,629 + 20,836 +
+   16,339 = 173,916; round down to "170,000+" to stay safely conservative).
+   **No verified public figure exists for the number of Porsche's own High Power Charging
+   installations** — do not state a charger count, and do not claim the network is "currently
+   running in Europe and China": Porsche's self-built China charging network (200+ stations) is
+   being wound down starting March 2026. Use only: *"software across the components of Porsche's
+   High Power Charging platform"* — no unit count, no geography claim.
+2. **Qualcomm** — Research Intern, XR Labs, Amsterdam, **June 2026 – December 2026**. This is
+   his current position as of writing (2026-08-15).
+3. **Tübingen research visit** — **December 2025 – March 2026**, already completed. Do not
+   describe it as ongoing.
+4. **PhD completion date** — not yet finalised (Miroslav's best guess is 2027, unconfirmed).
+   **Never print a completion/graduation date anywhere on the site.**
+5. **FACIS / Czech Police** — commissioned by the Ministry of the Interior for the Police of the
+   Czech Republic's Criminal Police Service; the software is **now in active use by the Police**.
+   Use: *"commissioned by the Ministry of the Interior for the Czech Police's Criminal Police
+   Service — now in active use."* Do not add subjective reception claims (e.g. "the Police loved
+   it") — usage is the checkable fact, satisfaction is not.

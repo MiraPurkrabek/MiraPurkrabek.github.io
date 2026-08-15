@@ -5,7 +5,10 @@
 **Size:** M · **Ships visually:** yes
 
 Read [PR-00-OVERVIEW.md](PR-00-OVERVIEW.md) and the
-[design brief](../redesign_15-08-2026_DESIGN_BRIEF.md) §"Publications page".
+[design brief](../redesign_15-08-2026_DESIGN_BRIEF.md) §"Publications page". In particular, this
+page is the one place on the site that stays in the **official register** — see
+[PR-00, "Naming"](PR-00-OVERVIEW.md#naming-mira-vs-miroslav-purkrábek): author names are
+"Miroslav Purkrábek", exactly as printed on the paper, never "Mira".
 
 ---
 
@@ -45,7 +48,7 @@ at the end so they never dilute the peer-reviewed list.
 
 ```text
 ┌──────────┐  Title (links to project microsite, else arXiv)
-│ thumbnail│  Authors — Miroslav Purkrábek in bold/accent
+│ thumbnail│  Authors — "Miroslav Purkrábek" in bold/accent, full name, not "Mira"
 │ 160×110  │  Venue, year · role badge (only for "supervised")
 └──────────┘  ★ Best Poster Award            <- accent text, only when present
 

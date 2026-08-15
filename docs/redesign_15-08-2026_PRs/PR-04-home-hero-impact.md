@@ -38,7 +38,8 @@ max-width ~320px, or omitted if it crowds — text always first in DOM order.
 ```text
 [availability pill]  Open to applied scientist and research engineer roles
 
-Miroslav Purkrábek
+Mira Purkrábek
+(Miroslav Purkrábek)
 
 Computer vision researcher and engineer
 
@@ -55,7 +56,12 @@ Human understanding · 2D & 3D vision · Robust perception
 
 Notes:
 
-- `<h1>` is the name. The role line is a `<p>` styled at `--text-xl`, `--text-muted` — **not** an
+- `<h1>` is **"Mira Purkrábek"**. Directly underneath it, render `(Miroslav Purkrábek)` as a
+  small `<p>` — `--text-sm`, `--text-subtle`, not part of the `<h1>`. It exists so the full legal
+  name is real, crawlable text near the site's most prominent name mention; see
+  [PR-00, "Naming"](PR-00-OVERVIEW.md#naming-mira-vs-miroslav-purkrábek). Do not make it a link,
+  do not style it to compete with the `<h1>`.
+- The role line is a `<p>` styled at `--text-xl`, `--text-muted` — **not** an
   `<h2>` (see [PR-00 §6](PR-00-OVERVIEW.md#6-shared-working-conventions-apply-to-every-pr)).
 - Availability pill: small, `--accent-soft` background, mono uppercase label, driven by
   `site.availability` from `src/data/site.ts` so it can be switched off in one line.
@@ -69,7 +75,7 @@ Notes:
 
 **Portrait:** use `assets/img/CV_picture_PS_square.jpg` through `astro:assets` — square,
 `--radius-lg`, subtle 1px border, no drop shadow, no circular crop, no decorative blobs.
-`alt="Miroslav Purkrábek"`. Serve AVIF/WebP with an explicit width/height and `fetchpriority="high"`.
+`alt="Mira Purkrábek"`. Serve AVIF/WebP with an explicit width/height and `fetchpriority="high"`.
 
 If the portrait looks weak at that crop, the acceptable alternative is a two-cell composition:
 portrait plus one research figure (`004806_BMP_loop.gif` or `McLaughlin.gif`) stacked with equal
@@ -83,10 +89,10 @@ Four cards from `experience` where `inStrip: true`, newest first:
 
 | Organisation | Role line | Period |
 |---|---|---|
-| Qualcomm | Research Intern · XR Labs, Amsterdam | 2026 |
+| Qualcomm | Research Intern · XR Labs, Amsterdam | Jun – Dec 2026 |
 | Czech Technical University in Prague | PhD Candidate & Researcher · Visual Recognition Group | 2023 — present |
-| University of Tübingen | Research Visit · Real Virtual Humans | 2025–2026 |
-| Porsche Engineering | Software Developer · High Power Charging | 2020–2022 |
+| University of Tübingen | Research Visit · Real Virtual Humans | Dec 2025 – Mar 2026 |
+| Porsche Engineering | Software Developer · Taycan & High Power Charging | 2020–2022 |
 
 Layout: 4-up grid on desktop, 2-up on tablet, 2-up (or 1-up if cramped) on mobile. Cards are
 low-key: `--surface-soft`, thin border, no hover elevation (they are not links unless an
@@ -122,14 +128,14 @@ memorable fact (`--text-2xl`, `--tracking-tight`), one or two explanatory lines
 ```text
 DEPLOYED SYSTEM
 Forensic tools for the Czech Police
-Image and video analysis for the Criminal Police Service, built with Brno
-University of Technology under a Ministry of the Interior grant — named the
-ministry's top project for research results in 2025.
+Image and video analysis for the Criminal Police Service, commissioned by the
+Ministry of the Interior with Brno University of Technology — now in active
+use, and named the ministry's top project for research results in 2025.
 
 PRODUCTION SOFTWARE
-Two years shipping at Porsche
-Software across the components of Porsche's high-power charging platform —
-the most powerful EV charger of its generation.
+170,000+ Taycans on the road
+Two years on Porsche's EV engineering team — control-unit software for the
+Taycan and software across Porsche's High Power Charging platform.
 
 RESEARCH
 First author at CVPR and ICCV
@@ -141,18 +147,19 @@ COMPETITION
 Structured 3D reconstruction challenge, won with Jan Skvrna. $5,000 prize.
 ```
 
-⚠ Two claims to flag in the PR description rather than escalate on your own:
-
-1. The design brief claims **"100k+ vehicles"** for Porsche. The current site only documents the
-   charging platform. The copy above is the defensible fallback; if Miroslav confirms the
-   vehicles figure, the tile becomes `100k+ vehicles` as the large fact.
-2. The brief says *"Used by Czech Police"*; the copy above says *"built for … under a Ministry of
-   the Interior grant"*, which is what the current site supports. Swap only on confirmation.
+Both tiles above are confirmed, final copy — see
+[PR-00 §8, "Facts confirmed by Miroslav"](PR-00-OVERVIEW.md#facts-confirmed-by-miroslav-2026-08-15--supersedes-all-earlier--flags).
+Do not soften, re-flag, or reword them. Note on the Porsche tile: "170,000+ Taycans on the road"
+is a scale illustration, not a personal-attribution claim — do not reword it into something
+implying Miroslav caused those sales; the explanatory line already scopes his actual
+contribution correctly. Similarly, do not add any claim about how the Police *feel* about the
+FACIS system — "now in active use" is the checkable fact, stop there.
 
 ### 4. Page assembly
 
 `src/pages/index.astro` uses `BaseLayout` with
-`title: "Miroslav Purkrábek — Computer vision researcher and engineer"` and a description
+`title: "Mira Purkrábek — Computer vision researcher and engineer"` (see
+[PR-11](PR-11-seo-metadata-redirects.md) for the final, authoritative metadata) and a description
 drawn from the hero paragraph. Sections in order: Hero → Affiliations → Impact, separated by
 `--section-gap`, no horizontal rules. Remaining homepage sections arrive in PR-05/PR-06 — leave
 clearly marked placeholders (an HTML comment, not visible text).
@@ -177,7 +184,8 @@ clearly marked placeholders (an HTML comment, not visible text).
 
 ## Review checklist
 
-- [ ] `<h1>` is exactly "Miroslav Purkrábek", appears once
+- [ ] `<h1>` is exactly "Mira Purkrábek", appears once; the small "(Miroslav Purkrábek)" caption
+      sits directly under it as its own element, not inside the `<h1>`
 - [ ] No coaching/floorball reference anywhere in this PR's output
 - [ ] No text is justified
 - [ ] Availability pill can be disabled from `src/data/site.ts` alone

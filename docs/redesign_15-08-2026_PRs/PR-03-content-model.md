@@ -119,7 +119,7 @@ Everything in [fact sheet §8](PR-00-OVERVIEW.md#8-fact-sheet-single-source-of-t
 - **projects** (9): FACIS forensic tools *(applied)*, BBox-Mask-Pose *(research)*,
   ProbPose *(research)*, RePoGen *(research)*, S23DR 2026 challenge *(research)*,
   Revie *(applied)*, SKV automatic camera download *(applied)*, PoseAnnotator *(tool)*,
-  Porsche High Power Charging *(applied)*, infant sensorimotor development *(research)*,
+  Porsche — Taycan & High Power Charging *(applied)*, infant sensorimotor development *(research)*,
   camera-trap animal identification *(research)*, floorball player tracking *(research)*.
   (That is 12 — enter all of them; `/work` groups them, the homepage shows 4.)
 - **publications** (9): the 7 papers + 2 theses from the fact sheet, abstracts copied verbatim

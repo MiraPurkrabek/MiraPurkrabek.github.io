@@ -52,7 +52,7 @@ assets already at their final public paths, and a CI job that builds every PR in
      `feed.xml`, `tags.html`, `Appraisals`, `beautiful-jekyll-theme.gemspec`, `CHANGELOG.md`,
      `screenshot.png`) — [PR-13](PR-13-cutover-and-deploy.md) removes them in one reviewable
      commit.
-4. **Placeholder page** `src/pages/index.astro` — plain `<h1>Miroslav Purkrábek</h1>` and a note
+4. **Placeholder page** `src/pages/index.astro` — plain `<h1>Mira Purkrábek</h1>` and a note
    that the redesign is in progress. It is replaced in PR-02/PR-04.
 5. **Directory skeleton** (empty dirs with a `.gitkeep` are fine):
    `src/components/`, `src/layouts/`, `src/styles/`, `src/content/`, `src/data/`, `src/assets/`.
