@@ -1,0 +1,176 @@
+---
+// Homepage affiliation strip — see
+// docs/redesign_15-08-2026_PRs/PR-04-home-hero-impact.md §2.
+//
+// Period, orgUrl and logo are read live from the `experience` collection so they stay in sync
+// with PR-03's data and so a future logo file "just works" with no code change here. The org
+// display name and role line are the exact strings PR-04 specifies (a fuller institution name
+// and a role/group phrasing that doesn't map 1:1 onto the raw YAML `org`/`role` fields), so
+// those two are curated per entry rather than derived.
+import { getCollection } from 'astro:content';
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import Card from '../Card.astro';
+
+const experience = await getCollection('experience');
+
+const stripOrder: { id: string; orgDisplay: string; roleLine: string }[] = [
+  {
+    id: 'qualcomm',
+    orgDisplay: 'Qualcomm',
+    roleLine: 'Research Intern · XR Labs, Amsterdam',
+  },
+  {
+    id: 'ctu-vrg',
+    orgDisplay: 'Czech Technical University in Prague',
+    roleLine: 'PhD Candidate & Researcher · Visual Recognition Group',
+  },
+  {
+    id: 'tuebingen',
+    orgDisplay: 'University of Tübingen',
+    roleLine: 'Research Visit · Real Virtual Humans',
+  },
+  {
+    id: 'porsche',
+    orgDisplay: 'Porsche Engineering',
+    roleLine: 'Software Developer · Taycan & High Power Charging',
+  },
+];
+
+const cards = stripOrder
+  .map(({ id, orgDisplay, roleLine }) => {
+    const entry = experience.find((e) => e.id === id && e.data.inStrip);
+    if (!entry) return null;
+    return {
+      orgDisplay,
+      roleLine,
+      period: entry.data.displayPeriod,
+      orgUrl: entry.data.orgUrl,
+      logo: entry.data.logo,
+    };
+  })
+  .filter((card) => card !== null);
+---
+
+<Section id="affiliations">
+  <SectionHeading
+    eyebrow="Where I've worked"
+    heading="Experience & affiliations"
+  />
+
+  <div class="affiliations__grid">
+    {
+      cards.map((card) => (
+        <Card as="div" tone="soft" class="affiliation-card">
+          {card.logo ? (
+            <>
+              <span class="affiliation-card__logo-box">
+                <img
+                  src={card.logo}
+                  alt=""
+                  class="affiliation-card__logo-img"
+                />
+              </span>
+              <p class="affiliation-card__org">
+                {card.orgUrl ? (
+                  <a href={card.orgUrl}>{card.orgDisplay}</a>
+                ) : (
+                  card.orgDisplay
+                )}
+              </p>
+            </>
+          ) : (
+            <p class="affiliation-card__wordmark">
+              {card.orgUrl ? (
+                <a href={card.orgUrl}>{card.orgDisplay}</a>
+              ) : (
+                card.orgDisplay
+              )}
+            </p>
+          )}
+          <p class="affiliation-card__role">{card.roleLine}</p>
+          <p class="affiliation-card__period">{card.period}</p>
+        </Card>
+      ))
+    }
+  </div>
+</Section>
+
+<style>
+  .affiliations__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .affiliation-card {
+    padding: var(--space-5);
+  }
+
+  .affiliation-card :global(a) {
+    text-decoration: none;
+  }
+
+  .affiliation-card :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  .affiliation-card__logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 32px;
+    margin-bottom: var(--space-3);
+  }
+
+  .affiliation-card__logo-img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .affiliation-card__wordmark {
+    margin-bottom: var(--space-3);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    color: var(--text);
+  }
+
+  .affiliation-card__org {
+    margin-bottom: var(--space-1);
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .affiliation-card__role {
+    margin-bottom: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .affiliation-card__period {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-subtle);
+  }
+
+  :root[data-theme='dark'] .affiliation-card__logo-box {
+    display: inline-flex;
+    background: var(--surface);
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (min-width: 480px) {
+    .affiliations__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .affiliations__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

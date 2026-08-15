@@ -1,15 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Section from '../components/Section.astro';
+import Hero from '../components/home/Hero.astro';
+import Affiliations from '../components/home/Affiliations.astro';
+import Impact from '../components/home/Impact.astro';
 
-const title = 'Mira Purkrábek';
+// Final, authoritative <title>/description are wired in PR-11; this is the interim value drawn
+// from the hero paragraph per PR-04 §4.
+const title = 'Mira Purkrábek — Computer vision researcher and engineer';
 const description =
-  'Computer vision researcher and engineer. Site redesign in progress.';
+  'I build visual perception that survives contact with reality — crowded scenes, cropped bodies, unusual viewpoints. First-author papers at CVPR and ICCV, code and models people actually run, and systems that went into production.';
 ---
 
 <BaseLayout title={title} description={description}>
-  <Section>
-    <h1>Mira Purkrábek</h1>
-    <p>The redesign of this site is in progress.</p>
-  </Section>
+  <Hero />
+  <Affiliations />
+  <Impact />
+  <!-- PR-05: Selected work, Experience timeline -->
+  <!-- PR-06: Recognition, Selected publications, Beyond computer vision, Contact -->
 </BaseLayout>

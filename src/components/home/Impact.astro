@@ -1,0 +1,88 @@
+---
+// Homepage "Selected impact" tiles — see
+// docs/redesign_15-08-2026_PRs/PR-04-home-hero-impact.md §3 for the verbatim, Miroslav-confirmed
+// copy this component renders. Do not soften, re-flag or reword it.
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import Card from '../Card.astro';
+
+const tiles = [
+  {
+    label: 'Deployed system',
+    fact: 'Forensic tools for the Czech Police',
+    body: "Image and video analysis for the Criminal Police Service, commissioned by the Ministry of the Interior with Brno University of Technology — now in active use, and named the ministry's top project for research results in 2025.",
+  },
+  {
+    label: 'Production software',
+    fact: '170,000+ Taycans on the road',
+    body: "Two years on Porsche's EV engineering team — control-unit software for the Taycan and software across Porsche's High Power Charging platform.",
+  },
+  {
+    label: 'Research',
+    fact: 'First author at CVPR and ICCV',
+    body: 'ProbPose (CVPR 2025) and BBox-Mask-Pose (ICCV 2025), with public code, models and datasets.',
+  },
+  {
+    label: 'Competition',
+    fact: '1st place, S23DR at CVPR 2026',
+    body: 'Structured 3D reconstruction challenge, won with Jan Skvrna. $5,000 prize.',
+  },
+];
+---
+
+<Section id="impact" tone="soft">
+  <SectionHeading
+    eyebrow="Computer vision for the last 10%"
+    heading="Selected impact"
+    lead="Four things I would point at first."
+  />
+
+  <div class="impact__grid">
+    {
+      tiles.map((tile) => (
+        <Card as="div" class="impact-tile">
+          <p class="impact-tile__label">{tile.label}</p>
+          <p class="impact-tile__fact">{tile.fact}</p>
+          <p class="impact-tile__body">{tile.body}</p>
+        </Card>
+      ))
+    }
+  </div>
+</Section>
+
+<style>
+  .impact__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .impact-tile__label {
+    margin-bottom: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-subtle);
+  }
+
+  .impact-tile__fact {
+    margin-bottom: var(--space-3);
+    font-size: var(--text-2xl);
+    letter-spacing: var(--tracking-tight);
+    font-weight: 600;
+    line-height: var(--leading-tight);
+  }
+
+  .impact-tile__body {
+    color: var(--text-muted);
+    line-height: var(--leading-snug);
+  }
+
+  @media (min-width: 640px) {
+    .impact__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

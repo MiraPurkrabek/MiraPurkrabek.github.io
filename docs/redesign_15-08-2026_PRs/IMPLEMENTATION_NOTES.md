@@ -114,3 +114,56 @@ before starting. Keep entries short.
   instead of Taycan/170,000+, and a PhD start of "Feb 2019" instead of Feb 2023), so it's stale
   relative to the confirmed fact sheet. Only `index.html`, `papers.md`, `projects.md`,
   `coaching.md`, `teaching.md` and PR-00 §8 were treated as authoritative.
+
+## PR-04 — Homepage part 1: hero, affiliation strip, selected impact
+
+- New `src/components/home/` directory for homepage-only sections (`Hero.astro`,
+  `Affiliations.astro`, `Impact.astro`), assembled by `src/pages/index.astro`.
+- Single portrait, not the two-cell composition — but **two photos, one per theme**, not one
+  image with a CSS trick. Tried `CV_picture_PS_square.jpg`, then a transparent cut-out
+  (`SKV_square_centered_transparent.png`) sitting on a `--surface-soft` background so it would
+  theme-adapt; the cut-out had visible matting artifacts (edge halo/reflection from the original
+  background removal) at the shoulders, so both were dropped. Final: two actual photos from the
+  same shoot, each composed for its theme — `SKV_square_centered.png` (black shirt, light
+  backdrop) for light mode, `SKV_square_centered_dark.png` (white shirt, dark backdrop) for dark
+  mode. Filenames inherited from the SKV shoot they originated from, but neither image carries
+  club branding or coaching content — just a headshot. `SKV_circle.png` was never used: PR-04
+  explicitly bans a circular crop. Both copied from `public/assets/img/` into `src/assets/img/`
+  so `astro:assets` can process them (images in `public/` are served unoptimised, verbatim) — the
+  `public/` copies are untouched and unused elsewhere.
+  **Swap mechanism:** both `<Picture>`s render into the same absolutely-positioned frame; CSS
+  opacity keyed off `:root[data-theme='dark']` shows the matching one, with a `--dur`/`--ease`
+  cross-fade on live theme-toggle clicks (verified — no reload). Only a `data-theme` CSS selector
+  can react correctly to the manual toggle override (`prefers-color-scheme` media alone can't,
+  since the toggle can diverge from OS preference per PR-02's notes), so both images necessarily
+  ship in the HTML and both fetch eagerly — no conditional-loading trick was worth the added JS.
+  Because `data-theme` is set synchronously pre-paint by `BaseLayout`'s bootstrap script, the
+  correct image is already showing at first paint, not just after the swap CSS applies.
+  **Size:** `formats={['avif', 'webp']}` plus `fallbackFormat="jpg"` (the source PNGs are fully
+  opaque, no alpha, so a jpg fallback is safe and much smaller than the png default) at
+  `width={640} height={640}` — collapses ~5.2 MB / 1.5 MB source PNGs to roughly 9 KB avif / 15 KB
+  webp / 28 KB jpg each, ~100 KB combined for both themes' full format sets.
+- **Affiliation strip data sourcing is a hybrid, not a pure content-collection read.** PR-04's
+  table gives exact display strings for org name and role line (e.g. "Czech Technical University
+  in Prague" / "PhD Candidate & Researcher · Visual Recognition Group") that don't map 1:1 onto
+  the raw `org`/`role` YAML fields from PR-03 (which read "CTU Prague · Visual Recognition Group"
+  / "PhD Candidate & Researcher (advisor: prof. Jiří Matas)"). `Affiliations.astro` hardcodes the
+  PR-04 org-display/role-line strings per entry (keyed by content-collection `id`), but still
+  reads `displayPeriod`, `orgUrl` and `logo` live from the `experience` collection — so a future
+  logo drop-in or a period/orgUrl edit in the YAML needs no component change, only the curated
+  display text is fixed. Card order is the literal PR-04 table order (Qualcomm, CTU, Tübingen,
+  Porsche), which is not a pure "sort by `order` field ascending" (that would put Tübingen before
+  CTU) — the table order was taken as authoritative over the field.
+  Missing logo files, per the PR: `public/assets/logos/{qualcomm,ctu,tuebingen,porsche}.svg`.
+- Selected-impact tile copy is hardcoded directly in `Impact.astro` (not sourced from the
+  `projects`/`recognition` collections) — it's a "use verbatim" copy block in the PR doc, same
+  treatment as the hero copy, not a dynamic listing.
+- `Button`'s `ghost` variant renders accent-coloured text, which would have pushed above-the-fold
+  accent usage past the "pill + primary button, at most twice" acceptance criterion — so the CV
+  and Email hero buttons use `variant="secondary"`, not `ghost`.
+- Verified with a headless-Chromium pass (Python `playwright`) against `astro dev`: home in both
+  themes at 320/768/1024/1440px, plus a 1440×900 no-scroll "fold" screenshot confirming the
+  Impact section heading is reached after one screen-height scroll. Confirmed via the built HTML:
+  a single `<h1>`, hero text markup precedes the portrait markup in DOM order at every width, and
+  no "passionate"/coaching/floorball/`text-align: justify` in this PR's own components (the
+  Footer's pre-existing "Coaching" nav link is out of this PR's scope, not new).
