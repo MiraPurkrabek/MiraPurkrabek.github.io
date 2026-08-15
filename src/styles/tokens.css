@@ -1,0 +1,113 @@
+/* Design tokens — single source of truth for colour, type, spacing, radii, shadow, layout,
+   motion. No hard-coded colour/radius/spacing literal belongs anywhere else. */
+
+:root {
+  /* colour — light */
+  --page-bg: #fbfaf8; /* warm off-white */
+  --surface: #ffffff;
+  --surface-soft: #f3f1ed; /* tinted cards, code blocks */
+  --surface-hover: #edeae4;
+  --text: #1a1a18;
+  --text-muted: #5c5f5b;
+  --text-subtle: #83867f; /* metadata, captions */
+  --border: #e3e0d9;
+  --border-strong: #cfcbc2;
+  --accent: #0e5c68; /* deep teal — links, buttons, small marks */
+  --accent-hover: #0a464f;
+  --accent-soft: #e2eff1; /* accent-tinted background */
+  --accent-contrast: #ffffff; /* text on accent */
+  --focus-ring: #0e5c68;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --page-bg: #131417;
+  --surface: #191b1f;
+  --surface-soft: #202328;
+  --surface-hover: #272b31;
+  --text: #ecedee;
+  --text-muted: #a6abaf;
+  --text-subtle: #80868b;
+  --border: #2b2f35;
+  --border-strong: #3a3f46;
+  --accent: #4fc3d0;
+  --accent-hover: #7bd7e1;
+  --accent-soft: #163034;
+  --accent-contrast: #0b1214;
+  --focus-ring: #4fc3d0;
+  color-scheme: dark;
+}
+
+:root {
+  /* typography */
+  --font-sans:
+    'InterVariable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, 'Cascadia Mono', monospace;
+
+  --text-xs: 0.8125rem; /* 13px — metadata */
+  --text-sm: 0.9375rem; /* 15px — captions, labels */
+  --text-base: 1.0625rem; /* 17px — body */
+  --text-lg: 1.1875rem; /* 19px — lead paragraphs */
+  --text-xl: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem); /* card titles */
+  --text-2xl: clamp(1.625rem, 1.4rem + 1vw, 2.125rem); /* section headings */
+  --text-3xl: clamp(2rem, 1.7rem + 1.5vw, 2.75rem); /* page titles */
+  --text-4xl: clamp(
+    2.5rem,
+    2rem + 2.5vw,
+    3.5rem
+  ); /* hero name — hard cap 56px */
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-body: 1.65;
+
+  --tracking-tight: -0.02em; /* headings */
+  --tracking-wide: 0.08em; /* uppercase eyebrows */
+
+  /* spacing — 4px base */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3rem;
+  --space-9: 4rem;
+  --space-10: 5rem;
+  --space-11: 6rem;
+  --space-12: 8rem;
+
+  --section-gap: clamp(
+    3.5rem,
+    8vw,
+    6rem
+  ); /* vertical rhythm between page sections */
+
+  /* radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* elevation — deliberately minimal */
+  --shadow-none: none;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.04);
+  --shadow-md: 0 4px 16px rgb(0 0 0 / 0.06); /* hover only */
+
+  /* layout */
+  --width-page: 1120px; /* general container */
+  --width-text: 760px; /* long-form prose */
+  --width-narrow: 620px;
+  --gutter: clamp(1.25rem, 5vw, 2.5rem);
+  --header-height: 4.5rem; /* sticky header height; drives scroll-padding-top */
+
+  /* motion */
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+}
+
+:root[data-theme='dark'] {
+  --shadow-md: 0 4px 16px rgb(0 0 0 / 0.4);
+}

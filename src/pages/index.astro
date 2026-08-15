@@ -1,15 +1,15 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
 
+const title = 'Mira Purkrábek';
+const description =
+  'Computer vision researcher and engineer. Site redesign in progress.';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Mira Purkrábek</title>
-  </head>
-  <body>
+<BaseLayout title={title} description={description}>
+  <Section>
     <h1>Mira Purkrábek</h1>
     <p>The redesign of this site is in progress.</p>
-  </body>
-</html>
+  </Section>
+</BaseLayout>

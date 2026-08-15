@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  bodyClass?: string;
+  noindex?: boolean;
+}
+
+// ogImage accepted now so the Props shape doesn't change again in PR-11, which wires it into
+// <meta property="og:image">; unused until then.
+const {
+  title,
+  description,
+  ogImage: _ogImage = site.ogImage,
+  bodyClass,
+  noindex = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <link rel="icon" href="/assets/icons/favicon.ico" sizes="32x32" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/icons/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/icons/favicon-32x32.png"
+    />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#FBFAF8"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#131417"
+    />
+
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem('theme');
+        const theme =
+          stored ??
+          (matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+
+    <slot name="head" />
+  </head>
+  <body class={bodyClass}>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

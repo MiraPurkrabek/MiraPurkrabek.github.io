@@ -1,0 +1,51 @@
+---
+export interface Props {
+  as?: 'div' | 'article' | 'li';
+  href?: string;
+  tone?: 'default' | 'soft';
+  class?: string;
+}
+
+const { as = 'div', href, tone = 'default', class: className } = Astro.props;
+const Tag = href ? 'a' : as;
+---
+
+<Tag
+  class:list={['card', className]}
+  data-tone={tone}
+  data-interactive={href ? '' : undefined}
+  href={href}
+>
+  <slot />
+</Tag>
+
+<style>
+  .card {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    color: inherit;
+    text-decoration: none;
+    transition:
+      border-color var(--dur) var(--ease),
+      box-shadow var(--dur) var(--ease),
+      transform var(--dur) var(--ease);
+  }
+
+  .card[data-tone='soft'] {
+    background: var(--surface-soft);
+  }
+
+  .card[data-interactive] {
+    cursor: pointer;
+  }
+
+  .card[data-interactive]:hover,
+  .card[data-interactive]:focus-visible {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+</style>

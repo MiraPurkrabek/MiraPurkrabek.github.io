@@ -272,9 +272,9 @@ keep, it is noindexed and useful).
 
 ## Review checklist
 
-- [ ] `prefers-reduced-motion` kills every transition
-- [ ] Czech diacritics render in Inter (check "Purkrábek", "Královské", "Jiří")
-- [ ] Sticky header does not cover anchor targets (`scroll-padding-top` set)
-- [ ] Footer email is a working `mailto:` and matches the fact sheet
-- [ ] No avatar/logo image in the header (old site used the floorball club logo — intentionally
+- [x] `prefers-reduced-motion` kills every transition
+- [x] Czech diacritics render in Inter (check "Purkrábek", "Královské", "Jiří")
+- [x] Sticky header does not cover anchor targets (`scroll-padding-top` set)
+- [x] Footer email is a working `mailto:` and matches the fact sheet
+- [x] No avatar/logo image in the header (old site used the floorball club logo — intentionally
       dropped; the site is not about the club)

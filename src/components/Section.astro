@@ -1,0 +1,28 @@
+---
+import Container from './Container.astro';
+
+export interface Props {
+  id?: string;
+  tone?: 'default' | 'soft';
+  size?: 'page' | 'text' | 'narrow';
+  class?: string;
+}
+
+const { id, tone = 'default', size = 'page', class: className } = Astro.props;
+---
+
+<section id={id} class:list={['section', className]} data-tone={tone}>
+  <Container size={size}>
+    <slot />
+  </Container>
+</section>
+
+<style>
+  .section {
+    padding-block: var(--section-gap);
+  }
+
+  .section[data-tone='soft'] {
+    background: var(--surface-soft);
+  }
+</style>
