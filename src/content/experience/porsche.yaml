@@ -1,0 +1,14 @@
+org: Porsche Engineering
+role: Software Developer — Taycan & High Power Charging
+# TODO(verify): work location not stated explicitly in the source material; Porsche Engineering
+# Group is headquartered in Germany, used here as a conservative country-level value.
+location: Germany
+start: '2020'
+end: '2022'
+displayPeriod: 2020–2022
+kind: industry
+summary: >-
+  Control-unit software for the Porsche Taycan and software across Porsche's High Power Charging
+  platform.
+inStrip: true
+order: 4

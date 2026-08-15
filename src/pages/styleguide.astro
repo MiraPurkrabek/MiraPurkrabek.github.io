@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import SectionHeading from '../components/SectionHeading.astro';
@@ -7,6 +8,30 @@ import Button from '../components/Button.astro';
 import Tag from '../components/Tag.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
 import Prose from '../components/Prose.astro';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const publications = (await getCollection('publications')).sort(
+  (a, b) => b.data.year - a.data.year,
+);
+const experience = (await getCollection('experience')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const recognition = (await getCollection('recognition')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const education = (await getCollection('education')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const contentCollections = [
+  { label: 'Projects', count: projects.length },
+  { label: 'Publications', count: publications.length },
+  { label: 'Experience', count: experience.length },
+  { label: 'Recognition', count: recognition.length },
+  { label: 'Education', count: education.length },
+];
 
 const colorGroups: {
   label: string;
@@ -276,6 +301,175 @@ const iconNames: IconName[] = [
       </figure>
     </Prose>
   </Section>
+
+  <Section id="content" tone="soft">
+    <SectionHeading
+      eyebrow="PR-03"
+      heading="Content"
+      lead="Entry counts and key fields per content collection — how a reviewer confirms the data landed before any real page consumes it."
+    />
+
+    <div class="content-counts">
+      {
+        contentCollections.map((c) => (
+          <div class="content-counts__item">
+            <span class="content-counts__count">{c.count}</span>
+            <span class="content-counts__label">{c.label}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="content-table-wrap">
+      <h3 class="content-table__heading">
+        Projects ({projects.length})
+      </h3>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Kind</th>
+            <th>Years</th>
+            <th>Featured</th>
+            <th>Tags</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            projects.map((p) => (
+              <tr>
+                <td>{p.data.title}</td>
+                <td>{p.data.kind}</td>
+                <td>{p.data.years}</td>
+                <td>{p.data.featured ? `✓ (${p.data.featuredOrder})` : '—'}</td>
+                <td>{p.data.tags.join(', ')}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-table-wrap">
+      <h3 class="content-table__heading">
+        Publications ({publications.length})
+      </h3>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Venue</th>
+            <th>Year</th>
+            <th>Role</th>
+            <th>Awards</th>
+            <th>Selected</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            publications.map((p) => (
+              <tr>
+                <td>{p.data.title}</td>
+                <td>{p.data.venue}</td>
+                <td>{p.data.year}</td>
+                <td>{p.data.role}</td>
+                <td>{p.data.awards.join(', ') || '—'}</td>
+                <td>{p.data.selected ? '✓' : '—'}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-table-wrap">
+      <h3 class="content-table__heading">
+        Experience ({experience.length})
+      </h3>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Org</th>
+            <th>Role</th>
+            <th>Period</th>
+            <th>Kind</th>
+            <th>In strip</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            experience.map((e) => (
+              <tr>
+                <td>{e.data.org}</td>
+                <td>{e.data.role}</td>
+                <td>{e.data.displayPeriod}</td>
+                <td>{e.data.kind}</td>
+                <td>{e.data.inStrip ? '✓' : '—'}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-table-wrap">
+      <h3 class="content-table__heading">
+        Recognition ({recognition.length})
+      </h3>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Org</th>
+            <th>Year</th>
+            <th>Kind</th>
+            <th>Selected</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            recognition.map((r) => (
+              <tr>
+                <td>{r.data.title}</td>
+                <td>{r.data.org}</td>
+                <td>{r.data.year}</td>
+                <td>{r.data.kind}</td>
+                <td>{r.data.selected ? '✓' : '—'}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-table-wrap">
+      <h3 class="content-table__heading">
+        Education ({education.length})
+      </h3>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Degree</th>
+            <th>Field</th>
+            <th>Institution</th>
+            <th>Period</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            education.map((ed) => (
+              <tr>
+                <td>{ed.data.degree}</td>
+                <td>{ed.data.field}</td>
+                <td>{ed.data.institution}</td>
+                <td>{ed.data.period}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </Section>
 </BaseLayout>
 
 <style>
@@ -430,5 +624,75 @@ const iconNames: IconName[] = [
     border-radius: var(--radius-md);
     background: var(--surface-soft);
     border: 1px solid var(--border);
+  }
+
+  .content-counts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+
+  .content-counts__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .content-counts__count {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .content-counts__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-subtle);
+  }
+
+  .content-table-wrap {
+    margin-top: var(--space-8);
+    overflow-x: auto;
+  }
+
+  .content-table-wrap:first-of-type {
+    margin-top: 0;
+  }
+
+  .content-table__heading {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-3);
+  }
+
+  .content-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  .content-table th {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-subtle);
+    text-align: left;
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--border-strong);
+    white-space: nowrap;
+  }
+
+  .content-table td {
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    vertical-align: top;
+  }
+
+  .content-table td:first-child {
+    color: var(--text);
   }
 </style>

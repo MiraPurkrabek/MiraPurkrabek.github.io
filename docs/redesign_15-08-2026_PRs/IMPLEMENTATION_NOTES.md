@@ -64,3 +64,53 @@ before starting. Keep entries short.
   1440/375/320px, mobile menu open state, keyboard tab order (skip-link → wordmark → nav →
   CV → theme toggle, visible focus ring throughout), and Escape closing the mobile menu and
   returning focus to the toggle button. No console errors.
+
+## PR-03 — Content model and data migration
+
+- `experience`, `recognition`, `education` are one YAML file per entry under
+  `src/content/<collection>/*.yaml` (glob loader), not a single TS array — the doc left this
+  open for `experience` specifically; applied the same choice to `recognition`/`education` for
+  consistency since none of the three need a Markdown body.
+- **Deviation from the doc's schema pseudocode:** `image`/`thumbnail` fields use Astro's content
+  `image()` helper (`schema: ({ image }) => z.object({ image: z.object({ src: image(), alt:
+  z.string() }) ... })`), not a literal `src: string`. This is what the PR's own "Images" section
+  asks for ("move into `src/assets/img/` so `astro:assets` can optimise them") — a plain string
+  path can't be optimised by `astro:assets`, only a resolved `ImageMetadata` can. Paths in
+  frontmatter are relative to the content file, e.g. `../../assets/img/PCR.png`. **Consequence
+  for PR-04/05/07/08/09:** `entry.data.image.src` / `entry.data.thumbnail.src` is already an
+  `ImageMetadata` object — pass it straight to `<Image>`/`<Picture>` `src`, don't treat it as a
+  raw path string.
+- `links.*` and similar URL fields use Zod v4's top-level `z.url()`, not the deprecated
+  `z.string().url()` chain.
+- **Known upstream noise, not a real issue:** `npx astro check` reports 0 errors / 0 warnings but
+  ~87 `ts(6385) 'z' is deprecated` *hints* in `content.config.ts`, one per `z.*` call. This is a
+  quirk of Astro 7.2.2's `z` re-export from `zod/v4` (the aggregated namespace pulls in some
+  unrelated deprecated compat members, and TS flags the whole `z` identifier at every use site).
+  It's not fixable without abandoning the documented `import { z } from 'astro:content'` pattern;
+  future PRs touching `content.config.ts` will see the same hints and can ignore them.
+- All 9 `publications` entries ship with `bibtex` left empty — no officially-verified BibTeX text
+  exists anywhere in the current repo (papers.md, index.html) to copy verbatim, and the PR rule is
+  "leave it empty rather than inventing keys." PR-08's copy-button disclosure already handles this
+  ("if a BibTeX entry is missing, the disclosure is not rendered at all").
+- `/styleguide` "Content" section (`#content`) reads all 5 collections via `getCollection` and
+  renders a count + compact table per collection; no new component, just tables scoped to the
+  page's own `<style>` block, consistent with the rest of `/styleguide`.
+- **TODO(verify) flags left in the data** (also listed in the PR description): FACIS project start
+  year (only Nov 2025 MoI award date is confirmed), Revie / SKV camera download / PoseAnnotator /
+  infant-sensorimotor / camera-trap-ID start years (no date in any source), Porsche Engineering
+  work location (country-level only), the Erasmus year in Ljubljana (fact sheet already flags this
+  ⚠), ongoing peer-review service year (anchored to the one confirmed year, CVPR 2025), and a
+  possible ProbPose GitHub code link (referenced informally elsewhere, no confirmed URL in the
+  trusted source set).
+- **Dead link found, kept as-is:** `https://www.dny.ai/event-2024/ai-4-sport` (AI4Sports 2024
+  recognition entry) returns 404 as of this writing. Copied verbatim from both the live
+  `index.html` and the PR-00 fact sheet — not a typo introduced here. Left in place since no
+  alternative confirmed URL exists; flagging for Miroslav to update or drop.
+- The `s23dr` project has no `image` — none of the 20 moved image files depict it, and PR-00
+  gives no other asset to use. PR-05 explicitly allows this ("if none exists, render the card in
+  the text-only variant... list the missing figure in the PR description"); flagging it here too.
+- The old CV.pdf (`public/CV.pdf`) was **not** used as a migration source — it disagrees with the
+  PR-00 fact sheet on several already-corrected facts (Porsche "Macan"/100,000+/1,000+ units
+  instead of Taycan/170,000+, and a PhD start of "Feb 2019" instead of Feb 2023), so it's stale
+  relative to the confirmed fact sheet. Only `index.html`, `papers.md`, `projects.md`,
+  `coaching.md`, `teaching.md` and PR-00 §8 were treated as authoritative.

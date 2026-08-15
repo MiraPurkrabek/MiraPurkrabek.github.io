@@ -1,0 +1,9 @@
+degree: BSc
+field: Cybernetics and Robotics
+institution: Czech Technical University in Prague
+period: 2016–2020
+# TODO(verify): fact sheet flags the Erasmus year as unknown — included here without a specific
+# date; confirm the year and, if useful, an exact term before this ships to a real page.
+note: Includes an Erasmus exchange semester in Ljubljana, Slovenia.
+thesisLink: https://dspace.cvut.cz/handle/10467/87891
+order: 3
