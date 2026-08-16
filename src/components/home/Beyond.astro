@@ -1,0 +1,76 @@
+---
+// Homepage "Beyond computer vision" — see
+// docs/redesign_15-08-2026_PRs/PR-06-home-recognition-contact.md §3 for the verbatim copy this
+// component renders. Do not soften, re-flag or reword it.
+//
+// Text-only variant: no real floorball/mountain photograph exists in the repo (checked
+// src/assets/img, public/assets/img and the old Jekyll pages). SKV_circle.png is a headshot
+// portrait, not an action shot, and would just duplicate the hero photo here — the PR explicitly
+// bans using it as a stand-in and bans the club logo outright, so this ships text-only per the
+// PR's own fallback instruction. Flagged in IMPLEMENTATION_NOTES.md.
+import Section from '../Section.astro';
+---
+
+<Section id="beyond">
+  <div class="beyond">
+    <p class="beyond__eyebrow">Off the clock</p>
+    <h2 class="beyond__heading">Beyond computer vision</h2>
+
+    <p>
+      Before I coached models, I coached people. From 2017 I worked my way from
+      assistant to head coach of Sokol Královské Vinohrady's men's floorball
+      team in the Czech Superliga — 200+ matches, over 100 of them at the top
+      level, and the best results in the club's history with one of the smallest
+      budgets in the league. I stepped down in 2025 to focus on research and
+      stayed on as a consultant.
+    </p>
+
+    <p>
+      It taught me the things research doesn't: making decisions with incomplete
+      information, giving feedback people can act on, and getting a group of
+      very different individuals to pull in the same direction.
+    </p>
+
+    <p>
+      Away from both, I'm usually in the mountains, travelling, or reading
+      psychology and epic fantasy.
+    </p>
+
+    <a class="beyond__link" href="/about">More about me →</a>
+  </div>
+</Section>
+
+<style>
+  .beyond {
+    max-width: var(--width-text);
+  }
+
+  .beyond__eyebrow {
+    margin-bottom: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-subtle);
+  }
+
+  .beyond__heading {
+    margin-bottom: var(--space-6);
+    font-size: var(--text-2xl);
+  }
+
+  .beyond p {
+    margin-bottom: var(--space-5);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+  }
+
+  .beyond p:last-of-type {
+    margin-bottom: var(--space-6);
+  }
+
+  .beyond__link {
+    font-weight: 500;
+  }
+</style>

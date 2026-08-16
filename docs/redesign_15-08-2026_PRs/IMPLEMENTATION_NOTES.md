@@ -167,3 +167,52 @@ before starting. Keep entries short.
   a single `<h1>`, hero text markup precedes the portrait markup in DOM order at every width, and
   no "passionate"/coaching/floorball/`text-align: justify` in this PR's own components (the
   Footer's pre-existing "Coaching" nav link is out of this PR's scope, not new).
+
+## PR-06 — Homepage part 3: recognition, selected publications, beyond CV, contact
+
+- **Recognition and Selected publications are data-driven from the collections, not verbatim
+  copy** — unlike Beyond/Contact, the PR doc's mock text blocks for these two sections don't map
+  1:1 onto any single schema field in a consistent way (checked: the mock's publication
+  descriptors sometimes match a title-before-colon, sometimes title-after-colon, sometimes
+  neither — no single derivation rule fits all three). Treated the mock as illustrative of the
+  visual format, not literal copy, and rendered straight from `recognition`/`publications`
+  collection fields instead, matching how Timeline/SelectedWork/Affiliations already work.
+- `Recognition.astro` sorts `selected: true` entries by the collection's own `order` field
+  (already newest-first, same convention as `Timeline`), not `year desc` — ties within a year
+  (2026: S23DR vs. SAM-pose2seg) are only resolved correctly via `order`. Two-column layout is
+  CSS `columns: 2` at ≥720px (browser-balanced, not a manual per-row column split). Linked titles
+  get **no** external-link icon — the PR explicitly bans icons in this list ("No cards, no
+  medals, no icons"), overriding the site-wide external-link-icon convention used everywhere else
+  (Footer, ProjectFeature, ghost Buttons) for this one section only.
+- `SelectedPublications.astro` heading = the matching `projects` collection entry's short
+  `title` (cross-referenced by shared content-collection `id` — all three selected publications
+  happen to have a same-id project) em-dash the publication's own `summary` field (the same
+  homepage-ready one-liner `ProjectFeature` uses), not the publication's full academic title.
+  Sorted by `year desc`; the one same-year tie (BBox-Mask-Pose vs. ProbPose, both 2025) is
+  resolved implicitly by `Array.sort`'s stability plus the glob loader's alphabetical file order,
+  which happens to put BBox-Mask-Pose (ICCV, Oct) before ProbPose (CVPR, June) — correct today,
+  but fragile: `publications` has no `month`/`order` field to sort on explicitly. Link buttons
+  render whatever `links.*` exist per entry (none of the three selected publications actually
+  have a `paper` link in the data, only `project`/`code`/`demo` — same "show what exists"
+  precedent PR-05 set for FACIS).
+- **Beyond ships text-only — no floorball or mountain photograph exists anywhere in the repo**
+  (checked `src/assets/img`, `public/assets/img`, and the old Jekyll pages). `SKV_circle.png` is
+  a circular-cropped headshot portrait, not an action/lifestyle shot — using it here would just
+  duplicate the hero photo, and the PR explicitly bans using it as a stand-in plus bans the club
+  logo outright. Shipped as a single-column text block (`--width-text` max-width) per the PR's
+  own fallback instruction; flagging the missing photo here as directed.
+- `Contact.astro`'s lede sentence is assembled around `site.availability.text` (lowercased and
+  spliced into a fixed sentence frame) rather than the PR doc's literal paragraph, because the PR
+  requires it "comes from `site.availability`... so both places change together" and the current
+  `site.ts` string ("Open to applied scientist and research engineer roles") doesn't read as a
+  full sentence on its own. Didn't reword `site.ts` itself since PR-04 already confirmed that
+  exact pill wording — changing it would also change the hero pill.
+- No new client-side JavaScript in any of the four components (Recognition, SelectedPublications,
+  Beyond, Contact) — homepage JS budget is unchanged from PR-05.
+- Verified with a headless-Chromium pass (Python `playwright`): all four new sections in both
+  themes at 1440/375/320px, zero console errors, every external link carries
+  `target="_blank" rel="noopener"`, exactly one literal occurrence of the word "coach" and one of
+  "consulting" across the built page, heading outline is `h1` → `h2` per section with `h3`s only
+  nested inside (no skipped levels), and the page reads correctly with JavaScript disabled.
+  Homepage weight (HTML + linked CSS + eager hero images) is ~92 KB raw, far under the 600 KB
+  budget; no new JS keeps it under the 6 KB gzipped JS budget too.
