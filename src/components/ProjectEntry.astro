@@ -4,6 +4,7 @@ import { render, type CollectionEntry } from 'astro:content';
 import Button from './Button.astro';
 import Tag from './Tag.astro';
 import Icon from './Icon.astro';
+import { videoPreviews } from '../data/video-previews';
 
 export interface Props {
   project: CollectionEntry<'projects'>;
@@ -37,6 +38,7 @@ const links = defaultLinkOrder.flatMap(([key]) => {
 });
 const primaryHref = links[0]?.href;
 const meta = [data.years, data.role, data.org].filter(Boolean).join(' · ');
+const preview = videoPreviews[project.id];
 ---
 
 <article
@@ -45,13 +47,40 @@ const meta = [data.years, data.role, data.org].filter(Boolean).join(' · ');
   {
     data.image && (
       <div class="project-entry__media">
-        <Image
-          src={data.image.src}
-          alt={data.image.alt}
-          loading="lazy"
-          decoding="async"
-          class="project-entry__image"
-        />
+        {preview ? (
+          <video
+            class="project-entry__image"
+            muted
+            loop
+            playsinline
+            preload="none"
+            data-poster={preview.poster}
+            width={preview.width}
+            height={preview.height}
+            aria-label={data.image.alt}
+            data-lazy-video
+          >
+            <source data-src={preview.webm} type="video/webm" />
+            <source data-src={preview.mp4} type="video/mp4" />
+          </video>
+          <noscript>
+            <img
+              src={preview.poster}
+              alt={data.image.alt}
+              width={preview.width}
+              height={preview.height}
+              class="project-entry__image"
+            />
+          </noscript>
+        ) : (
+          <Image
+            src={data.image.src}
+            alt={data.image.alt}
+            loading="lazy"
+            decoding="async"
+            class="project-entry__image"
+          />
+        )}
       </div>
     )
   }
@@ -97,7 +126,11 @@ const meta = [data.years, data.role, data.org].filter(Boolean).join(' · ');
 
     {
       links.length > 0 ? (
-        <nav class="project-entry__links" aria-label={`${data.title} links`}>
+        <div
+          class="project-entry__links"
+          role="group"
+          aria-label={`${data.title} links`}
+        >
           {links.map(({ href, label }) => (
             <Button
               href={href}
@@ -109,7 +142,7 @@ const meta = [data.years, data.role, data.org].filter(Boolean).join(' · ');
               {label}
             </Button>
           ))}
-        </nav>
+        </div>
       ) : (
         <p class="project-entry__internal">
           <em>Internal system — happy to talk about it.</em>
@@ -118,6 +151,66 @@ const meta = [data.years, data.role, data.org].filter(Boolean).join(' · ');
     }
   </div>
 </article>
+
+<script>
+  // Poster images are lazy-loaded the same way as the video sources below — a <video poster>
+  // has no native loading="lazy" equivalent, so without this every card's poster (tens of KB
+  // each) would fetch eagerly on page load regardless of scroll position, competing with the
+  // actually-critical above-the-fold resources for bandwidth. Reduced motion still gets the
+  // poster (it's just a static image) but never fetches or plays the video itself.
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)',
+  ).matches;
+  const videos = document.querySelectorAll(
+    '.project-entry video[data-lazy-video]',
+  );
+
+  const hydrateVideo = (video: HTMLVideoElement) => {
+    if (!video.poster && video.dataset.poster) {
+      video.poster = video.dataset.poster;
+    }
+
+    if (video.dataset.lazyVideoHydrated) return;
+    video.dataset.lazyVideoHydrated = 'true';
+    if (prefersReducedMotion) return;
+
+    const sources = video.querySelectorAll('source[data-src]');
+    sources.forEach((source) => {
+      if (source instanceof HTMLSourceElement && source.dataset.src) {
+        source.src = source.dataset.src;
+      }
+    });
+    if (sources.length > 0) {
+      video.load();
+      void video.play().catch(() => undefined);
+    }
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const video = entry.target;
+          if (video instanceof HTMLVideoElement) {
+            hydrateVideo(video);
+            observer.unobserve(video);
+          }
+        });
+      },
+      { rootMargin: '200px 0px' },
+    );
+
+    videos.forEach((video) => {
+      if (video instanceof HTMLVideoElement) observer.observe(video);
+    });
+  } else {
+    videos.forEach((video) => {
+      if (video instanceof HTMLVideoElement) hydrateVideo(video);
+    });
+  }
+</script>
 
 <style>
   .project-entry {
@@ -148,7 +241,8 @@ const meta = [data.years, data.role, data.org].filter(Boolean).join(' · ');
     border-radius: var(--radius-md);
   }
 
-  .project-entry__media :global(img) {
+  .project-entry__media :global(img),
+  .project-entry__media :global(video) {
     width: 100%;
     height: 100%;
     object-fit: contain;

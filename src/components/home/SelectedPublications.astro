@@ -73,8 +73,9 @@ const rows = selected.map((pub) => {
               )}
             </p>
             {row.links.length > 0 && (
-              <nav
+              <div
                 class="pub-row__links"
+                role="group"
                 aria-label={`${row.shortTitle} links`}
               >
                 {row.links.map((link) => (
@@ -88,7 +89,7 @@ const rows = selected.map((pub) => {
                     {link.label}
                   </Button>
                 ))}
-              </nav>
+              </div>
             )}
           </div>
         </li>

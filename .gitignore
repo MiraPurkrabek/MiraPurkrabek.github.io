@@ -16,3 +16,4 @@ beautiful-jekyll-theme-*.gem
 node_modules/
 dist/
 .astro/
+.audit-tmp/

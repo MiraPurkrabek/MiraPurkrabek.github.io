@@ -2,7 +2,7 @@
 title: 'BLANKET: Anonymizing Faces in Infant Video Recordings'
 authors:
   - Ditmar Hadera
-  - Jan Cech
+  - Jan Čech
   - Miroslav Purkrábek
   - Matej Hoffmann
 venue: ICDL 2025

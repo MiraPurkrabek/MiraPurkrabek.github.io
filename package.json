@@ -12,7 +12,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "format": "prettier --write .",
-    "og:generate": "node scripts/make-og.mjs"
+    "og:generate": "node scripts/make-og.mjs",
+    "audit:links": "node scripts/check-links.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

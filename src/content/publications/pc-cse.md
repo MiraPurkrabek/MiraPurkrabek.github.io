@@ -1,7 +1,7 @@
 ---
 title: Human Pose-Constrained UV Map Estimation
 authors:
-  - Matej Suchanek
+  - Matej Suchánek
   - Miroslav Purkrábek
   - Jiří Matas
 venue: CVWW 2025

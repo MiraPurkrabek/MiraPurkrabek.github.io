@@ -404,3 +404,141 @@ before starting. Keep entries short.
   page, JSON-LD parses and validates as well-formed `schema.org/Person`, `/404/` in both themes
   at 1440/375px with zero console errors and no horizontal overflow, GA script tag presence
   confirmed per-page as above.
+
+## PR-12 — Accessibility, dark-mode, responsive and performance QA pass
+
+- **Tooling (not committed as deps):** `axe-core@4.13.0`, `lighthouse@13.4.1`,
+  `playwright@1.62.1` (Chromium), installed with `--no-save` for the audit only. The one tool
+  that _is_ kept is `scripts/check-links.mjs` (`npm run audit:links`) — zero-dependency, uses
+  Node's built-in `fetch` against the built `dist/`, genuinely useful for future CI per the PR's
+  "optional but welcome" note.
+- **`--text-subtle` contrast, fixed at the token level.** PR-02 shipped this token already
+  knowing it failed 4.5:1 (documented in its own notes as "below 4.5:1... reserve it for
+  icon-paired/larger/decorative use"). This pass hit that exact wall: axe flagged 15+ elements
+  site-wide using it for real body-size metadata (hero legal-name caption, section eyebrows,
+  card/pub-item meta lines, footer headings, figcaptions, 404 headings). Rather than hunt down
+  every usage, adjusted the token itself — light `#83867f`→`#6b6d68`, dark `#80868b`→`#868c90` —
+  both now clear 4.5:1 against every surface they're used on (light: 4.64:1 worst case on
+  `--surface-soft`; dark: 4.63:1 worst case on `--surface-soft`), same hue, just shifted to stay
+  visually distinct from `--text-muted`. No component changes needed.
+- **`<nav>` overuse fixed as a `landmark-unique` violation.** `ProjectFeature.astro` (home) and
+  `SelectedPublications.astro` (home) both feature BBox-Mask-Pose and ProbPose, and each wrapped
+  its 1–3-button link cluster in `<nav aria-label="X links">` — two navigation landmarks sharing
+  the same accessible name on one page. A handful of inline buttons was never really a navigation
+  landmark; changed `ProjectFeature.astro`, `ProjectEntry.astro`, and `SelectedPublications.astro`
+  to wrap these in `<div role="group" aria-label="...">` instead. No visual change.
+- **`/webcam_demo/` heading levels shifted up one** (`###`→`##`, `####`→`###`) — the body jumped
+  straight from the layout's `<h1>` to an `<h3>`, an axe `heading-order` violation.
+- **Both `<pre>` blocks (webcam_demo terminal output, `PublicationItem`'s BibTeX box) got
+  `tabindex="0"`** — `overflow-x: auto` alone isn't keyboard-reachable (`scrollable-region-focusable`).
+  The BibTeX one currently never renders (`bibtex` is empty for all 9 publications per PR-03) but
+  would hit the same bug the moment content is added, so fixed both. **Also discovered Prettier
+  reformats a single-line `<pre><code>...` onto three lines**, which would inject real whitespace
+  into the rendered/copied BibTeX text since `<pre>` preserves it exactly — added a
+  `{/* prettier-ignore */}` comment above `PublicationItem.astro`'s block to stop that. Any future
+  `<pre>` added to an `.astro` file needs the same guard.
+- **WCAG 2.2 `target-size` (24×24px minimum) — enabled in axe (it's disabled by default even
+  under the `wcag22aa` tag filter; needs explicit `rules: { 'target-size': { enabled: true } }`).**
+  Caught one real hit: `/coaching`'s "← Back to /about" link was a bare inline text link
+  (120×19px) sitting 23px below the podcast-card link. Fixed with `padding-block` +
+  `display: inline-block` on the link and `margin-top` on its wrapping paragraph.
+- **Reviewed but did not "fix" `p-as-heading`** (also disabled by default in axe — deliberately
+  experimental/false-positive-prone). It flagged the affiliation-card wordmark fallback,
+  impact-tile stat numbers, and the footer signature line as suspected fake headings, purely
+  because they're styled large/bold. All three are emphasis/branding text, not document
+  sections — turning them into real `<h*>` tags would inject fake nodes into an otherwise correct
+  h1→h2→h3 outline. Left as `<p>`.
+- **GIF-to-video, the part PR-05 left half-done.** PR-05 converted `004806_BMP_loop.gif`
+  (bbox-mask-pose) and `McLaughlin.gif` (probpose) to video **only for the homepage's featured
+  cards** (`ProjectFeature.astro`) — `/work`'s `ProjectEntry.astro` still rendered all three
+  through plain `astro:assets` `<Image>`, which flattens an animated GIF source to one static
+  frame. RePoGen's `Duplantis.gif` (7.7 MB) had no video conversion anywhere, since it isn't a
+  "featured" project and only ever appears on `/work`. Fixed by:
+  - Generating `repogen.mp4`/`repogen.webm`/`repogen.jpg` from the source GIF via `ffmpeg`
+    (`fps=20`, even-dimension scale filter, crf 30/36) — 337 KB / 650 KB / 78 KB.
+  - Generating the missing `webm` (VP9) sibling for the two files PR-05 already had as mp4-only —
+    smaller in both cases (bbox-mask-pose: 1.25 MB mp4 → 504 KB webm; probpose: 750 KB → 220 KB).
+  - Extracting the shared `{ 'bbox-mask-pose': ..., probpose: ..., repogen: ... }` map out of
+    `ProjectFeature.astro` into a new `src/data/video-previews.ts` (adds `width`/`height` per
+    entry too, previously absent from the `<video>` markup entirely).
+  - Wiring the same video-preview branch into `ProjectEntry.astro`, with its own copy of the
+    lazy-hydration `<script>` (Astro components don't share client scripts across files without a
+    shared script module, and this one's small enough not to bother) — so `/work` now shows real
+    video for all three, matching the homepage.
+- **Found and fixed a real perf bug: `<video poster>` has no `loading="lazy"` equivalent.** Even
+  with `preload="none"` on the `<source>`s, the browser fetches the `poster` image immediately on
+  parse, regardless of scroll position — so two ~150–190 KB poster JPEGs were loading eagerly on
+  the homepage below the fold, competing with the actually-critical hero/font requests for
+  bandwidth. Confirmed via Lighthouse mobile-throttle run: this alone accounted for roughly half
+  of a 3.8 s → 1.8 s LCP improvement on `/`. Fixed by switching `poster={...}` to
+  `data-poster={...}` and setting the real `.poster` property inside the same
+  `IntersectionObserver` callback that already lazy-loads the video sources — poster still sets
+  under `prefers-reduced-motion` (it's a static image, cheap either way) but source
+  fetch/autoplay is skipped. Added a `<noscript><img></noscript>` fallback per card so the poster
+  still shows with JS disabled. **Consequence for any future video-preview card:** don't set
+  `poster` directly — use `data-poster` and let the existing hydration script pick it up.
+- **Poster JPEGs converted to WebP** (`sharp`, quality 80, already a devDependency): 413 KB → 163
+  KB combined across the three posters (~60% smaller), old `.jpg`s deleted since nothing else
+  referenced them.
+- **Font preload added to `BaseLayout`.** The Inter Variable latin woff2 was only discoverable
+  after the browser fetched+parsed `global.css`→`fonts.css`'s `@font-face` rule — a multi-hop
+  chain. Added `<link rel="preload" as="font" type="font/woff2" crossorigin>`, importing the same
+  file via Vite's `?url` suffix so the preload's hashed href is guaranteed to match the actual
+  `@font-face` request (verified in built output — no "unused preload" warning). Latin-ext (Czech
+  diacritics) intentionally left un-preloaded — it's real content but a smaller fraction of
+  above-the-fold text than the latin subset.
+- **`fetchpriority="high"` gaps closed:** the homepage hero's dark-mode `<Picture>` didn't have it
+  (only the light one did, but for a dark-mode visitor the dark image *is* the actual LCP
+  element); `/about`'s hero portrait — first content element on the page, beside the `<h1>` —
+  was defaulting to `astro:assets`' lazy-loading instead of eager.
+- **Attempted deferring `gtag.js`'s fetch via `requestIdleCallback`** to reduce its Lighthouse
+  Total Blocking Time contribution (confirmed via A/B test — GA execution alone costs the
+  Performance score ~10 points under simulated mobile CPU throttle: 98–99 with GA blocked vs.
+  85–95 with it present, consistent across repeated runs). **Made it worse, not better** — TBT
+  went up, apparently because deferring the fetch just moves GA's long task later without moving
+  it past Lighthouse's Time-to-Interactive quiet-window calculation, so it's still counted.
+  Reverted to the original plain `async` script tag. **Consequence:** the ~85–95 (vs. required
+  ≥95) Performance score on `/work` and `/publications` under Lighthouse's default mobile
+  throttle is attributable specifically to GA's own script execution cost, confirmed by direct
+  isolation testing, not to anything in the site's own code or assets. GA is a locked-in
+  requirement (PR-00 §3, "keep the existing GA4 property... production only") — flagging the
+  tension rather than dropping analytics to hit the number.
+- **Deferred, not fixed — flagging per the PR's own instruction:** `--border-strong` (used for
+  default/non-hover secondary-button borders, some card borders) measures ~1.6:1 against
+  `--surface` in both themes, below the 3:1 WCAG 1.4.11 non-text-contrast guideline. Not caught by
+  axe (no automated non-text-contrast rule) and not covered by the PR's explicit "text/background
+  pair" contrast list. Fixing it means darkening/lightening a token used for card borders and
+  dividers site-wide — a visible global tone shift, not a scoped fix like `--text-subtle` was.
+- **Two dead external links found** (both on `/coaching`): `dny.ai/event-2024/ai-4-sport` (already
+  known — PR-03 documented and kept it) and a newly-found dead `florbal.cz` article
+  ("Vinohrady přebírá dosavadní asistent Purkrábek..."). Left both in place rather than silently
+  swapping citations — a plausible replacement exists
+  (`skvflorbal.cz/c/realizacni-tym-pro-sezonu-20242025-povede-miroslav-purkrabek-2378`), flagging
+  for Miroslav to pick.
+- **Naming-register slip found and fixed:** `porsche-hpc.md`'s image `alt` text read
+  "...Miroslav's team built software for" — alt text is project-copy register per PR-00 §7, so
+  should read "Mira's", not "Miroslav's". Grepped the built `dist/` for every remaining
+  "Miroslav" occurrence after the fix — all land in the three sanctioned spots (hero caption,
+  footer copyright, citation/author-list content) plus JSON-LD.
+- **Diacritics fixed:** "Matej Suchanek" → "Matej Suchánek" (`pc-cse.md` author list, matches the
+  PR's own explicit checklist) and "Jan Cech" → "Jan Čech" (`blanket.md` author list — verified
+  against CTU FEE's own faculty page, since arXiv/IEEE's author metadata strips diacritics and
+  isn't authoritative for spelling).
+- **Date-range dash inconsistency fixed:** `education/phd.yaml` and `experience/ctu-vrg.yaml` both
+  used an em dash ("2023 — present") where every other date range on the site uses an en dash
+  ("2020–2022", "Jun – Dec 2026"); normalized to "2023 – present".
+- Spelling: ran `aspell` across all visible page text extracted via Playwright; the five specific
+  historical typos named in the PR are already clean (no regression); no new typos found.
+- Verified with `astro check` (0 errors/warnings, same ~101 pre-existing `z` deprecation hints as
+  every prior PR) and repeated Playwright/axe passes: all 7 pages × both themes × 8 widths
+  (320/360/414/768/1024/1280/1440/1920) — 0 serious/critical axe violations (ran with `wcag2a`,
+  `wcag2aa`, `wcag21a`, `wcag21aa`, `wcag22aa` tags plus `target-size` and
+  `label-content-name-mismatch` explicitly enabled), 0 horizontal overflow, 0 console errors.
+  `prefers-reduced-motion` verified by direct DOM inspection (Playwright `reducedMotion: 'reduce'`
+  context) — video previews never fetch sources or autoplay, on both `/` and `/work`. 200% zoom
+  verified via the reflow-equivalent width (a CSS-`zoom`-property proxy gave a false positive —
+  traced to a `documentElement` self-measurement artifact, no actual element overflowed).
+  Lighthouse (mobile, default simulated throttle): Accessibility 100, Best Practices 100, SEO 100
+  on `/`, `/work`, `/publications` — consistent across every run. Performance: 85–95 depending on
+  run (see GA note above); CLS a perfect 0 on every run/page; LCP consistently ~1.7–2.0 s post-fix
+  (from a 3.8 s pre-fix baseline on `/`).

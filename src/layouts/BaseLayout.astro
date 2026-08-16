@@ -4,6 +4,12 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Seo from '../components/Seo.astro';
 import Analytics from '../components/Analytics.astro';
+// Same file fonts.css's @font-face src resolves to — imported here (Vite `?url`) purely to get
+// its hashed build URL for the preload hint below, so the browser starts fetching it in parallel
+// with CSS discovery instead of only after global.css/fonts.css have been fetched and parsed.
+// Latin only: it covers the above-the-fold text on every page; latin-ext (Czech diacritics)
+// resolves lazily via the normal @font-face discovery path once it's actually needed.
+import interLatinWoff2 from '../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 
 export interface Props {
   title: string;
@@ -35,6 +41,14 @@ const {
       ogImage={ogImage}
       ogType={ogType}
       noindex={noindex}
+    />
+
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={interLatinWoff2}
+      crossorigin="anonymous"
     />
 
     <link rel="icon" href="/assets/icons/favicon.ico" sizes="32x32" />

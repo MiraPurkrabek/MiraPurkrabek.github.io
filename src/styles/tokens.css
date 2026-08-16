@@ -9,7 +9,7 @@
   --surface-hover: #edeae4;
   --text: #1a1a18;
   --text-muted: #5c5f5b;
-  --text-subtle: #83867f; /* metadata, captions */
+  --text-subtle: #6b6d68; /* metadata, captions — clears 4.5:1 on every surface */
   --border: #e3e0d9;
   --border-strong: #cfcbc2;
   --accent: #0e5c68; /* deep teal — links, buttons, small marks */
@@ -27,7 +27,7 @@
   --surface-hover: #272b31;
   --text: #ecedee;
   --text-muted: #a6abaf;
-  --text-subtle: #80868b;
+  --text-subtle: #868c90; /* clears 4.5:1 on every surface */
   --border: #2b2f35;
   --border-strong: #3a3f46;
   --accent: #4fc3d0;

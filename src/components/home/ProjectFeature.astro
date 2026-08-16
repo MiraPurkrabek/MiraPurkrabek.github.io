@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import Button from '../Button.astro';
 import Icon from '../Icon.astro';
+import { videoPreviews } from '../../data/video-previews';
 
 export interface Props {
   project: CollectionEntry<'projects'>;
@@ -37,18 +38,7 @@ const links = linkOrder.flatMap((key) => {
 });
 const primaryHref = links[0]?.href;
 
-const videoPreviews = {
-  'bbox-mask-pose': {
-    src: '/assets/videos/project-previews/bbox-mask-pose.mp4',
-    poster: '/assets/img/project-previews/bbox-mask-pose.jpg',
-  },
-  probpose: {
-    src: '/assets/videos/project-previews/probpose.mp4',
-    poster: '/assets/img/project-previews/probpose.jpg',
-  },
-} as const;
-
-const preview = videoPreviews[project.id as keyof typeof videoPreviews];
+const preview = videoPreviews[project.id];
 const metadata = data.featuredMeta ?? `${data.years} · ${data.role}`;
 ---
 
@@ -81,7 +71,11 @@ const metadata = data.featuredMeta ?? `${data.years} · ${data.role}`;
 
     {
       links.length > 0 && (
-        <nav class="project-feature__links" aria-label={`${data.title} links`}>
+        <div
+          class="project-feature__links"
+          role="group"
+          aria-label={`${data.title} links`}
+        >
           {links.map(({ href, label }) => (
             <Button
               href={href}
@@ -93,7 +87,7 @@ const metadata = data.featuredMeta ?? `${data.years} · ${data.role}`;
               {label}
             </Button>
           ))}
-        </nav>
+        </div>
       )
     }
   </div>
@@ -108,12 +102,24 @@ const metadata = data.featuredMeta ?? `${data.years} · ${data.role}`;
             loop
             playsinline
             preload="none"
-            poster={preview.poster}
+            data-poster={preview.poster}
+            width={preview.width}
+            height={preview.height}
             aria-label={data.image.alt}
             data-lazy-video
           >
-            <source data-src={preview.src} type="video/mp4" />
+            <source data-src={preview.webm} type="video/webm" />
+            <source data-src={preview.mp4} type="video/mp4" />
           </video>
+          <noscript>
+            <img
+              src={preview.poster}
+              alt={data.image.alt}
+              width={preview.width}
+              height={preview.height}
+              class="project-feature__video"
+            />
+          </noscript>
         ) : (
           <Image
             src={data.image.src}
@@ -129,24 +135,38 @@ const metadata = data.featuredMeta ?? `${data.years} · ${data.role}`;
 </article>
 
 <script>
+  // Poster images are lazy-loaded the same way as the video sources below — a <video poster>
+  // has no native loading="lazy" equivalent, so without this every card's poster (tens of KB
+  // each) would fetch eagerly on page load regardless of scroll position, competing with the
+  // actually-critical above-the-fold resources for bandwidth. Reduced motion still gets the
+  // poster (it's just a static image) but never fetches or plays the video itself.
   const prefersReducedMotion = window.matchMedia(
     '(prefers-reduced-motion: reduce)',
   ).matches;
   const videos = document.querySelectorAll('video[data-lazy-video]');
 
   const hydrateVideo = (video: HTMLVideoElement) => {
+    if (!video.poster && video.dataset.poster) {
+      video.poster = video.dataset.poster;
+    }
+
     if (video.dataset.lazyVideoHydrated) return;
     video.dataset.lazyVideoHydrated = 'true';
+    if (prefersReducedMotion) return;
 
-    const source = video.querySelector('source[data-src]');
-    if (source instanceof HTMLSourceElement && source.dataset.src) {
-      source.src = source.dataset.src;
+    const sources = video.querySelectorAll('source[data-src]');
+    sources.forEach((source) => {
+      if (source instanceof HTMLSourceElement && source.dataset.src) {
+        source.src = source.dataset.src;
+      }
+    });
+    if (sources.length > 0) {
       video.load();
       void video.play().catch(() => undefined);
     }
   };
 
-  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+  if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -165,7 +185,7 @@ const metadata = data.featuredMeta ?? `${data.years} · ${data.role}`;
     videos.forEach((video) => {
       if (video instanceof HTMLVideoElement) observer.observe(video);
     });
-  } else if (!prefersReducedMotion) {
+  } else {
     videos.forEach((video) => {
       if (video instanceof HTMLVideoElement) hydrateVideo(video);
     });
