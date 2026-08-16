@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
 import Affiliations from '../components/home/Affiliations.astro';
 import Impact from '../components/home/Impact.astro';
+import SelectedWork from '../components/home/SelectedWork.astro';
+import Timeline from '../components/home/Timeline.astro';
 
 // Final, authoritative <title>/description are wired in PR-11; this is the interim value drawn
 // from the hero paragraph per PR-04 §4.
@@ -15,6 +17,7 @@ const description =
   <Hero />
   <Affiliations />
   <Impact />
-  <!-- PR-05: Selected work, Experience timeline -->
+  <SelectedWork />
+  <Timeline />
   <!-- PR-06: Recognition, Selected publications, Beyond computer vision, Contact -->
 </BaseLayout>

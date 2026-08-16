@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import ProjectFeature from './ProjectFeature.astro';
+
+const projects = await getCollection('projects');
+const featuredProjects = projects
+  .filter((project) => project.data.featured)
+  .sort(
+    (a, b) =>
+      (a.data.featuredOrder ?? Infinity) - (b.data.featuredOrder ?? Infinity),
+  );
+---
+
+<Section id="work">
+  <SectionHeading
+    eyebrow="Selected work"
+    heading="Work I'd show first"
+    seeAll={{ href: '/work', label: 'All projects' }}
+  />
+
+  <div class="selected-work__list">
+    {
+      featuredProjects.map((project, index) => (
+        <ProjectFeature project={project} reverse={index % 2 === 1} />
+      ))
+    }
+  </div>
+</Section>
+
+<style>
+  .selected-work__list {
+    display: grid;
+    gap: var(--space-10);
+  }
+</style>

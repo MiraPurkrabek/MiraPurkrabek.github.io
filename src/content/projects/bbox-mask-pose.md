@@ -7,6 +7,7 @@ role: First author
 org: 'CTU Prague · VRG'
 featured: true
 featuredOrder: 1
+featuredMeta: 'ICCV 2025 · First author'
 order: 2
 summary: >-
   Detection, segmentation and pose estimation conditioned on each other in a self-improving

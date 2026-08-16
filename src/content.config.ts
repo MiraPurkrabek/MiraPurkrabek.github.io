@@ -44,11 +44,38 @@ const projects = defineCollection({
       org: z.string().optional(),
       featured: z.boolean(),
       featuredOrder: z.number().int().min(1).max(4).optional(),
+      featuredMeta: z.string().optional(),
+      featuredLinkOrder: z
+        .array(
+          z.enum([
+            'project',
+            'paper',
+            'code',
+            'demo',
+            'models',
+            'dataset',
+            'grant',
+            'article',
+          ]),
+        )
+        .optional(),
       order: z.number(),
       summary: z.string(),
       highlights: z.array(z.string()).max(3),
       tags: z.array(z.enum(TAGS)).max(3),
       links: linksSchema.optional(),
+      linkLabels: z
+        .object({
+          project: z.string().optional(),
+          paper: z.string().optional(),
+          code: z.string().optional(),
+          demo: z.string().optional(),
+          models: z.string().optional(),
+          dataset: z.string().optional(),
+          grant: z.string().optional(),
+          article: z.string().optional(),
+        })
+        .optional(),
       image: z.object({ src: image(), alt: z.string() }).optional(),
       status: z.enum(['active', 'completed', 'internal']).optional(),
     }),
@@ -90,6 +117,7 @@ const experience = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/experience' }),
   schema: z.object({
     org: z.string(),
+    timelineOrg: z.string().optional(),
     orgUrl: z.url().optional(),
     role: z.string(),
     location: z.string(),

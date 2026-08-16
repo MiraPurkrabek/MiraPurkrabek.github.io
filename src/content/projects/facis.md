@@ -10,6 +10,7 @@ role: Contributor
 org: 'CTU Prague · Brno University of Technology'
 featured: true
 featuredOrder: 4
+featuredMeta: 'Applied system · CTU + BUT · Ministry of the Interior'
 order: 1
 summary: >-
   A suite of forensic tools that automatically processes images and video of human figures for
@@ -25,6 +26,8 @@ tags:
   - Deployment
 links:
   grant: https://starfos.tacr.cz/cs/projekty/VJ02010041
+linkLabels:
+  grant: Grant description
 image:
   src: '../../assets/img/PCR.png'
   alt: 'Screenshot of a forensic analysis tool automatically detecting and highlighting human figures in police surveillance footage.'

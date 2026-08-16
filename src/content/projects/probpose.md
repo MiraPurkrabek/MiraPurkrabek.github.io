@@ -7,6 +7,7 @@ role: First author
 org: 'CTU Prague · VRG'
 featured: true
 featuredOrder: 2
+featuredMeta: 'CVPR 2025 · First author'
 order: 3
 summary: >-
   A probabilistic 2D pose estimator that reasons explicitly about keypoints outside the visible

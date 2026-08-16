@@ -7,6 +7,10 @@ role: 'Co-developer (with Jan Skvrna)'
 org: 'CTU Prague · VRG'
 featured: true
 featuredOrder: 3
+featuredMeta: '1st place · CVPR 2026 workshop'
+featuredLinkOrder:
+  - demo
+  - project
 order: 5
 summary: >-
   Winning solution to the Structured 3D Reconstruction (S23DR) challenge, built with Jan Skvrna
@@ -19,6 +23,9 @@ tags:
 links:
   demo: https://huggingface.co/spaces/usm3d/S23DR2026
   project: https://usm3d.github.io
+linkLabels:
+  demo: Challenge
+  project: Workshop
 status: completed
 ---
 
