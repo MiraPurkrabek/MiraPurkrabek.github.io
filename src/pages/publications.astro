@@ -40,17 +40,18 @@ const groups = [
   { heading: 'Theses', entries: theses },
 ];
 
+// Title/description per PR-11 §1 "Page titles and descriptions" table — use verbatim.
 const title = 'Publications — Mira Purkrábek';
 const description =
-  'Peer-reviewed publications on robust human perception — pose estimation, segmentation and 3D understanding — with abstracts and BibTeX.';
+  'Peer-reviewed computer vision publications, including first-author papers at CVPR 2025 and ICCV 2025, with code, models and BibTeX.';
 ---
 
 <BaseLayout title={title} description={description}>
   <Section size="text">
     <h1 class="pub-hero__title">Publications</h1>
     <p class="pub-hero__lead">
-      Peer-reviewed work on robust human perception — pose estimation, segmentation
-      and 3D understanding. Also on <a
+      Peer-reviewed work on robust human perception — pose estimation,
+      segmentation and 3D understanding. Also on <a
         href={site.social.googleScholar}
         target="_blank"
         rel="noopener">Google Scholar ↗</a

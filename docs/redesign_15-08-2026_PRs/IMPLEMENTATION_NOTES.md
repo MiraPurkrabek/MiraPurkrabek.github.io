@@ -332,3 +332,75 @@ before starting. Keep entries short.
   `document.body.scrollWidth` equals the viewport width at 320px (no horizontal overflow) and
   that the code block's own `overflow-x: auto` is active; spot-checked `/about` and `/coaching`
   post-Prose-fix at 1440px, both themes, no regressions.
+
+## PR-11 — Metadata, structured data, redirects, 404, analytics
+
+- **New `src/components/Seo.astro`** (title/description/canonical/OG/Twitter/robots) wired into
+  `BaseLayout`'s `<head>`. `BaseLayout`'s own `<title>`/`<meta description>`/robots handling
+  (added ahead of time in PR-02) was removed in favour of it; `ogImage`/`ogType` are new
+  `BaseLayout` props alongside the existing `title`/`description`/`bodyClass`/`noindex`.
+  Canonical and absolute `og:image`/`twitter:image` URLs are built from `Astro.url.pathname` +
+  `site.siteUrl`, not hand-written per page.
+- **`site.ogImage` changed from its PR-02 placeholder (`/assets/img/og-default.png`, which never
+  existed) to `/og/default.png`** — matches where this PR's doc says to commit the generated PNG
+  (`public/og/default.png`), not the path PR-02 had guessed.
+- **New `src/components/PersonSchema.astro`**, rendered only on `/` via `<Fragment slot="head">`
+  (first real use of `BaseLayout`'s `head` slot). `worksFor` (Qualcomm) carries a `TODO(remove)`
+  comment in the frontmatter script per the PR's explicit requirement — must be deleted once the
+  internship ends, December 2026. Skipped the optional per-publication `ScholarlyArticle`
+  JSON-LD (PR marks it nice-to-have, skip if it complicates the build).
+- **`/webcam_demo/`'s SEO title needed to diverge from its visible `<h1>`.** PR-11's title table
+  gives this page's title with no `— Mira Purkrábek` suffix (unlike every other row) — appending
+  the suffix would push it past the 60-char budget (48 + 18 = 66). `ArticleLayout`'s
+  `Frontmatter` gained an optional `seoTitle` field (default: `` `${title} — ${site.name}` ``,
+  preserving old behaviour for any future article that doesn't set it); `webcam_demo.md` sets it
+  explicitly to the table's exact string.
+- **OG image generation (`scripts/make-og.mjs`, `npm run og:generate`)** renders an SVG to PNG
+  with `sharp` — the Inter Variable woff2 (already vendored via `@fontsource-variable/inter`) is
+  inlined into the SVG as a base64 `@font-face` `data:` URI, which `librsvg` 2.52 (this repo's
+  `sharp`'s backing SVG renderer) resolves and rasterizes correctly, diacritics included —
+  verified visually, no system font install needed. Portrait crop is
+  `src/assets/img/SKV_square_centered.png` (the same light-mode hero photo, cropped to a rounded
+  square via an SVG `<rect>` composited with `blend: 'dest-in'`), matching the hero's existing
+  choice of portrait. **Added `sharp` as an explicit devDependency** (`^0.35.3`, matching the
+  version already resolved) — it was previously only present transitively as `astro`'s own
+  `optionalDependency` for `astro:assets`; a standalone script shouldn't rely on another
+  package's optional transitive dependency actually being hoisted to top-level `node_modules`.
+- **`public/llms.txt`** (33 lines) and **`public/robots.txt`** added per the PR's spec —
+  `robots.txt` allows all agents (including AI crawlers) and points at `sitemap-index.xml`;
+  doesn't touch `/assets`.
+- **Sitemap (`@astrojs/sitemap`) needs a `customPages` entry for `/CV.pdf`** to reach the
+  acceptance criterion's "seven real pages": the integration only walks Astro-built HTML routes,
+  and `/CV.pdf` is a static file, not a route — but PR-00's URL map lists it as one of the site's
+  real top-level pages (nav-linked from every page), so it's added by hand. The `filter` option
+  excludes `/styleguide/`, `/404/`, the eight legacy-redirect-stub paths, and `/BBox-MaskPose/`
+  (a redirect to a different repo's site, not this site's content) — verified the built
+  `sitemap-0.xml` lists exactly `/`, `/about/`, `/coaching/`, `/CV.pdf`, `/publications/`,
+  `/webcam_demo/`, `/work/`.
+- **Redirects are copied verbatim from the PR doc**, including both the `/x` and `/x/` form for
+  each legacy path. Astro's `build.format: 'directory'` output means both forms collapse to the
+  same `dist/x/index.html`, so at build time only one of each pair actually renders — Astro logs
+  a `WARN [router] ... conflicts with higher priority route` for the other and skips it (current
+  Astro version: warning only, not a build failure; the warning text says a future version may
+  make this a hard error). Functionally harmless today: verified in `dist/` that `/aboutme`,
+  `/papers`, `/projects`, `/teaching` each produce one correct stub, and a static host resolves
+  both slash forms to the same directory index regardless. If a future Astro upgrade turns this
+  into a build error, drop the trailing-slash-variant keys — the non-slash key's directory-format
+  output already serves both URL forms.
+- **`src/pages/404.astro`** rebuilt from scratch (old `404.html` is Jekyll's, untouched — it's
+  deleted in PR-13, not here). Two link groups (Site; Research projects — the same four external
+  project microsites the old page linked), no image, `noindex`. Reuses the site's existing
+  eyebrow/heading/list visual language rather than introducing new components.
+- **New `src/components/Analytics.astro`**, rendered at the end of `<body>` (after `<Footer />`)
+  so it can never sit ahead of page content. Loads only when `import.meta.env.PROD` is true *and*
+  the current path isn't `/styleguide` — verified both conditions independently (GA absent on
+  `astro dev`; GA present on every built page except `/styleguide/`). No cookie-consent gate
+  added, matching the PR's explicit scope note (flagging for Miroslav, not implementing, per the
+  PR text).
+- Verified with `astro check` (0 errors, 0 warnings — added `is:inline` to the three new raw
+  `<script>` tags across `Seo`/`Analytics`/`PersonSchema` to silence Astro's processing hints) and
+  a headless-Chromium pass over a `astro preview` build of `dist/`: all eight page titles unique
+  and matching the PR-11 table verbatim, canonical/OG/Twitter/robots present and correct per
+  page, JSON-LD parses and validates as well-formed `schema.org/Person`, `/404/` in both themes
+  at 1440/375px with zero console errors and no horizontal overflow, GA script tag presence
+  confirmed per-page as above.

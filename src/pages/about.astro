@@ -16,9 +16,10 @@ const education = (await getCollection('education')).sort(
   (a, b) => a.data.order - b.data.order,
 );
 
+// Title/description per PR-11 §1 "Page titles and descriptions" table — use verbatim.
 const title = 'About — Mira Purkrábek';
 const description =
-  'The story behind the CV: cybernetics to Porsche to a computer vision PhD at CTU Prague, how I work, teaching, leading a Superliga floorball team, and life away from the screen.';
+  'How I got from production software at Porsche to computer-vision research, how I work, who I teach, and what I do away from a screen.';
 ---
 
 <BaseLayout title={title} description={description}>

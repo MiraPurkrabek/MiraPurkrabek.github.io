@@ -1,0 +1,45 @@
+---
+// Per-page metadata: title, description, canonical, Open Graph, Twitter Card, robots. Wired
+// into BaseLayout's <head>. See
+// docs/redesign_15-08-2026_PRs/PR-11-seo-metadata-redirects.md §1.
+import { site } from '../data/site';
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  ogImage = site.ogImage,
+  ogType = 'website',
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, site.siteUrl).toString();
+const absoluteOgImage = new URL(ogImage, site.siteUrl).toString();
+const ogImageAlt = `${site.name} — ${site.role}`;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+{noindex && <meta name="robots" content="noindex" />}
+
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={absoluteOgImage} />
+<meta property="og:image:alt" content={ogImageAlt} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={absoluteOgImage} />

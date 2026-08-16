@@ -17,6 +17,10 @@ export interface Frontmatter {
   /** Raw HTML string rendered as a Callout right after the header — the only way to get a real
    * Callout onto a plain Markdown page without an MDX integration. */
   tldr?: string;
+  /** Overrides the <title>/OG title. Defaults to `${title} — ${site.name}`, but a long,
+   * SEO-written headline (see PR-11 §1) can blow the 60-char title budget once that suffix is
+   * appended — set this to use the headline verbatim, with no suffix. */
+  seoTitle?: string;
 }
 
 export interface Props {
@@ -32,6 +36,7 @@ const {
   description,
   noindex = false,
   tldr,
+  seoTitle = `${title} — ${site.name}`,
 } = frontmatter;
 
 const formattedDate = date
@@ -57,11 +62,7 @@ function estimateReadingTime(markdown: string): string {
 const readingTime = rawContent ? estimateReadingTime(rawContent()) : undefined;
 ---
 
-<BaseLayout
-  title={`${title} — ${site.name}`}
-  description={description}
-  noindex={noindex}
->
+<BaseLayout title={seoTitle} description={description} noindex={noindex}>
   <Section id="top" size="page">
     <div class="article">
       <a href="/" class="article__back">← Home</a>

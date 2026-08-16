@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PersonSchema from '../components/PersonSchema.astro';
 import Hero from '../components/home/Hero.astro';
 import Affiliations from '../components/home/Affiliations.astro';
 import Impact from '../components/home/Impact.astro';
@@ -10,14 +11,17 @@ import SelectedPublications from '../components/home/SelectedPublications.astro'
 import Beyond from '../components/home/Beyond.astro';
 import Contact from '../components/home/Contact.astro';
 
-// Final, authoritative <title>/description are wired in PR-11; this is the interim value drawn
-// from the hero paragraph per PR-04 §4.
+// Title/description per docs/redesign_15-08-2026_PRs/PR-11-seo-metadata-redirects.md §1
+// "Page titles and descriptions" table — use verbatim, don't reword.
 const title = 'Mira Purkrábek — Computer vision researcher and engineer';
 const description =
-  'I build visual perception that survives contact with reality — crowded scenes, cropped bodies, unusual viewpoints. First-author papers at CVPR and ICCV, code and models people actually run, and systems that went into production.';
+  'Applied computer vision: first-author CVPR/ICCV research on robust human perception, plus systems in production. PhD candidate at CTU Prague, research intern at Qualcomm.';
 ---
 
 <BaseLayout title={title} description={description}>
+  <Fragment slot="head">
+    <PersonSchema description={description} />
+  </Fragment>
   <Hero />
   <Affiliations />
   <Impact />

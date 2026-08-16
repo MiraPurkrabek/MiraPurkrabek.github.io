@@ -1,0 +1,33 @@
+# Mira Purkrábek
+
+> Goes by Mira; publishes and is credited academically as Miroslav Purkrábek.
+
+Computer vision researcher and engineer. PhD candidate at CTU Prague (Visual Recognition
+Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR Labs, Amsterdam
+(June–December 2026).
+
+## Key facts
+
+- First-author papers at CVPR 2025 (ProbPose) and ICCV 2025 (BBox-Mask-Pose), on robust human
+  pose estimation and segmentation.
+- 1st place and $5,000, S23DR structured-3D-reconstruction challenge, CVPR 2026 (with Jan
+  Skvrna).
+- Built FACIS, a forensic image/video analysis system commissioned by the Ministry of the
+  Interior for the Czech Police's Criminal Police Service — now in active use.
+- Two years as a software developer at Porsche Engineering (2020–2022): control-unit software
+  for the Porsche Taycan (170,000+ delivered worldwide, 2020–2025) and software across the
+  components of Porsche's High Power Charging platform.
+- Eight years coaching floorball (2017–2025), including head coach of a Czech Superliga men's
+  team.
+
+## Links
+
+- Work: https://mirapurkrabek.github.io/work
+- Publications: https://mirapurkrabek.github.io/publications
+- About: https://mirapurkrabek.github.io/about
+- CV (PDF): https://mirapurkrabek.github.io/CV.pdf
+- Contact: mira.purkrabek@gmail.com
+- GitHub: https://github.com/MiraPurkrabek
+- Google Scholar: https://scholar.google.com/citations?user=EDRJFLcAAAAJ
+- ORCID: https://orcid.org/0009-0000-6142-6492
+- LinkedIn: https://www.linkedin.com/in/miroslav-purkrábek-0051a2243/

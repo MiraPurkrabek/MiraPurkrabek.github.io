@@ -2,7 +2,11 @@
 layout: ../layouts/ArticleLayout.astro
 title: 'Webcam Demo'
 subtitle: 'How I Did My CVPR Poster Session Live Demo'
-description: 'How I set up a live, interactive webcam demo for my CVPR 2025 poster session — inference on a remote GPU server, streamed to a tablet mounted on the poster board.'
+# Title/description per PR-11 §1 "Page titles and descriptions" table — use verbatim. seoTitle
+# has no " — Mira Purkrábek" suffix (unlike every other page) because the headline plus suffix
+# would blow the 60-char title budget; see ArticleLayout's seoTitle doc comment.
+seoTitle: 'How I ran a live webcam demo at my CVPR poster'
+description: 'A practical guide to running a live GPU-backed demo from a tablet at a poster session.'
 tldr: >-
   Run your demo on a powerful GPU server using Gradio. Use its public share feature to get a
   temporary URL and connect a mobile device via the internet. The mobile device captures webcam

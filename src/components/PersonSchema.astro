@@ -1,0 +1,63 @@
+---
+// schema.org/Person JSON-LD, rendered on the homepage only. See
+// docs/redesign_15-08-2026_PRs/PR-11-seo-metadata-redirects.md §2 and
+// PR-00-OVERVIEW.md §7 "Naming" — `name`/`alternateName` intentionally differ from the visible
+// <h1> (which reads "Mira Purkrábek"): this is the official register that has to match Google
+// Scholar, ORCID and LinkedIn for entity resolution.
+import { site } from '../data/site';
+
+export interface Props {
+  description: string;
+}
+
+const { description } = Astro.props;
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.legalName,
+  alternateName: ['Mira Purkrábek', 'Miroslav Purkrabek'],
+  url: site.siteUrl,
+  image: new URL(site.ogImage, site.siteUrl).toString(),
+  email: `mailto:${site.email.primary}`,
+  jobTitle: 'Computer Vision Researcher',
+  description,
+  affiliation: {
+    '@type': 'Organization',
+    name: 'Visual Recognition Group, Czech Technical University in Prague',
+    url: 'https://vrg.fel.cvut.cz/',
+  },
+  // TODO(remove): this internship ends December 2026 (PR-00-OVERVIEW.md §8 "Experience") —
+  // `worksFor` must be deleted once it's over so this never implies a lapsed affiliation.
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Qualcomm',
+    url: 'https://www.qualcomm.com/',
+  },
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Czech Technical University in Prague',
+    url: 'https://fel.cvut.cz/en',
+  },
+  knowsAbout: [
+    'Human pose estimation',
+    'Computer vision',
+    'Machine learning',
+    '3D reconstruction',
+    'Video analysis',
+    'Robust perception',
+  ],
+  sameAs: [
+    site.social.github,
+    site.social.googleScholar,
+    site.social.orcid,
+    site.social.linkedin,
+  ],
+};
+---
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(person)}
+/>

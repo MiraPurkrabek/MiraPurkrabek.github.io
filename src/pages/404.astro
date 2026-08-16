@@ -1,0 +1,175 @@
+---
+// Rebuilt 404 — see docs/redesign_15-08-2026_PRs/PR-11-seo-metadata-redirects.md §6. Keeps the
+// old page's two link groups (site pages, external project microsites) but drops the South Park
+// image and inline styles.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Icon from '../components/Icon.astro';
+
+// Title/description per PR-11 §1 "Page titles and descriptions" table (description is not
+// specified there beyond "(noindex)" — written fresh, kept short since it's never indexed).
+const title = 'Page not found — Mira Purkrábek';
+const description =
+  "This page doesn't exist. Find your way to the homepage, work, publications or about page instead.";
+
+const siteLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/work', label: 'Work' },
+  { href: '/publications', label: 'Publications' },
+  { href: '/about', label: 'About' },
+];
+
+const projectLinks = [
+  {
+    href: 'https://mirapurkrabek.github.io/BBox-Mask-Pose/',
+    label: 'BBox-Mask-Pose',
+    meta: 'ICCV 2025',
+  },
+  {
+    href: 'https://mirapurkrabek.github.io/ProbPose/',
+    label: 'ProbPose',
+    meta: 'CVPR 2025',
+  },
+  {
+    href: 'https://mirapurkrabek.github.io/RePoGen-paper/',
+    label: 'RePoGen',
+    meta: 'FG 2024',
+  },
+  {
+    href: 'https://github.com/ctu-vras/blanket-infant-face-anonym',
+    label: 'BLANKET',
+    meta: 'ICDL 2025',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <Section size="text">
+    <p class="not-found__eyebrow">404</p>
+    <h1 class="not-found__title">Page not found</h1>
+    <p class="not-found__lede">
+      That page doesn't exist, or it moved when the site was rebuilt. Here's
+      where to go instead.
+    </p>
+
+    <div class="not-found__groups">
+      <div class="not-found__group">
+        <h2 class="not-found__heading">Site</h2>
+        <ul class="not-found__list">
+          {
+            siteLinks.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="not-found__group">
+        <h2 class="not-found__heading">Research projects</h2>
+        <ul class="not-found__list">
+          {
+            projectLinks.map((link) => (
+              <li>
+                <a href={link.href} target="_blank" rel="noopener">
+                  {link.label}
+                  <span class="not-found__meta">{link.meta}</span>
+                  <Icon
+                    name="arrow-up-right"
+                    size={14}
+                    class="not-found__icon"
+                  />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  .not-found__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--accent);
+    margin-bottom: var(--space-3);
+  }
+
+  .not-found__title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .not-found__lede {
+    max-width: 48ch;
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    color: var(--text-muted);
+    margin-bottom: var(--space-9);
+  }
+
+  .not-found__groups {
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: 1fr;
+  }
+
+  .not-found__heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-subtle);
+    margin-bottom: var(--space-3);
+  }
+
+  .not-found__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    border-top: 1px solid var(--border);
+  }
+
+  .not-found__list a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    font-size: var(--text-base);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .not-found__list a:hover {
+    color: var(--accent);
+  }
+
+  .not-found__meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-subtle);
+  }
+
+  .not-found__icon {
+    margin-left: auto;
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 640px) {
+    .not-found__groups {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-9);
+    }
+  }
+</style>

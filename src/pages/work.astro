@@ -32,9 +32,10 @@ const groups = [
     .sort((a, b) => a.data.order - b.data.order),
 }));
 
+// Title/description per PR-11 §1 "Page titles and descriptions" table — use verbatim.
 const title = 'Work — Mira Purkrábek';
 const description =
-  'Research on robust human perception, and the systems that put it to use — computer vision papers, code and applied deployments from crowded scenes to production camera systems.';
+  'Research on robust human perception and the applied systems built from it: forensic tooling, low-latency video systems, open-source annotation tools.';
 ---
 
 <BaseLayout title={title} description={description}>

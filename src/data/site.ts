@@ -57,7 +57,7 @@ export const site: SiteConfig = {
   },
   cvPath: '/CV.pdf',
   siteUrl: 'https://mirapurkrabek.github.io',
-  ogImage: '/assets/img/og-default.png',
+  ogImage: '/og/default.png',
   availability: {
     show: true,
     text: 'Open to applied scientist and research engineer roles',
