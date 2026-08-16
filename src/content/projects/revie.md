@@ -18,6 +18,9 @@ highlights:
 tags:
   - Video Systems
   - Deployment
+image:
+  src: '../../assets/img/Revie-screenshot.png'
+  alt: 'The Revie dashboard showing five sports-hall camera feeds with per-camera session controls and a list of recently downloaded clips.'
 status: active
 ---
 

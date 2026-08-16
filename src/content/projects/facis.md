@@ -30,7 +30,7 @@ linkLabels:
   grant: Grant description
 image:
   src: '../../assets/img/PCR.png'
-  alt: 'Screenshot of a forensic analysis tool automatically detecting and highlighting human figures in police surveillance footage.'
+  alt: "Emblem of the Police of the Czech Republic, whose Criminal Police Service commissioned and now uses FACIS."
 status: active
 ---
 
