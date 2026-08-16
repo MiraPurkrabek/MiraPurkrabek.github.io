@@ -27,6 +27,6 @@ abstract: >-
 links:
   project: https://mirapurkrabek.github.io/RePoGen-paper/
 thumbnail:
-  src: '../../assets/img/Duplantis.gif'
+  src: '../../assets/img/Duplantis-poster.jpg'
   alt: 'Pose estimation on an athlete captured from an unusual top-down camera angle, with keypoints correctly located despite the rare viewpoint.'
 ---

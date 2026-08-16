@@ -1,0 +1,124 @@
+---
+// /publications — full publication list. See
+// docs/redesign_15-08-2026_PRs/PR-08-publications-page.md.
+//
+// Grouped by year (newest first), theses in their own group at the end so they never dilute the
+// peer-reviewed list. Within a year, first-author work leads, then co-author, then supervised
+// student work — this reproduces the order the fact sheet already lists them in
+// (PR-00-OVERVIEW.md §8 "Publications").
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import PublicationItem from '../components/PublicationItem.astro';
+import { site } from '../data/site';
+
+const publications = await getCollection('publications');
+
+const roleOrder = { 'first-author': 0, 'co-author': 1, supervised: 2 } as const;
+
+const theses = publications
+  .filter((entry) => entry.data.type === 'thesis')
+  .sort((a, b) => b.data.year - a.data.year);
+
+const years = [
+  ...new Set(
+    publications
+      .filter((entry) => entry.data.type !== 'thesis')
+      .map((entry) => entry.data.year),
+  ),
+].sort((a, b) => b - a);
+
+const groups = [
+  ...years.map((year) => ({
+    heading: String(year),
+    entries: publications
+      .filter(
+        (entry) => entry.data.type !== 'thesis' && entry.data.year === year,
+      )
+      .sort((a, b) => roleOrder[a.data.role] - roleOrder[b.data.role]),
+  })),
+  { heading: 'Theses', entries: theses },
+];
+
+const title = 'Publications — Mira Purkrábek';
+const description =
+  'Peer-reviewed publications on robust human perception — pose estimation, segmentation and 3D understanding — with abstracts and BibTeX.';
+---
+
+<BaseLayout title={title} description={description}>
+  <Section size="text">
+    <h1 class="pub-hero__title">Publications</h1>
+    <p class="pub-hero__lead">
+      Peer-reviewed work on robust human perception — pose estimation, segmentation
+      and 3D understanding. Also on <a
+        href={site.social.googleScholar}
+        target="_blank"
+        rel="noopener">Google Scholar ↗</a
+      > and <a href={site.social.orcid} target="_blank" rel="noopener"
+        >ORCID ↗</a
+      >.
+    </p>
+  </Section>
+
+  <Section>
+    {
+      groups.map((group) => (
+        <div class="pub-group">
+          <h2 class="pub-group__heading">{group.heading}</h2>
+          <ul class="pub-group__list">
+            {group.entries.map((entry) => (
+              <li>
+                <PublicationItem publication={entry} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </Section>
+
+  <Section size="text">
+    <p class="pub-closing">
+      Projects and systems behind these papers → <a href="/work">/work</a>
+    </p>
+  </Section>
+</BaseLayout>
+
+<style>
+  .pub-hero__title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .pub-hero__lead {
+    max-width: var(--width-text);
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    color: var(--text-muted);
+  }
+
+  .pub-group + .pub-group {
+    margin-top: var(--space-9);
+  }
+
+  .pub-group__heading {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-2);
+  }
+
+  .pub-group__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .pub-group__list li:last-child :global(.pub-item) {
+    border-bottom: none;
+  }
+
+  .pub-closing {
+    text-align: center;
+    color: var(--text-muted);
+  }
+</style>

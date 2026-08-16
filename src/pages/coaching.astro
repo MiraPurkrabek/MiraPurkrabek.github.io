@@ -1,0 +1,290 @@
+---
+// /coaching — see docs/redesign_15-08-2026_PRs/PR-09-about-and-coaching.md §B.
+// Restyle of the old coaching.md: same substance (intro, stepping-down note, the three
+// coaching-era sections, "More than Coaching", the podcast), new chrome — Prose typography, a
+// real Callout for the stepping-down note, mono meta lines for periods (matching the home
+// Timeline's `.timeline__period`, see PR-05), and a keyboard-focusable podcast link instead of
+// the old onclick div.
+import { getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Prose from '../components/Prose.astro';
+import Callout from '../components/Callout.astro';
+import podcastThumb from '../assets/img/skv_podcast.jpeg';
+
+const coachingRole = await getEntry('experience', 'skv-coaching');
+
+const title = 'Coaching — Mira Purkrábek';
+const description =
+  "Head coach of the Sokol Královské Vinohrady men's Superliga floorball team, 2024–2025 — what leading a competitive team without a budget taught me about decisions, feedback and roles.";
+---
+
+<BaseLayout title={title} description={description}>
+  <Section id="top" size="text">
+    <div class="coaching-hero">
+      <h1>Coaching</h1>
+      {
+        coachingRole && (
+          <p class="coaching-meta">
+            {coachingRole.data.role} · {coachingRole.data.org} ·{' '}
+            {coachingRole.data.displayPeriod}
+          </p>
+        )
+      }
+    </div>
+
+    <Prose>
+      <p>
+        I coached floorball for Sokol Královské Vinohrady (SKV) in the Czech
+        Superliga — the country's top league — from 2017 through 2025, working
+        from assistant up to head coach. I became head coach in 2024 at the age
+        of 27, one of the youngest head coaches in Superliga history. Over that
+        time I coached more than 200 matches, over 100 of them in the Superliga,
+        and we put together the best results in SKV's history by building a team
+        around clear roles, dedication, and team spirit.
+      </p>
+
+      <Callout>
+        <p>
+          In summer 2025, I stepped down from my role as head coach to focus
+          fully on my computer vision research career. I remain with Sokol
+          Královské Vinohrady as a consultant to the team.
+        </p>
+      </Callout>
+
+      <h2 id="leading-the-mens-team">Leading the Men's Team</h2>
+      <p class="coaching-meta">2022–2025</p>
+      <p>
+        In 2022, I took over the SKV men's team alongside Jan Kapucián. While
+        Jan handled management and off-court matters, I was mainly in charge of
+        the floorball side. We built a team from mostly young players and tried
+        to play simple, hard-working floorball.
+      </p>
+      <p>
+        In our first season together (2022/23), we finished 10th and made it
+        through the pre-quarterfinal to reach the Superliga quarterfinals. In
+        2023/24, we made the playoffs again from 10th place, finishing with the
+        best regular-season points total in the club's history. In 2024, I
+        officially became the head coach. That season (2024/25), we finished 9th
+        after the regular season and reached the top 8 in the playoffs again.
+      </p>
+      <p>
+        I'm proud we've managed to make SKV a regular playoff team — even
+        without big names or a big budget.
+      </p>
+      <p>
+        <a
+          href="https://florbal.cz/92593-vinohrady-prebira-dosavadni-asistent-purkrabek-kapucian-zustane-poradcem/"
+          target="_blank"
+          rel="noopener"
+        >
+          Florbal.cz: Purkrábek přebírá tým SKV
+        </a>
+      </p>
+      <p>
+        <a
+          href="https://www.skvflorbal.cz/c/miroslav-purkrabek-druha-pulka-sezony-vysledky-jsme-urvali-tymovosti-a-nasazenim-2547"
+          target="_blank"
+          rel="noopener"
+        >
+          SKVFlorbal.cz: Rozhovor s trenérem Purkrábkem
+        </a>
+      </p>
+
+      <h2 id="the-juniors">The Juniors</h2>
+      <p class="coaching-meta">2019–2022</p>
+      <p>
+        In between my roles with the men's team, I coached the U19 team. I
+        focused a lot on preparing players for senior floorball — not just
+        technically, but mentally too. Much of that time was affected by Covid
+        shutdowns, so we ran individual physical training and I mentored players
+        online to help them stay connected to the sport. After Covid, in the
+        2021/22 season, we qualified for the top junior league and made the
+        playoffs in our very first year there.
+      </p>
+      <p>
+        Some of the guys I coached are now part of our Superliga team. That's
+        the most satisfying part of the job.
+      </p>
+      <p>
+        <a
+          href="https://www.skvflorbal.cz/c/trener-junioru-purkrabek-s-nelehkou-vyzvou-jsme-se-poprali-2033"
+          target="_blank"
+          rel="noopener"
+        >
+          SKVFlorbal.cz: Rozhovor s trenérem juniorů
+        </a>
+      </p>
+
+      <h2 id="beginnings-in-skv">Beginnings in SKV</h2>
+      <p class="coaching-meta">2017–2020</p>
+      <p>
+        I joined SKV in 2017 as an assistant coach for the men's team. Before
+        that, I coached kids in a local club — this was my first experience at
+        the highest level. I was 20, new to the club, and honestly not sure if I
+        was ready. Over time, I gained more responsibility, experience, and
+        confidence.
+      </p>
+      <p>
+        In my first season with Michal Pazdera, we played in 1. liga (the
+        second-highest league). We ended up winning it and earned promotion to
+        the Superliga. In 2019, we managed to stay in the league by winning the
+        first round of playdowns.
+      </p>
+      <p>
+        After that second season, Michal Kotlas and David Bouša took over the
+        team, and I stayed on as their assistant. That year, we finished 8th
+        after the regular season and made it to the playoffs for the first time
+        in SKV's history. Unfortunately, we didn't get to play them, as the
+        season was cancelled due to Covid.
+      </p>
+      <p>
+        <a
+          href="https://www.idnes.cz/sport/ostatni/superliga-florbalistu-1-kolo.A180906_230419_florbal_par?setver=full"
+          target="_blank"
+          rel="noopener"
+        >
+          iDnes.cz: Vinohrady poráží Znojmo v Livesport Superlize
+        </a>
+      </p>
+
+      <h2 id="more-than-coaching">More than Coaching</h2>
+      <p>
+        During my Erasmus stay in Ljubljana, I coached FBK Olimpija for a few
+        months and refereed some league matches. I also hold a Czech coaching B
+        licence and used to referee women's and youth games in Prague.
+      </p>
+      <p>
+        Outside the field, I'm a PhD candidate in computer vision and AI at CTU.
+        I use sport as a case study in my research and have shared some of it at
+        coaching seminars.
+      </p>
+      <p>
+        <a
+          href="https://www.dny.ai/event-2024/ai-4-sport"
+          target="_blank"
+          rel="noopener"
+        >
+          AI4Sports Seminar
+        </a>
+      </p>
+
+      <h2 id="if-youd-like-to-know-more">If you'd like to know more…</h2>
+      <p>
+        We talked about some of this in a podcast for SKV (in Czech). It covers
+        coaching, my view on floorball and SKV, and we even touched on how AI
+        and computer vision could impact the game.
+      </p>
+    </Prose>
+
+    <a
+      class="podcast-card"
+      href="https://www.skvflorbal.cz/c/skvely-podcast-2-miroslav-purkrabek-2430"
+      target="_blank"
+      rel="noopener"
+    >
+      <Image src={podcastThumb} alt="" width={150} height={150} />
+      <div class="podcast-card__body">
+        <p class="podcast-card__title">
+          <span lang="cs">SKV Podcast #2 – Miroslav Purkrábek</span>{' '}
+          <span class="podcast-card__lang">(in Czech)</span>
+        </p>
+        <p class="podcast-card__desc" lang="cs">
+          Druhým hostem SKVělého podcastu byl 27letý trenér vinohradského áčka
+          Miroslav Purkrábek.
+        </p>
+        <p class="podcast-card__source">skvflorbal.cz</p>
+      </div>
+    </a>
+
+    <Prose>
+      <p class="back-link"><a href="/about">← Back to /about</a></p>
+    </Prose>
+  </Section>
+</BaseLayout>
+
+<style>
+  .coaching-hero {
+    margin-bottom: var(--space-10);
+  }
+
+  .coaching-hero h1 {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .coaching-meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-subtle);
+  }
+
+  .podcast-card {
+    display: flex;
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+    max-width: var(--width-text);
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color var(--dur) var(--ease),
+      box-shadow var(--dur) var(--ease);
+  }
+
+  .podcast-card:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+  }
+
+  .podcast-card :global(img) {
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  .podcast-card__body {
+    padding: var(--space-4) var(--space-4) var(--space-4) 0;
+    min-width: 0;
+  }
+
+  .podcast-card__title {
+    font-weight: 600;
+    font-size: var(--text-sm);
+  }
+
+  .podcast-card__lang {
+    font-weight: 400;
+    color: var(--text-subtle);
+  }
+
+  .podcast-card__desc {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .podcast-card__source {
+    margin-top: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-subtle);
+  }
+
+  .back-link {
+    font-size: var(--text-sm);
+  }
+
+  @media (min-width: 480px) {
+    .podcast-card :global(img) {
+      width: 150px;
+      height: 150px;
+    }
+  }
+</style>

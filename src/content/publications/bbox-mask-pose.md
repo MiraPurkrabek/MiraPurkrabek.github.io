@@ -32,6 +32,6 @@ links:
   code: https://github.com/mirapurkrabek/BBoxMaskPose
   demo: https://huggingface.co/spaces/purkrmir/BBoxMaskPose-demo
 thumbnail:
-  src: '../../assets/img/004806_BMP_loop.gif'
-  alt: 'Looping animation of detection, segmentation and pose estimation refining each other across iterations on a crowded scene with overlapping people.'
+  src: '../../assets/img/004806_BMP_loop-poster.jpg'
+  alt: 'Two overlapping soccer players with the front player pose keypoints estimated and connected by a green skeleton despite occlusion by the other player.'
 ---

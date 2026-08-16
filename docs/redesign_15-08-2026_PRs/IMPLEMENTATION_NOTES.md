@@ -216,3 +216,47 @@ before starting. Keep entries short.
   nested inside (no skipped levels), and the page reads correctly with JavaScript disabled.
   Homepage weight (HTML + linked CSS + eager hero images) is ~92 KB raw, far under the 600 KB
   budget; no new JS keeps it under the 6 KB gzipped JS budget too.
+
+## PR-09 — /about and /coaching
+
+- **`Callout.astro`** built as specified (shared with PR-10, not duplicated) — `--surface-soft`
+  background, `--accent` left border, `--text-sm`. No `tone`/variant prop; PR-10 can add one if
+  it turns out to need a second visual style.
+- `/about` word count: **749 words** of narrative prose (everything between the hero and the
+  reused Contact section, i.e. excluding Contact's own copy) — within the 700–1000 budget.
+  Reusing `Contact.astro` as-is per the PR meant not counting its copy as new "About" prose.
+- **Portrait**: `CV_picture_PS_square.jpg` (unused elsewhere in the repo) for the top-of-page
+  headshot. **Supporting visual**: `ProbPose_McLaughlin.png` (already used as the ProbPose
+  publication thumbnail) illustrating "the last 10%" in the How I Work section — reused rather
+  than sourcing anything new. **Away from work** ships text-only: `path.jpg` is generic stock
+  photography (not Mira's own), and `eurasian-lynx.jpg` belongs to the camera-trap research
+  project, not his personal life — neither "genuinely fits" per the PR's own bar, and PR-06
+  already established text-only as the fallback for this exact gap.
+- Both `/about` and `/coaching` render their hero block (h1 + lead/meta) and the rest of the
+  page's content inside **one** `Section`, not two. Two adjacent `Section`s each carry
+  `padding-block: var(--section-gap)`, which stacks to a visually dead ~190px gap when both are
+  default-tone (no background change to break it up, unlike the homepage's alternating
+  tone="soft" sections). Fixed with a single `Section` per page and a `margin-bottom` on the hero
+  block instead.
+- `/coaching`'s intro paragraph is a light tense fix, not new substance: the old Jekyll page said
+  "currently leading the men's team" directly above the stepping-down callout that says he
+  stepped down — self-contradictory now that both are visible on the same page. Rewrote to past
+  tense ("I coached... from 2017 through 2025") so the callout doesn't immediately contradict the
+  sentence above it. All facts and every external link are unchanged.
+- Kept the `dny.ai` AI4Sports link in "More than Coaching" even though the PR's parenthetical
+  only names florbal.cz/skvflorbal.cz/iDnes explicitly — that section is one of the ones the PR
+  says to keep in full, the link is part of its substance, and PR-03 already decided to keep this
+  same (known-404) URL elsewhere rather than drop it silently.
+- Coaching's period lines (`2022–2025` etc.) reuse the Timeline's mono/subtle/tracked-wide style
+  as a page-scoped `.coaching-meta` class — not a shared component, since `Timeline.astro`'s
+  version is `home/`-scoped and coupled to its own markup.
+- Podcast card: real `<a>` with `target="_blank" rel="noopener"`, thumbnail `alt=""` (decorative
+  — the adjacent visible text already carries the same information), Czech title/description
+  wrapped in `lang="cs"`, "(in Czech)" appended outside that span in English. Verified
+  keyboard-focusable with a visible focus ring via a Playwright Tab-order pass.
+- Added the one fact PR-09 flagged as possibly missing: "best regular-season points total in the
+  club's history" for 2023/24, folded into the existing "Leading the Men's Team" paragraph
+  (the other two — 2024 head-coach appointment, 2024/25 top-8 finish — were already in the old
+  copy).
+- Verified with `astro check` (0 errors/warnings) and a headless-Chromium pass: both pages, both
+  themes, 1440/375px, zero console errors.
