@@ -11,42 +11,49 @@ const { class: className } = Astro.props;
 </div>
 
 <style>
+  /* Every descendant rule below is :global() — the content inside <Prose> almost always arrives
+     via <slot />, from a consumer .astro file or (for /webcam_demo/) rendered Markdown. Astro
+     only tags elements that live in *this* component's own template with its scope attribute,
+     so a scoped `.prose h2 {}` compiles to a selector requiring the scope attribute on `h2` too
+     — which slotted content never has, and the rule silently never matches. `:global()` on the
+     child side (matching Callout.astro's `:global(p + p)`) is the fix. */
   .prose {
     max-width: var(--width-text);
+    margin-inline: auto;
     font-size: var(--text-base);
     line-height: var(--leading-body);
     color: var(--text);
   }
 
-  .prose > * + * {
+  .prose > :global(* + *) {
     margin-top: var(--space-5);
   }
 
-  .prose h2 {
+  .prose :global(h2) {
     font-size: var(--text-2xl);
     margin-top: var(--space-9);
   }
 
-  .prose h3 {
+  .prose :global(h3) {
     font-size: var(--text-xl);
     margin-top: var(--space-7);
   }
 
-  .prose h4 {
+  .prose :global(h4) {
     font-size: var(--text-lg);
     margin-top: var(--space-6);
   }
 
-  .prose ul,
-  .prose ol {
+  .prose :global(ul),
+  .prose :global(ol) {
     padding-left: var(--space-6);
   }
 
-  .prose li + li {
+  .prose :global(li + li) {
     margin-top: var(--space-2);
   }
 
-  .prose blockquote {
+  .prose :global(blockquote) {
     margin: 0;
     padding-left: var(--space-5);
     border-left: 2px solid var(--border-strong);
@@ -54,7 +61,7 @@ const { class: className } = Astro.props;
     font-style: italic;
   }
 
-  .prose code {
+  .prose :global(code) {
     font-family: var(--font-mono);
     font-size: 0.9em;
     background: var(--surface-soft);
@@ -62,42 +69,59 @@ const { class: className } = Astro.props;
     border-radius: var(--radius-sm);
   }
 
-  .prose pre {
+  .prose :global(pre) {
     background: var(--surface-soft);
     padding: var(--space-5);
     border-radius: var(--radius-md);
     overflow-x: auto;
   }
 
-  .prose pre code {
+  .prose :global(pre code) {
     background: none;
     padding: 0;
   }
 
-  .prose figure {
+  .prose :global(figure) {
     margin: 0;
   }
 
-  .prose figcaption {
+  .prose :global(figure img),
+  .prose :global(figure video) {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+  }
+
+  .prose :global(figcaption) {
     margin-top: var(--space-2);
     font-size: var(--text-sm);
     color: var(--text-subtle);
   }
 
-  .prose table {
+  /* Lets an article break a figure out of the text column, up to --width-page — opt in per
+     element, e.g. <figure class="wide">. Viewport-relative so it escapes any ancestor's
+     max-width regardless of nesting. */
+  .prose :global(.wide) {
+    width: 100vw;
+    max-width: var(--width-page);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .prose :global(table) {
     width: 100%;
     border-collapse: collapse;
     font-size: var(--text-sm);
   }
 
-  .prose th,
-  .prose td {
+  .prose :global(th),
+  .prose :global(td) {
     text-align: left;
     padding: var(--space-3) var(--space-4);
     border-bottom: 1px solid var(--border);
   }
 
-  .prose a {
+  .prose :global(a) {
     text-decoration-line: underline;
   }
 </style>

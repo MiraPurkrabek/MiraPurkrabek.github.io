@@ -260,3 +260,75 @@ before starting. Keep entries short.
   copy).
 - Verified with `astro check` (0 errors/warnings) and a headless-Chromium pass: both pages, both
   themes, 1440/375px, zero console errors.
+
+## PR-10 — Article layout and `/webcam_demo/`
+
+- **`ArticleLayout.astro`** is a Markdown `layout:` frontmatter target, not a component imported
+  by a hand-written `.astro` page — `src/pages/webcam_demo.md` is a real Markdown file (no MDX
+  integration is installed, and none was needed). Astro's Markdown-layout convention nests the
+  documented props under `Astro.props.frontmatter` rather than spreading them, so `Props` is
+  `{ frontmatter: {...}, rawContent?: () => string }`, not a flat `title`/`subtitle`/... shape.
+  Reading time is computed from `rawContent()` (build-time only, no client JS): strip code
+  fences/HTML/markdown syntax, word-count at 200 wpm, `< 1 min read` floor — same source numbers
+  `_includes/readtime.html` used, just computed in the layout instead of Liquid.
+- **The TL;DR box is a real `Callout`, not embeddable from the Markdown body.** Plain Markdown
+  (no MDX) can't invoke an Astro component inline, so `ArticleLayout` accepts an optional
+  `tldr` frontmatter string (raw HTML, `set:html` into a `<p>` inside `Callout`) and renders it
+  right after the header, before the body — this moves it slightly earlier than its position in
+  the original page (which had one intro paragraph above it), a necessary side effect of routing
+  it through frontmatter rather than the body flow.
+  **Consequence for any future article added the same way:** the same `tldr` mechanism is the
+  only path to a Callout from a `.md` page under this layout.
+  **Callout reused as-is from PR-09** (`src/components/Callout.astro`), not duplicated.
+  **Video**: raw `<figure><video>` HTML embedded directly in the Markdown body passes through
+  Astro's Markdown compiler untouched — `controls muted loop playsinline preload="metadata"`,
+  **no autoplay**, `poster="/assets/videos/webcam_demo_poster.jpg"` (frame 0 of the existing
+  `webcam_demo_muted.mp4`, extracted with `ffmpeg -vf "select=eq(n\,0)"`, per the PR). Kept the
+  video inside the normal text column rather than using the new `.wide` breakout class (see
+  below) — at 760px it's already a generously sized player and this avoids the breakout's
+  viewport-relative CSS on the one page that actually ships it this round.
+- **Found and fixed a real, pre-existing bug in `Prose.astro`, shared by `/about` and
+  `/coaching`:** every one of its descendant selectors (`.prose h2`, `.prose pre`, `.prose a`,
+  etc.) was scoped by Astro to require its *own* `data-astro-cid-*` attribute on the child
+  element too — but `<Prose>`'s children always arrive via `<slot />` from whichever file wrote
+  the markup (the consuming `.astro` page, or in this PR's case Astro's Markdown renderer), and
+  slotted elements carry the *consumer's* scope id, never `Prose.astro`'s own. Every rule with an
+  unscoped child was silently a no-op: headings fell back to bare browser-default sizing, `.prose
+  pre { overflow-x: auto }` never applied, so a long unwrapped terminal line in the webcam-demo
+  code block wasn't clipped/scrolled by its own box — it overflowed the box with `overflow:
+  visible` and widened `<body>`'s `scrollWidth` past the viewport at 320/375px, i.e. exactly the
+  horizontal-scroll bug the acceptance criteria explicitly rules out. Fixed by wrapping every
+  descendant selector's child side in `:global()` (`.prose :global(h2) {}`, matching the pattern
+  `Callout.astro` already used correctly for `:global(p + p)`), which also retroactively fixes
+  `/about` and `/coaching`'s heading sizes/spacing (previously silently defaulting to the
+  browser's UA stylesheet, e.g. h2 rendered at browser-default `1.5em`/`0px margin-top` instead
+  of the intended `--text-2xl`/`--space-9`) — re-verified both pages after the fix, no visual
+  regression, only the intended tokens now actually landing. **Consequence for later PRs:** any
+  new `.prose` selector must use `:global()` on the child side or it will silently never match.
+- Added a `.wide` utility class to `Prose.astro` per the PR's "full-width media... via a `.wide`
+  class" spec (viewport-relative breakout: `width: 100vw; max-width: var(--width-page); margin-
+  left: 50%; transform: translateX(-50%)` — escapes any ancestor `max-width` regardless of
+  nesting depth). Not applied to the webcam-demo video in this PR (see above); ready for the next
+  article that needs it.
+- **Disabled Shiki syntax highlighting site-wide** (`markdown.syntaxHighlight: false` in
+  `astro.config.mjs`) — Astro's default Shiki output hard-codes a `github-dark` theme via an
+  inline `style="background-color:#24292e;..."` attribute on `<pre>`, which both violates "no
+  inline `style` attributes" and ignores the light/dark toggle (it's the same two fixed colours
+  in either theme). Plain `<pre><code>` lets `Prose.astro`'s own token-based `pre`/`code` styling
+  take over instead, correctly theme-aware. No other page currently ships a fenced code block,
+  so this has no effect elsewhere yet.
+- **No publish date rendered.** No confirmed date exists anywhere in PR-00's fact sheet for when
+  this write-up was published (only that it followed the CVPR 2025 poster session, June 2025);
+  `ArticleLayout`'s `date` prop is optional and simply omitted here rather than invented — the
+  meta line shows only the computed reading time. Flagging per the "do not invent dates" rule.
+- `/work` closing block: new `tone="soft"` `Section` titled "Notes & write-ups" with one line
+  linking the article, below the existing "Publications with abstracts..." line. No blog index,
+  tags, or RSS — out of scope per the PR.
+- `webcam_demo_launch.png` (`public/assets/img/`) is unreferenced by the ported article (the
+  original page never embedded it either, despite living alongside the other webcam-demo
+  assets) — left untouched, not deleted, since asset cleanup is PR-13's job.
+- Verified with `astro check` (0 errors/warnings) and a headless-Chromium pass: `/webcam_demo/`
+  in both themes at 1440/375/320px, zero console errors; confirmed via computed styles that
+  `document.body.scrollWidth` equals the viewport width at 320px (no horizontal overflow) and
+  that the code block's own `overflow-x: auto` is active; spot-checked `/about` and `/coaching`
+  post-Prose-fix at 1440px, both themes, no regressions.

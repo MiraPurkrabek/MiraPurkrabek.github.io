@@ -1,0 +1,137 @@
+---
+// Reusable long-form article layout — used as a Markdown `layout:` frontmatter target, so props
+// arrive nested under `frontmatter` (Astro's standard shape for Markdown-layout components), not
+// spread onto Astro.props directly. See docs/redesign_15-08-2026_PRs/PR-10-article-layout-webcam-demo.md.
+import BaseLayout from './BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Prose from '../components/Prose.astro';
+import Callout from '../components/Callout.astro';
+import { site } from '../data/site';
+
+export interface Frontmatter {
+  title: string;
+  subtitle?: string;
+  date?: string;
+  description: string;
+  noindex?: boolean;
+  /** Raw HTML string rendered as a Callout right after the header — the only way to get a real
+   * Callout onto a plain Markdown page without an MDX integration. */
+  tldr?: string;
+}
+
+export interface Props {
+  frontmatter: Frontmatter;
+  rawContent?: () => string;
+}
+
+const { frontmatter, rawContent } = Astro.props;
+const {
+  title,
+  subtitle,
+  date,
+  description,
+  noindex = false,
+  tldr,
+} = frontmatter;
+
+const formattedDate = date
+  ? new Date(date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  : undefined;
+
+function estimateReadingTime(markdown: string): string {
+  const plain = markdown
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/[#>*_`~-]/g, ' ');
+  const words = plain.split(/\s+/).filter(Boolean).length;
+  const minutes = words / 200;
+  return minutes < 1 ? '< 1 min read' : `${Math.round(minutes)} min read`;
+}
+
+const readingTime = rawContent ? estimateReadingTime(rawContent()) : undefined;
+---
+
+<BaseLayout
+  title={`${title} — ${site.name}`}
+  description={description}
+  noindex={noindex}
+>
+  <Section id="top" size="page">
+    <div class="article">
+      <a href="/" class="article__back">← Home</a>
+
+      <header class="article__header">
+        <h1>{title}</h1>
+        {subtitle && <p class="article__subtitle">{subtitle}</p>}
+        <p class="article__meta">
+          {formattedDate && <time datetime={date}>{formattedDate}</time>}
+          {formattedDate && readingTime && <span aria-hidden="true"> · </span>}
+          {readingTime && <span>{readingTime}</span>}
+        </p>
+      </header>
+
+      {
+        tldr && (
+          <Callout class="article__tldr">
+            <p set:html={tldr} />
+          </Callout>
+        )
+      }
+
+      <Prose class="article__body">
+        <slot />
+      </Prose>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  .article {
+    max-width: var(--width-text);
+    margin-inline: auto;
+  }
+
+  .article__back {
+    display: inline-block;
+    margin-bottom: var(--space-6);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .article__back:hover {
+    color: var(--accent);
+  }
+
+  .article__header {
+    margin-bottom: var(--space-7);
+  }
+
+  .article__header h1 {
+    font-size: var(--text-3xl);
+  }
+
+  .article__subtitle {
+    margin-top: var(--space-3);
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+  }
+
+  .article__meta {
+    margin-top: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-subtle);
+  }
+
+  .article__tldr {
+    margin-bottom: var(--space-7);
+  }
+</style>
