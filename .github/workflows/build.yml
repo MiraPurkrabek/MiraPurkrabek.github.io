@@ -1,9 +1,8 @@
 name: Astro Build
 on:
   pull_request:
-    branches: [redesign]
   push:
-    branches: [redesign]
+    branches: [master]
 jobs:
   build:
     name: Build Astro site
