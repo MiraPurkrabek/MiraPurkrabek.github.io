@@ -542,3 +542,49 @@ before starting. Keep entries short.
   on `/`, `/work`, `/publications` — consistent across every run. Performance: 85–95 depending on
   run (see GA note above); CLS a perfect 0 on every run/page; LCP consistently ~1.7–2.0 s post-fix
   (from a 3.8 s pre-fix baseline on `/`).
+
+## PR-13 — Cutover: remove Jekyll, deploy from Actions, merge to master
+
+- **Jekyll removal done, master merge deliberately not done.** Per direct instruction for this
+  round of work: `master` stays on the old Jekyll site for now, so this PR only makes the
+  `redesign` branch itself deploy-ready. Not done: merging to `master`, changing the GitHub Pages
+  **Source** setting, or `git push --tags`. All of §4 ("Repository settings") and the live-domain
+  half of §5 ("Post-deploy verification") of the PR doc remain Miroslav's explicit, deliberate
+  steps to trigger whenever he decides to actually cut over — the doc itself requires his approval
+  before that merge, and this round of work doesn't have it.
+- **Jekyll deletion is one commit** (`Remove Jekyll site`), exactly per the file list in the PR
+  doc. Verified first (`grep` across `src/`, `public/`, `astro.config.mjs`) that nothing in the
+  Astro site referenced any of the deleted files — it didn't; the root Jekyll `index.html`/
+  `404.html`/`webcam_demo.md`/etc. are fully disjoint from their same-named Astro counterparts
+  under `src/pages/`. `astro check` and `astro build` re-verified clean immediately after.
+- **`LICENSE` kept** — it's Beautiful Jekyll's original MIT license (Dean Attali), matching the PR
+  doc's instruction; attribution added to the new README's History section instead of a separate
+  file.
+- **`deploy.yml`** written exactly to the PR doc's spec (permissions, concurrency group `pages`,
+  build job with `upload-pages-artifact@v3` on `dist`, separate `deploy` job with
+  `deploy-pages@v4`). Untestable locally (needs live Pages settings pointed at Actions) — will
+  only actually run once Miroslav does the cutover.
+- **`build.yml` retargeted**: `push: branches: [master]`, and the `pull_request` branch filter
+  dropped entirely (runs against a PR targeting any branch) — read "retargeted to master and any
+  branch" as push-on-master, PR-check-on-anything, since `redesign` won't be the long-running
+  integration branch once this merges.
+- **`.prettierignore`'s Jekyll-file block deleted**, not just left inert — it named the exact
+  files this PR's first commit removes, so keeping it would just be dead config referencing
+  nonexistent paths. The blanket `*.md` ignore (predates this PR, covers `src/content/**/*.md`
+  too) is untouched — out of scope here.
+- **Local verification done in place of the live-domain checklist:** `npm run audit:links`
+  against the post-deletion `dist/` — 34/36 external links OK, the only 2 failures are the
+  already-known/already-documented dead links from PR-03/PR-12
+  (`dny.ai/event-2024/ai-4-sport`, the `florbal.cz` article) — no new breakage. Confirmed in
+  `dist/`: `.nojekyll` present (copied from `public/`, already existed since PR-01), `CV.pdf`/
+  `CV_twopage.pdf`/`robots.txt`/`llms.txt`/`sitemap-index.xml` all present, `BBox-MaskPose/`
+  redirect stub still points at `/BBox-Mask-Pose/`. The rows that need the *live* domain (GA4
+  real-time pageview, OG preview in LinkedIn/Slack, DNS/Pages actually serving) are still open —
+  listed above as Miroslav's steps.
+- **`jekyll-final` tag created locally** (`git tag jekyll-final dd90483`, the `PR12` commit — last
+  commit before Jekyll removal) but **not pushed**. Push it (`git push --tags`) at the same time
+  as the actual cutover, per the PR doc's rollback plan.
+- Fact-check status for the review checklist's "remaining ⚠ items" line: unchanged since PR-03/
+  PR-12 (FACIS start year, several project start years, Porsche work location, Erasmus year,
+  ongoing-peer-review-service year, ProbPose GitHub link) — all still using the conservative
+  wording those PRs settled on; none resolved or newly flagged in this pass.
