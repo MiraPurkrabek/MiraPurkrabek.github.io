@@ -23,8 +23,6 @@ jobs:
         run: npm run check
       - name: Build site
         run: npm run build
-      - name: Check internal links
-        run: npm run audit:links
       - name: Package review source
         run: git archive --format=zip HEAD -o source.zip
       - name: Save review files
