@@ -2,10 +2,14 @@ name: Astro Build
 on:
   pull_request:
   push:
-    branches: [master]
+    branches: [master, redesign]
+
+permissions:
+  contents: read
+
 jobs:
   build:
-    name: Build Astro site
+    name: Check and build (no deployment)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,3 +23,15 @@ jobs:
         run: npm run check
       - name: Build site
         run: npm run build
+      - name: Check internal links
+        run: npm run audit:links
+      - name: Package review source
+        run: git archive --format=zip HEAD -o source.zip
+      - name: Save review files
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-review
+          path: |
+            dist/
+            source.zip
+          retention-days: 14
