@@ -1,184 +1,47 @@
 ---
 import Container from './Container.astro';
-import Icon, { type IconName } from './Icon.astro';
 import { site } from '../data/site';
-
 const year = new Date().getFullYear();
-
-const pageLinks: { href: string; label: string; external?: boolean }[] = [
-  { href: '/work', label: 'Work' },
-  { href: '/publications', label: 'Publications' },
-  { href: '/about', label: 'About' },
-  { href: '/coaching', label: 'Coaching' },
-  { href: site.cvPath, label: 'CV', external: true },
-];
-
-const socialLinks: {
-  href: string;
-  label: string;
-  icon: IconName;
-  external: boolean;
-}[] = [
-  {
-    href: `mailto:${site.email.primary}`,
-    label: site.email.primary,
-    icon: 'mail',
-    external: false,
-  },
-  { href: site.social.github, label: 'GitHub', icon: 'github', external: true },
-  {
-    href: site.social.googleScholar,
-    label: 'Google Scholar',
-    icon: 'google-scholar',
-    external: true,
-  },
-  {
-    href: site.social.linkedin,
-    label: 'LinkedIn',
-    icon: 'linkedin',
-    external: true,
-  },
-  { href: site.social.orcid, label: 'ORCID', icon: 'orcid', external: true },
-];
 ---
 
-<footer class="site-footer">
-  <Container size="page">
-    <div class="site-footer__grid">
-      <div class="site-footer__about">
-        <p class="site-footer__name">{site.name}</p>
-        <p class="site-footer__tagline">{site.tagline}</p>
-      </div>
-
-      <nav class="site-footer__pages" aria-label="Footer">
-        <p class="site-footer__heading">Pages</p>
-        <ul>
-          {
-            pageLinks.map((link) => (
-              <li>
-                <a
-                  href={link.href}
-                  target={link.external ? '_blank' : undefined}
-                  rel={link.external ? 'noopener' : undefined}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+<footer>
+  <Container size="page"
+    ><div class="footer-inner">
+      <p>© {year} {site.legalName}</p>
+      <nav aria-label="Footer">
+        <a href="/cv/">Full CV</a><a href="/news/">Updates</a><a
+          href="/coaching/">Coaching</a
+        ><a href={site.social.orcid}>ORCID</a><a
+          href="https://www.facebook.com/miroslav.purkrabek">Facebook</a
+        ><a href={`mailto:${site.email.university}`}>CTU email</a>
       </nav>
-
-      <div class="site-footer__social">
-        <p class="site-footer__heading">Connect</p>
-        <ul>
-          {
-            socialLinks.map((link) => (
-              <li>
-                <a
-                  href={link.href}
-                  target={link.external ? '_blank' : undefined}
-                  rel={link.external ? 'noopener' : undefined}
-                >
-                  <Icon name={link.icon} size={18} />
-                  <span>{link.label}</span>
-                  {link.external && (
-                    <Icon
-                      name="arrow-up-right"
-                      size={12}
-                      class="site-footer__external"
-                    />
-                  )}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </div>
-
-    <div class="site-footer__bottom">
-      <p>© {year} {site.legalName} · Built with Astro</p>
-    </div>
-  </Container>
+    </div></Container>
 </footer>
-
 <style>
-  .site-footer {
+  footer {
+    padding-block: 1.5rem;
+    margin-top: 1rem;
     border-top: 1px solid var(--border);
-    padding-block: var(--space-9) var(--space-6);
-    color: var(--text-muted);
-  }
-
-  .site-footer__grid {
-    display: grid;
-    gap: var(--space-8);
-    grid-template-columns: 1fr;
-  }
-
-  .site-footer__name {
-    font-weight: 600;
-    font-size: var(--text-lg);
-    color: var(--text);
-  }
-
-  .site-footer__tagline {
-    margin-top: var(--space-2);
-    font-size: var(--text-sm);
-    max-width: 32ch;
-  }
-
-  .site-footer__heading {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wide);
     color: var(--text-subtle);
-    margin-bottom: var(--space-3);
+    font-size: 0.8125rem;
   }
-
-  .site-footer__pages ul,
-  .site-footer__social ul {
-    list-style: none;
-    padding: 0;
+  .footer-inner {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
-
-  .site-footer__pages a,
-  .site-footer__social a {
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.15rem;
+  }
+  a {
     color: var(--text-muted);
     text-decoration: none;
-    font-size: var(--text-sm);
   }
-
-  .site-footer__pages a:hover,
-  .site-footer__social a:hover {
+  a:hover {
     color: var(--accent);
-  }
-
-  .site-footer__social a {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-  }
-
-  .site-footer__external {
-    opacity: 0.6;
-  }
-
-  .site-footer__bottom {
-    margin-top: var(--space-9);
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--border);
-    font-size: var(--text-xs);
-    color: var(--text-subtle);
-  }
-
-  @media (min-width: 640px) {
-    .site-footer__grid {
-      grid-template-columns: 1.4fr 1fr 1fr;
-    }
+    text-decoration: underline;
   }
 </style>

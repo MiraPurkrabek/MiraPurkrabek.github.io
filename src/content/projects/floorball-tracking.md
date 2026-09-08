@@ -30,3 +30,5 @@ dataset. The master's thesis introduced an unsupervised, hard-negative-mining ap
 an identification network without labelled data, generating low-ID-switch tracklets suitable for
 labelling further training data. The applied interest in sports video continues in the Revie
 clip-retrieval system.
+
+The related recording system serves more than 20 users around the clock and had downloaded more than 300 matches when the two-page CV was written. A server application with a desktop and mobile web interface supports real-time situation analysis during matches.

@@ -1,237 +1,121 @@
 ---
-// /about — see docs/redesign_15-08-2026_PRs/PR-09-about-and-coaching.md §A.
-// Word budget is 700-1000 words of narrative prose (checked with the section headings and link
-// labels included, all of which sit inside that range) — see IMPLEMENTATION_NOTES.md.
-import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import Prose from '../components/Prose.astro';
 import Contact from '../components/home/Contact.astro';
 import { site } from '../data/site';
-import portrait from '../assets/img/CV_picture_PS_square.jpg';
-import lastTenPercent from '../assets/img/ProbPose_McLaughlin.png';
-
-const education = (await getCollection('education')).sort(
-  (a, b) => a.data.order - b.data.order,
-);
-
-// Title/description per PR-11 §1 "Page titles and descriptions" table — use verbatim.
-const title = 'About — Mira Purkrábek';
-const description =
-  'How I got from production software at Porsche to computer-vision research, how I work, who I teach, and what I do away from a screen.';
 ---
 
-<BaseLayout title={title} description={description}>
-  <Section id="top" size="text">
-    <div class="about-hero">
-      <Image
-        src={portrait}
-        alt={site.name}
-        width={220}
-        height={220}
-        loading="eager"
-        decoding="async"
-        fetchpriority="high"
-        class="about-hero__portrait"
-      />
-      <div class="about-hero__text">
-        <h1>About</h1>
-        <p class="about-hero__lead">
-          I'm Mira — a computer vision researcher and engineer, finishing a PhD
-          at the Visual Recognition Group, CTU Prague, under Jiří Matas. I'm
-          currently a research intern at Qualcomm's XR Labs in Amsterdam,
-          working on 3D scene reconstruction and understanding. Across all of
-          it, the question I keep coming back to is the same one: how do you
-          make computer vision work once the benchmark's clean assumptions stop
-          holding — bodies half out of frame, people overlapping in a crowd,
-          camera angles nobody trained for.
-        </p>
-      </div>
-    </div>
-
+<BaseLayout
+  title="About — Mira Purkrábek"
+  description="Miroslav Purkrábek: computer vision research, engineering, teaching at CTU Prague, floorball coaching, and life outside work."
+>
+  <Section size="text">
+    <h1>About me</h1>
     <Prose>
-      <h2 id="story">How I got here</h2>
+      <p class="lead">
+        I'm Mira. I work in computer vision, used to spend most evenings in a
+        floorball hall, and like being in the mountains whenever I can.
+      </p>
+      <h2>Research, via a sports hall</h2>
       <p>
-        I started in cybernetics and robotics at CTU, and found computer vision
-        through sport — my bachelor's and master's theses tracked floorball
-        players across multiple cameras, well before I had a name like "human
-        pose estimation" for what I was doing.
+        My first computer vision projects grew out of floorball. For my
+        bachelor's and master's theses at CTU, I worked on tracking players
+        across cameras. It was a way to connect something I was studying with a
+        sport I already spent a lot of time thinking about.
       </p>
       <p>
-        Then I left research for two years. At Porsche Engineering I wrote
-        control-unit software for the Taycan — a car now built more than 170,000
-        times over — and later worked across the components of Porsche's High
-        Power Charging platform. It's a different kind of rigor when your code
-        ships inside a car instead of a paper deadline.
+        At Porsche Engineering, I worked on automotive control-unit software and
+        on the High Power Charging platform. In 2023, I started my PhD in the <a
+          href="https://vrg.fel.cvut.cz/"
+          >Visual Recognition Group at CTU Prague</a
+        >, with <a href="https://cmp.felk.cvut.cz/~matas/">Jiří Matas</a>. Since
+        then I've visited <a href="https://virtualhumans.mpi-inf.mpg.de/"
+          >Gerard Pons-Moll's group in Tübingen</a
+        > and joined Qualcomm XR Labs in Amsterdam for a research internship.
       </p>
       <p>
-        I went back to research in 2023 for the PhD I'm doing now — and I chose
-        it after knowing what production feels like, not instead of finding out.
-        That's shaped how I work more than anything else. Since then: a research
-        visit to the University of Tübingen's Real Virtual Humans group (Dec
-        2025 – Mar 2026), and now a research internship at Qualcomm's XR Labs in
-        Amsterdam (Jun – Dec 2026, current).
+        I work on human pose estimation, detection, segmentation, 3D pose and
+        shape, and tracking. I'm particularly interested in the <a
+          href="https://en.wikipedia.org/wiki/Ninety%E2%80%93ninety_rule"
+          >last 10%</a
+        >: a body partly outside an image, an unusual camera angle, or people
+        overlapping in a crowd. At Qualcomm, I'm working on 3D scene
+        reconstruction and understanding.
       </p>
-
-      <h2 id="how-i-work">How I work</h2>
-      <p>A few things guide how I approach a problem:</p>
+      <p>
+        That interest has led to <a href="/publications/"
+          >ProbPose, BBox-Mask-Pose and RePoGen</a
+        >, as well as datasets and evaluation metrics including CropCOCO,
+        Extended OKS and OCHuman-Pose. I release code, models and demos, and
+        build tools with the people using them: police analysts,
+        infant-development researchers and floorball coaches. <a href="/work/"
+          >All projects</a
+        >.
+      </p>
+      <p>
+        <a href="/cv/">Experience, education and awards</a> · <a
+          href={site.cvPath}>Two-page CV</a
+        > · <a href="/news/">Updates over the years</a>
+      </p>
+      <h2 id="teaching">Teaching and students</h2>
+      <p>
+        I teach <a href="https://cw.fel.cvut.cz/wiki/courses/b4b33rpz/start"
+          >RPZ — Pattern Recognition and Machine Learning</a
+        > at CTU. The course covers statistical decision theory, perceptrons, AdaBoost,
+        support vector machines and neural networks.
+      </p>
+      <p>
+        I also supervise student research. This includes <a
+          href="https://arxiv.org/abs/2601.08982">SAM-pose2seg</a
+        >, awarded Best Student Paper at CVWW 2026, and <a
+          href="https://arxiv.org/abs/2501.08815">PC-CSE</a
+        >. I'm happy to discuss thesis ideas and research opportunities in my
+        field.
+      </p>
       <ul>
-        <li>
-          <strong>The last 10% is the interesting part.</strong> Most methods work
-          fine on the easy cases; I care about what breaks — keypoints outside the
-          image crop (ProbPose), people overlapping in a crowd (BBox-Mask-Pose), camera
-          angles nobody trained for (RePoGen).
-        </li>
-        <li>
-          <strong>Evaluate before you model.</strong> You can't fix what you can't
-          measure. Several of my contributions are datasets and metrics rather than
-          models — CropCOCO, Extended OKS, OCHuman-Pose.
-        </li>
-        <li>
-          <strong>Ship it.</strong> Code, models and demos go public by default. Internal
-          tools should get used, not just built — PoseAnnotator started as a lightweight
-          pose-annotation tool for one dataset and got reused for several since; Revie
-          retrieves a clip from a sports-hall camera system in under half a second
-          and is used in real training sessions and matches.
-        </li>
-        <li>
-          <strong>Work with the people using the output.</strong> Police forensics
-          analysts, infant-development researchers, floorball coaches — the problem
-          looks different from where they stand, and that's usually where the real
-          constraint is.
+        <li>For homework questions, please use the student forum.</li><li>
+          I don't keep fixed consultation hours; <a
+            href={`mailto:${site.email.university}`}>email me</a
+          > to arrange a meeting.
         </li>
       </ul>
-
-      <figure>
-        <Image
-          src={lastTenPercent}
-          alt="Pose estimation overlaid on an athlete whose limbs extend outside the cropped image, with keypoints correctly predicted as out-of-frame."
-          width={1200}
-          height={652}
-          class="about-figure__img"
-        />
-        <figcaption>
-          ProbPose predicting keypoints outside the visible crop — one version
-          of "the last 10%."
-        </figcaption>
-      </figure>
-
-      <h2 id="teaching">Teaching and supervision</h2>
+      <h2 id="coaching">A few years on the sidelines</h2>
       <p>
-        I teach <a
-          href="https://cw.fel.cvut.cz/wiki/courses/b4b33rpz/start"
-          target="_blank"
-          rel="noopener">RPZ — Pattern Recognition and Machine Learning</a
-        > at CTU, covering statistical decision theory and classifiers from perceptrons
-        to neural nets. Two papers I supervised have turned into real publications:
-        SAM-pose2seg, which won Best Student Paper at CVWW 2026, and PC-CSE. I'm open
-        to supervising theses and to research discussions. I don't keep fixed consultation
-        hours, so reach out in advance.
-      </p>
-
-      <h2 id="leadership">Leading a team, off the field</h2>
-      <p>
-        From 2017 I coached floorball at Sokol Královské Vinohrady, working from
-        assistant up to head coach of the men's Superliga team in 2024 — one of
-        the youngest head coaches in the league's history at 27. Around 200
-        matches, more than 100 of them in the Superliga.
+        I joined Sokol Královské Vinohrady in 2017 as an assistant coach. Later
+        I coached the juniors and became head coach of the men's Superliga team
+        in 2024. We worked with a young team and a small budget, and reached the
+        best results in the club's history.
       </p>
       <p>
-        None of it was really about floorball. It was making decisions with
-        incomplete information under a game clock, giving feedback people could
-        actually act on, and building a competitive team around clear roles and
-        dedication instead of star names, because SKV never had the budget for
-        star names. We still put together the best results in the club's history
-        on one of the smallest budgets in the league.
+        Some of the juniors I coached now play for the senior team. Watching
+        that progression is what I remember most fondly. I stepped down in
+        summer 2025 to focus on research, and stayed on as a consultant.
       </p>
       <p>
-        I stepped down in summer 2025 to focus on research, and stayed on as a
-        consultant. <a href="/coaching">The full story →</a>
+        <a href="/coaching/">More about coaching</a>, including the seasons, the
+        people, and a podcast conversation in Czech.
       </p>
-
       <h2 id="personal">Away from work</h2>
       <p>
-        Away from a screen, I'm usually in the mountains, travelling, or a few
-        chapters into a psychology book or an epic fantasy series — sometimes
-        both in the same week.
+        I enjoy travelling and being in the mountains. At home, I read
+        psychology and epic fantasy. The old version of this page answered “my
+        story” with a link to <a
+          href="https://en.wikipedia.org/wiki/The_Princess_Bride_(film)"
+          >The Princess Bride</a
+        >. It wasn't much of a biography, but it was a good film recommendation.
       </p>
-
-      <h2 id="education">Education</h2>
-      <ul>
-        {
-          education.map((entry) => (
-            <li>
-              <strong>
-                {entry.data.degree} in {entry.data.field}
-              </strong>{' '}
-              — {entry.data.institution}, {entry.data.period}.
-              {entry.data.note && ` ${entry.data.note}`}
-              {entry.data.thesisLink && (
-                <>
-                  {' '}
-                  <a
-                    href={entry.data.thesisLink}
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Thesis ↗
-                  </a>
-                </>
-              )}
-            </li>
-          ))
-        }
-      </ul>
     </Prose>
   </Section>
-
   <Contact />
 </BaseLayout>
-
 <style>
-  .about-hero {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-6);
-    margin-bottom: var(--space-10);
-  }
-
-  .about-hero__portrait {
-    width: 140px;
-    height: 140px;
-    flex-shrink: 0;
-    object-fit: cover;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-  }
-
-  :global(.about-figure__img) {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-  }
-
-  .about-hero__text h1 {
+  h1 {
     font-size: var(--text-3xl);
-    margin-bottom: var(--space-4);
+    margin-bottom: 1rem;
   }
-
-  .about-hero__lead {
-    font-size: var(--text-lg);
-    line-height: var(--leading-snug);
+  .lead {
+    font-size: 1.1875rem;
     color: var(--text-muted);
-  }
-
-  @media (min-width: 640px) {
-    .about-hero {
-      flex-direction: row;
-      align-items: center;
-    }
-
-    .about-hero__portrait {
-      width: 180px;
-      height: 180px;
-    }
   }
 </style>

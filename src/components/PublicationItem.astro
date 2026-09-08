@@ -34,7 +34,7 @@ const links = linkOrder.flatMap(([key, label]) => {
 const primaryHref = links[0]?.href;
 ---
 
-<article class="pub-item">
+<article class="pub-item" id={publication.id}>
   <div class="pub-item__media">
     <Image
       src={data.thumbnail.src}
@@ -144,7 +144,7 @@ const primaryHref = links[0]?.href;
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-5);
-    padding-block: var(--space-7);
+    padding-block: var(--space-5);
     border-bottom: 1px solid var(--border);
   }
 
@@ -177,7 +177,7 @@ const primaryHref = links[0]?.href;
   }
 
   .pub-item__title {
-    font-size: var(--text-xl);
+    font-size: 1.125rem;
     margin-bottom: var(--space-2);
   }
 
@@ -214,9 +214,7 @@ const primaryHref = links[0]?.href;
     align-items: center;
     gap: var(--space-2);
     margin-top: var(--space-2);
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    letter-spacing: var(--tracking-wide);
+    font-size: 0.875rem;
     color: var(--text-subtle);
   }
 
@@ -248,7 +246,7 @@ const primaryHref = links[0]?.href;
     gap: var(--space-2);
     min-height: 44px;
     padding-inline: var(--space-4);
-    border-radius: var(--radius-full);
+    border-radius: var(--radius-sm);
     border: 1px solid var(--border-strong);
     background: var(--surface);
     color: var(--text);
@@ -341,13 +339,20 @@ const primaryHref = links[0]?.href;
     const text = pre?.textContent?.trim() ?? '';
     const status = button.parentElement?.querySelector('[data-copy-status]');
 
-    navigator.clipboard.writeText(text).then(() => {
-      button.textContent = 'Copied';
-      if (status) status.textContent = 'BibTeX copied to clipboard';
-      window.setTimeout(() => {
-        button.textContent = 'Copy';
-        if (status) status.textContent = '';
-      }, 1500);
-    });
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        button.textContent = 'Copied';
+        if (status) status.textContent = 'BibTeX copied to clipboard';
+        window.setTimeout(() => {
+          button.textContent = 'Copy';
+          if (status) status.textContent = '';
+        }, 1500);
+      })
+      .catch(() => {
+        if (status)
+          status.textContent =
+            'Could not copy automatically. Select and copy the BibTeX below.';
+      });
   });
 </script>

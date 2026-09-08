@@ -26,3 +26,5 @@ development. The contribution here is precise 2D pose estimation of babies in vi
 supports analysing and interpreting infant movements and interactions — part of a larger effort
 to model human behaviour in its earliest stages. The face-anonymization work published as BLANKET
 (ICDL 2025) grew out of the same video data.
+
+Results include the BLANKET paper presented at ICDL 2025 and private infant video data used to evaluate BBoxMaskPose.

@@ -1,13 +1,15 @@
 org: CTU Prague · Visual Recognition Group
 orgUrl: https://vrg.fel.cvut.cz/
-role: 'PhD Candidate & Researcher (advisor: prof. Jiří Matas)'
+role: 'Researcher; PhD candidate since 2023 (advisor: prof. Jiří Matas)'
 location: Prague, Czech Republic
-start: '2023-02'
+start: '2019-02'
 end: null
-displayPeriod: 2023 – present
+displayPeriod: Feb 2019 – present; PhD since Feb 2023
 kind: research
-summary: Robust human understanding in images and video
+summary: Human pose, 3D shape and UV map estimation, detection and segmentation.
 details:
+  - Co-supervising junior colleagues on their first papers.
+  - Managing the team's annotation process.
   - State doctoral exam passed with distinction, February 2025.
 inStrip: true
 order: 3

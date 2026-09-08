@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { news } from '../data/news';
+const years = [...new Set(news.map((item) => item.date.slice(0, 4)))];
+---
+
+<BaseLayout
+  title="Updates — Mira Purkrábek"
+  description="Research, coaching, conferences and other updates from Miroslav Purkrábek, from 2022 onwards."
+>
+  <Section size="text">
+    <h1>Updates</h1>
+    <p class="intro">Research, floorball, and a few things along the way.</p>
+    <nav aria-label="Update years">
+      {years.map((year) => <a href={`#year-${year}`}>{year}</a>)}
+    </nav>
+    {
+      years.map((year) => (
+        <section class="year" id={`year-${year}`}>
+          <>
+            <h2>{year}</h2>
+            <ol>
+              {news
+                .filter((item) => item.date.startsWith(year))
+                .map((item) => (
+                  <li>
+                    <time datetime={item.date}>{item.label}</time>
+                    <div set:html={item.html} />
+                  </li>
+                ))}
+            </ol>
+          </>
+        </section>
+      ))
+    }
+  </Section>
+</BaseLayout>
+<style>
+  h1 {
+    font-size: var(--text-3xl);
+    margin-bottom: 0.75rem;
+  }
+  .intro {
+    color: var(--text-muted);
+  }
+  nav {
+    display: flex;
+    gap: 1rem;
+    margin-block: 1rem 2rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+  .year {
+    margin-bottom: 2.25rem;
+  }
+  ol {
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 1rem;
+    border-top: 1px solid var(--border);
+    padding-block: 1rem;
+  }
+  time {
+    font-size: 0.875rem;
+    color: var(--text-subtle);
+  }
+  li div {
+    color: var(--text-muted);
+  }
+  @media (max-width: 550px) {
+    li {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+  }
+</style>

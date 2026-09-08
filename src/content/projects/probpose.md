@@ -21,10 +21,9 @@ tags:
   - Probabilistic Modeling
   - Robustness
 links:
+  code: https://github.com/MiraPurkrabek/ProbPose_code
   project: https://mirapurkrabek.github.io/ProbPose/
   paper: https://mirapurkrabek.github.io/ProbPose/
-  # TODO(verify): a GitHub code release is referenced informally elsewhere but no confirmed
-  # repository URL exists in the source material used for this migration — add it once confirmed.
 image:
   src: '../../assets/img/McLaughlin.gif'
   alt: 'Pose estimation overlaid on an athlete whose limbs extend outside the cropped image, with keypoints correctly predicted as out-of-frame.'

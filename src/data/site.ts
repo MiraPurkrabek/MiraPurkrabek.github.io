@@ -55,7 +55,7 @@ export const site: SiteConfig = {
     linkedin: 'https://www.linkedin.com/in/miroslav-purkrábek-0051a2243/',
     orcid: 'https://orcid.org/0009-0000-6142-6492',
   },
-  cvPath: '/CV.pdf',
+  cvPath: '/CV_twopage.pdf',
   siteUrl: 'https://mirapurkrabek.github.io',
   ogImage: '/og/default.png',
   availability: {

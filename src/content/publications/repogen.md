@@ -25,6 +25,7 @@ abstract: >-
   not a prerequisite for effective performance. The introduced dataset and the corresponding code
   are available on the project website.
 links:
+  code: https://github.com/MiraPurkrabek/RePoGen
   project: https://mirapurkrabek.github.io/RePoGen-paper/
 thumbnail:
   src: '../../assets/img/Duplantis-poster.jpg'

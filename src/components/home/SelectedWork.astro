@@ -1,37 +1,144 @@
 ---
 import { getCollection } from 'astro:content';
-import Section from '../Section.astro';
-import SectionHeading from '../SectionHeading.astro';
-import ProjectFeature from './ProjectFeature.astro';
-
+import { videoPreviews } from '../../data/video-previews';
 const projects = await getCollection('projects');
-const featuredProjects = projects
-  .filter((project) => project.data.featured)
-  .sort(
-    (a, b) =>
-      (a.data.featuredOrder ?? Infinity) - (b.data.featuredOrder ?? Infinity),
-  );
+const selected = ['bbox-mask-pose', 'probpose', 'repogen'].map((id) =>
+  projects.find((p) => p.id === id)!,
+);
 ---
 
-<Section id="work">
-  <SectionHeading
-    eyebrow="Selected work"
-    heading="Work I'd show first"
-    seeAll={{ href: '/work', label: 'All projects' }}
-  />
-
-  <div class="selected-work__list">
+<section id="work" aria-labelledby="research-heading">
+  <div class="heading">
+    <h2 id="research-heading">Selected research</h2><a href="/publications/"
+      >All publications</a>
+  </div>
+  <div class="research-list">
     {
-      featuredProjects.map((project, index) => (
-        <ProjectFeature project={project} reverse={index % 2 === 1} />
+      selected.map(({ id, data }) => (
+        <article class="research-row">
+          <a
+            class="research-image"
+            href={data.links?.project}
+            aria-label={`${data.title} project`}
+          >
+            <img
+              src={videoPreviews[id].poster}
+              width="320"
+              height="180"
+              loading="lazy"
+              alt={data.image?.alt ?? data.title}
+            />
+          </a>
+          <div>
+            <p class="meta">{data.featuredMeta}</p>
+            <h3>
+              <a href={data.links?.project}>{data.title}</a>
+            </h3>
+            <p class="summary">{data.summary}</p>
+            <div class="links">
+              <a href={data.links?.project}>Project</a>
+              {data.links?.code && <a href={data.links.code}>Code</a>}
+            </div>
+          </div>
+        </article>
       ))
     }
   </div>
-</Section>
-
+  <p class="research-more">
+    I also build tools for <a href="/work/#facis">police forensics</a>, <a
+      href="/work/#revie">floorball video analysis</a
+    > and <a href="/work/#infant-sensorimotor">infant development research</a>.
+    Earlier, I worked on vehicle and charging software at <a
+      href="/work/#porsche-hpc">Porsche Engineering</a
+    >.
+  </p>
+  <a class="all-work" href="/work/">Explore all projects</a>
+</section>
 <style>
-  .selected-work__list {
+  .heading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  h2 {
+    font-size: 1.375rem;
+  }
+  .heading > a,
+  .all-work {
+    font-size: 0.875rem;
+  }
+  .research-row {
     display: grid;
-    gap: var(--space-10);
+    grid-template-columns: 185px minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .research-image {
+    display: block;
+    background: var(--surface-soft);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .research-image img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+  .meta {
+    color: var(--text-subtle);
+    font-size: 0.8125rem;
+    margin-bottom: 0.3rem;
+  }
+  h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.45rem;
+  }
+  h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  h3 a:hover {
+    color: var(--accent);
+  }
+  .summary {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+  .links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.55rem;
+    font-size: 0.875rem;
+  }
+  .links a {
+    text-decoration: none;
+  }
+  .links a:hover {
+    text-decoration: underline;
+  }
+  .research-more {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    margin-bottom: 0.75rem;
+  }
+  @media (max-width: 550px) {
+    .research-row {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+    .research-image {
+      max-width: 100%;
+    }
+    .research-image img {
+      aspect-ratio: 16 / 8;
+      object-fit: contain;
+    }
   }
 </style>

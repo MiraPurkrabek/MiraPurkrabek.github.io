@@ -27,6 +27,7 @@ abstract: >-
   keypoint evaluation. The code and data for research purposes are available on the project
   website.
 links:
+  code: https://github.com/MiraPurkrabek/ProbPose_code
   project: https://mirapurkrabek.github.io/ProbPose/
 thumbnail:
   src: '../../assets/img/ProbPose_McLaughlin.png'

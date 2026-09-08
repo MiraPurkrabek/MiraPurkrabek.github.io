@@ -28,3 +28,5 @@ status: active
 A simple GUI tool for annotating 2D human pose in images — a lightweight, local alternative to
 CVAT and LabelStudio. Originally built to create the RePoGen dataset, it has since been reused for
 several other datasets. Open source, with contributions and feedback welcome.
+
+Our group also uses PoseAnnotator for other structured keypoints, including facial landmarks, and for datasets published at CVPR and ICCV. It is available as an open-source Python package.

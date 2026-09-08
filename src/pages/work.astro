@@ -11,7 +11,7 @@ const groups = [
     id: 'research',
     heading: 'Research',
     kind: 'research' as const,
-    tone: 'soft' as const,
+    tone: 'default' as const,
   },
   {
     id: 'applied-systems',
@@ -23,7 +23,7 @@ const groups = [
     id: 'tools',
     heading: 'Tools & open source',
     kind: 'tool' as const,
-    tone: 'soft' as const,
+    tone: 'default' as const,
   },
 ].map((group) => ({
   ...group,
@@ -63,9 +63,7 @@ const description =
 
   <Section size="text">
     <p class="work-closing">
-      Publications with abstracts and BibTeX → <a href="/publications"
-        >/publications</a
-      >
+      <a href="/publications/">Publications with abstracts and BibTeX</a>
     </p>
   </Section>
 

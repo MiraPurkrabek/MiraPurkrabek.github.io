@@ -39,3 +39,5 @@ Interior for the Police of the Czech Republic's Criminal Police Service. The too
 processing of images and video, focused on detecting and analysing human figures to support
 criminal investigations. The software is now in active use by the Police, and the project was
 awarded Excellent Research Results by the Ministry of the Interior in November 2025.
+
+The project also produced an automated sensitive-content detection system, now deployed and used by the Czech Police. Its research outputs include the CVPR 2025 and ICCV 2025 papers.

@@ -36,13 +36,9 @@ export default defineConfig({
   },
   redirects: {
     '/projects': '/work',
-    '/projects/': '/work',
     '/papers': '/publications',
-    '/papers/': '/publications',
     '/aboutme': '/about',
-    '/aboutme/': '/about',
     '/teaching': '/about#teaching',
-    '/teaching/': '/about#teaching',
   },
   integrations: [
     sitemap({
@@ -50,7 +46,10 @@ export default defineConfig({
       // /CV.pdf is a real top-level page in the site's IA (linked from every page's nav), just
       // not an Astro route — @astrojs/sitemap only walks built HTML pages, so it needs adding
       // by hand. See IMPLEMENTATION_NOTES.md, PR-11.
-      customPages: ['https://mirapurkrabek.github.io/CV.pdf'],
+      customPages: [
+        'https://mirapurkrabek.github.io/CV.pdf',
+        'https://mirapurkrabek.github.io/CV_twopage.pdf',
+      ],
     }),
   ],
 });

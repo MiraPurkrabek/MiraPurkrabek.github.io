@@ -1,5 +1,5 @@
 ---
-title: 'Porsche — Taycan & High Power Charging'
+title: 'Porsche — Automotive & High Power Charging'
 tagline: Two years on Porsche's EV engineering team
 kind: applied
 years: '2020–2022'
@@ -8,10 +8,9 @@ org: 'Porsche Engineering'
 featured: false
 order: 9
 summary: >-
-  Two years on Porsche's EV engineering team, across two projects: Taycan control-unit software
-  and Porsche's High Power Charging platform.
+  Automotive control-unit software and software across Porsche's High Power Charging platform.
 highlights:
-  - 'Control-unit software for the Porsche Taycan, 170,000+ delivered worldwide 2020–2025'
+  - 'Production C/C++ control-unit software and Plug & Charge support'
   - "Software across the components of Porsche's High Power Charging platform, one of the most powerful EV chargers of its generation"
 tags:
   - Embedded / C++
@@ -24,7 +23,7 @@ image:
 status: completed
 ---
 
-Two years on Porsche's EV engineering team, split across two projects: control-unit software for
-the Porsche Taycan (170,000+ delivered worldwide, 2020–2025, source: Porsche sales figures), and
-software across the components of Porsche's High Power Charging platform, one of the most powerful
-EV chargers of its generation.
+At Porsche Engineering Services in Prague (March 2020 – July 2022), I worked on production
+automotive control-unit software and software across the components of the High Power Charging
+platform. My work included C/C++, Plug & Charge and daily automated testing in Python. The
+two-page CV reports deployment across more than 1,000 charging units worldwide.

@@ -42,12 +42,14 @@ const preview = videoPreviews[project.id];
 ---
 
 <article
+  id={project.id}
   class:list={['project-entry', { 'project-entry--no-image': !data.image }]}
 >
   {
     data.image && (
       <div class="project-entry__media">
         {preview ? (
+          <Fragment>
           <video
             class="project-entry__image"
             muted
@@ -72,6 +74,7 @@ const preview = videoPreviews[project.id];
               class="project-entry__image"
             />
           </noscript>
+          </Fragment>
         ) : (
           <Image
             src={data.image.src}
@@ -217,10 +220,8 @@ const preview = videoPreviews[project.id];
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-5);
-    padding: var(--space-6);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--border);
     transition:
       border-color var(--dur) var(--ease),
       box-shadow var(--dur) var(--ease);
@@ -228,7 +229,7 @@ const preview = videoPreviews[project.id];
 
   .project-entry:hover {
     border-color: var(--border-strong);
-    box-shadow: var(--shadow-md);
+    box-shadow: none;
   }
 
   .project-entry__media {
@@ -342,7 +343,7 @@ const preview = videoPreviews[project.id];
 
   @media (min-width: 640px) {
     .project-entry {
-      grid-template-columns: 240px minmax(0, 1fr);
+      grid-template-columns: 210px minmax(0, 1fr);
       align-items: start;
     }
 
