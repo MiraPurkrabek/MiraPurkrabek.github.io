@@ -8,9 +8,9 @@ org: 'Porsche Engineering'
 featured: false
 order: 9
 summary: >-
-  Automotive control-unit software and software across Porsche's High Power Charging platform.
+  Control-unit software for the Porsche Macan, and High Power Charging software for Taycan and other electric vehicles.
 highlights:
-  - 'Production C/C++ control-unit software and Plug & Charge support'
+  - 'Production C/C++ control-unit software for the Macan; Plug & Charge support for the charging platform'
   - "Software across the components of Porsche's High Power Charging platform, one of the most powerful EV chargers of its generation"
 tags:
   - Embedded / C++
@@ -24,6 +24,7 @@ status: completed
 ---
 
 At Porsche Engineering Services in Prague (March 2020 – July 2022), I worked on production
-automotive control-unit software and software across the components of the High Power Charging
-platform. My work included C/C++, Plug & Charge and daily automated testing in Python. The
-two-page CV reports deployment across more than 1,000 charging units worldwide.
+control-unit software for the Porsche Macan and software across the components of the
+High Power Charging platform, used by the Taycan and other electric vehicles. My work included C/C++, Plug & Charge and daily automated testing in Python. The
+two-page CV records more than 100,000 Macan vehicles and more than 1,000 charging units
+worldwide. These are deployment figures recorded in that CV, rather than live totals.

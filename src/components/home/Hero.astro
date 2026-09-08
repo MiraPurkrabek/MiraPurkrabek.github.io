@@ -3,6 +3,7 @@ import { Picture } from 'astro:assets';
 import Container from '../Container.astro';
 import { site } from '../../data/site';
 import portrait from '../../assets/img/SKV_square_centered.png';
+import darkPortrait from '../../assets/img/SKV_square_centered_dark.png';
 ---
 
 <section class="intro">
@@ -39,6 +40,7 @@ import portrait from '../../assets/img/SKV_square_centered.png';
       </div>
       <figure class="intro__portrait">
         <Picture
+          class="portrait-light"
           src={portrait}
           alt="Mira Purkrábek"
           formats={['avif', 'webp']}
@@ -48,6 +50,17 @@ import portrait from '../../assets/img/SKV_square_centered.png';
           fit="cover"
           loading="eager"
           fetchpriority="high"
+        />
+        <Picture
+          class="portrait-dark"
+          src={darkPortrait}
+          alt="Mira Purkrábek"
+          formats={['avif', 'webp']}
+          fallbackFormat="jpg"
+          width={480}
+          height={520}
+          fit="cover"
+          loading="eager"
         />
         <figcaption>From Prague, currently in Amsterdam.</figcaption>
       </figure>
@@ -124,6 +137,15 @@ import portrait from '../../assets/img/SKV_square_centered.png';
     object-fit: cover;
     border-radius: 6px;
   }
+  .intro__portrait :global(.portrait-dark) {
+    display: none;
+  }
+  :global(:root[data-theme='dark']) .intro__portrait :global(.portrait-light) {
+    display: none;
+  }
+  :global(:root[data-theme='dark']) .intro__portrait :global(.portrait-dark) {
+    display: block;
+  }
   figcaption {
     color: var(--text-subtle);
     font-size: 0.8125rem;
@@ -178,6 +200,17 @@ import portrait from '../../assets/img/SKV_square_centered.png';
       grid-column: 2;
       grid-row: 1 / 3;
       padding: 0;
+    }
+    .intro__portrait :global(.portrait-dark) {
+      display: none;
+    }
+    :global(:root[data-theme='dark'])
+      .intro__portrait
+      :global(.portrait-light) {
+      display: none;
+    }
+    :global(:root[data-theme='dark']) .intro__portrait :global(.portrait-dark) {
+      display: block;
     }
     figcaption {
       display: none;

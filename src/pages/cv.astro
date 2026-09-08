@@ -32,13 +32,21 @@ const recognition = (await getCollection('recognition')).sort(
       <a href="#experience">Experience</a><a href="#skills">Skills</a><a
         href="#education">Education</a
       ><a href="#recognition">Awards &amp; service</a><a href="#research"
-        >Research</a>
+        >Research</a
+      >
     </nav>
     <section id="experience">
       <h2>Experience</h2><ol class="entries">
         {
           experience.map(({ data }) => (
             <li>
+              <h3>
+                {data.orgUrl ? <a href={data.orgUrl}>{data.org}</a> : data.org}
+              </h3>
+              <p class="role">{data.role}</p>
+              <p class="meta">
+                {data.displayPeriod} · {data.location}
+              </p>
               <p>{data.summary}</p>
               {data.details && (
                 <ul>
@@ -82,6 +90,10 @@ const recognition = (await getCollection('recognition')).sort(
         {
           education.map(({ data }) => (
             <li>
+              <h3>
+                {data.degree} · {data.field}
+              </h3>
+              <p class="meta">{data.period}</p>
               <p>{data.institution}</p>
               {data.note && <p>{data.note}</p>}
               {data.thesisLink && <a href={data.thesisLink}>Thesis</a>}

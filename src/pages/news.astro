@@ -6,12 +6,15 @@ const years = [...new Set(news.map((item) => item.date.slice(0, 4)))];
 ---
 
 <BaseLayout
-  title="Updates — Mira Purkrábek"
+  title="Archive — Mira Purkrábek"
   description="Research, coaching, conferences and other updates from Miroslav Purkrábek, from 2022 onwards."
 >
   <Section size="text">
-    <h1>Updates</h1>
-    <p class="intro">Research, floorball, and a few things along the way.</p>
+    <h1>Earlier notes</h1>
+    <p class="intro">
+      The complete log from my earlier website, 2022–2026. New work now goes
+      directly into the project pages and CV.
+    </p>
     <nav aria-label="Update years">
       {years.map((year) => <a href={`#year-${year}`}>{year}</a>)}
     </nav>

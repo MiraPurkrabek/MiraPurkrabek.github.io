@@ -1,10 +1,4 @@
 ---
-// /coaching — see docs/redesign_15-08-2026_PRs/PR-09-about-and-coaching.md §B.
-// Restyle of the old coaching.md: same substance (intro, stepping-down note, the three
-// coaching-era sections, "More than Coaching", the podcast), new chrome — Prose typography, a
-// real Callout for the stepping-down note, mono meta lines for periods (matching the home
-// Timeline's `.timeline__period`, see PR-05), and a keyboard-focusable podcast link instead of
-// the old onclick div.
 import { getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -18,7 +12,7 @@ const coachingRole = await getEntry('experience', 'skv-coaching');
 // Title/description per PR-11 §1 "Page titles and descriptions" table — use verbatim.
 const title = 'Coaching — Mira Purkrábek';
 const description =
-  "Eight years coaching floorball, including head coach of a Czech Superliga men's team — what leading a team taught me.";
+  "Eight years coaching floorball, including head coach of a Czech Superliga men's team — from an assistant role in Prague and Erasmus in Slovenia to juniors and the senior team.";
 ---
 
 <BaseLayout title={title} description={description}>
@@ -37,13 +31,14 @@ const description =
 
     <Prose>
       <p>
-        I coached floorball for Sokol Královské Vinohrady (SKV) in the Czech
-        Superliga — the country's top league — from 2017 through 2025, working
-        from assistant up to head coach. I became head coach in 2024 at the age
-        of 27, one of the youngest head coaches in Superliga history. Over that
-        time I coached more than 200 matches, over 100 of them in the Superliga,
-        and we put together the best results in SKV's history by building a team
-        around clear roles, dedication, and team spirit.
+        I joined Sokol Královské Vinohrady (SKV) in 2017 as an assistant to the
+        men's team. Along the way, I coached in Slovenia during Erasmus, led the
+        SKV juniors, and returned to the men's team in the Czech Superliga. I
+        became the men's head coach in 2024 at the age of 27, one of the
+        youngest head coaches in Superliga history. Over that time I coached
+        more than 200 matches, over 100 of them in the Superliga, and we put
+        together the best results in SKV's history by building a team around
+        clear roles, dedication, and team spirit.
       </p>
 
       <Callout>
@@ -53,6 +48,71 @@ const description =
           Královské Vinohrady as a consultant to the team.
         </p>
       </Callout>
+
+      <h2 id="beginnings-in-skv">Beginnings in SKV</h2>
+      <p class="coaching-meta">2017–2020</p>
+      <p>
+        I joined SKV in 2017 as an assistant coach for the men's team. Before
+        that, I coached kids in a local club — this was my first experience at
+        the highest level. I was 20, new to the club, and honestly not sure if I
+        was ready. Over time, I gained more responsibility, experience, and
+        confidence.
+      </p>
+      <p>
+        In my first season with Michal Pazdera, we played in 1. liga (the
+        second-highest league). We ended up winning it and earned promotion to
+        the Superliga. In 2019, we managed to stay in the league by winning the
+        first round of playdowns.
+      </p>
+      <p>
+        After that second season, Michal Kotlas and David Bouša took over the
+        team, and I stayed on as their assistant. That year, we finished 8th
+        after the regular season and made it to the playoffs for the first time
+        in SKV's history. Unfortunately, we didn't get to play them, as the
+        season was cancelled due to Covid.
+      </p>
+      <p>
+        <a
+          href="https://www.idnes.cz/sport/ostatni/superliga-florbalistu-1-kolo.A180906_230419_florbal_par?setver=full"
+          target="_blank"
+          rel="noopener"
+        >
+          iDnes.cz: Vinohrady poráží Znojmo v Livesport Superlize
+        </a>
+      </p>
+
+      <h2 id="erasmus-in-slovenia">A few months in Slovenia</h2>
+      <p class="coaching-meta">2018–2019 · Erasmus in Ljubljana</p>
+      <p>
+        During my Erasmus stay, I coached FBK Olimpija for a few months and
+        refereed some league matches. After returning to Prague, my next chapter
+        at SKV was taking over as head coach of the juniors.
+      </p>
+
+      <h2 id="the-juniors">The Juniors</h2>
+      <p class="coaching-meta">2019–2022</p>
+      <p>
+        In between my roles with the men's team, I coached the U19 team. I
+        focused a lot on preparing players for senior floorball — not just
+        technically, but mentally too. Much of that time was affected by Covid
+        shutdowns, so we ran individual physical training and I mentored players
+        online to help them stay connected to the sport. After Covid, in the
+        2021/22 season, we qualified for the top junior league and made the
+        playoffs in our very first year there.
+      </p>
+      <p>
+        Some of the guys I coached are now part of our Superliga team. That's
+        the most satisfying part of the job.
+      </p>
+      <p>
+        <a
+          href="https://www.skvflorbal.cz/c/trener-junioru-purkrabek-s-nelehkou-vyzvou-jsme-se-poprali-2033"
+          target="_blank"
+          rel="noopener"
+        >
+          SKVFlorbal.cz: Rozhovor s trenérem juniorů
+        </a>
+      </p>
 
       <h2 id="leading-the-mens-team">Leading the Men's Team</h2>
       <p class="coaching-meta">2022–2025</p>
@@ -93,68 +153,10 @@ const description =
         </a>
       </p>
 
-      <h2 id="the-juniors">The Juniors</h2>
-      <p class="coaching-meta">2019–2022</p>
-      <p>
-        In between my roles with the men's team, I coached the U19 team. I
-        focused a lot on preparing players for senior floorball — not just
-        technically, but mentally too. Much of that time was affected by Covid
-        shutdowns, so we ran individual physical training and I mentored players
-        online to help them stay connected to the sport. After Covid, in the
-        2021/22 season, we qualified for the top junior league and made the
-        playoffs in our very first year there.
-      </p>
-      <p>
-        Some of the guys I coached are now part of our Superliga team. That's
-        the most satisfying part of the job.
-      </p>
-      <p>
-        <a
-          href="https://www.skvflorbal.cz/c/trener-junioru-purkrabek-s-nelehkou-vyzvou-jsme-se-poprali-2033"
-          target="_blank"
-          rel="noopener"
-        >
-          SKVFlorbal.cz: Rozhovor s trenérem juniorů
-        </a>
-      </p>
-
-      <h2 id="beginnings-in-skv">Beginnings in SKV</h2>
-      <p class="coaching-meta">2017–2020</p>
-      <p>
-        I joined SKV in 2017 as an assistant coach for the men's team. Before
-        that, I coached kids in a local club — this was my first experience at
-        the highest level. I was 20, new to the club, and honestly not sure if I
-        was ready. Over time, I gained more responsibility, experience, and
-        confidence.
-      </p>
-      <p>
-        In my first season with Michal Pazdera, we played in 1. liga (the
-        second-highest league). We ended up winning it and earned promotion to
-        the Superliga. In 2019, we managed to stay in the league by winning the
-        first round of playdowns.
-      </p>
-      <p>
-        After that second season, Michal Kotlas and David Bouša took over the
-        team, and I stayed on as their assistant. That year, we finished 8th
-        after the regular season and made it to the playoffs for the first time
-        in SKV's history. Unfortunately, we didn't get to play them, as the
-        season was cancelled due to Covid.
-      </p>
-      <p>
-        <a
-          href="https://www.idnes.cz/sport/ostatni/superliga-florbalistu-1-kolo.A180906_230419_florbal_par?setver=full"
-          target="_blank"
-          rel="noopener"
-        >
-          iDnes.cz: Vinohrady poráží Znojmo v Livesport Superlize
-        </a>
-      </p>
-
       <h2 id="more-than-coaching">More than Coaching</h2>
       <p>
-        During my Erasmus stay in Ljubljana, I coached FBK Olimpija for a few
-        months and refereed some league matches. I also hold a Czech coaching B
-        licence and used to referee women's and youth games in Prague.
+        I hold a Czech coaching B licence and used to referee women's and youth
+        games in Prague, as well as league matches during my time in Slovenia.
       </p>
       <p>
         Outside the field, I'm a PhD candidate in computer vision and AI at CTU.

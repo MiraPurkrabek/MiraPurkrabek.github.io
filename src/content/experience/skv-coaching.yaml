@@ -1,6 +1,6 @@
 org: Sokol Královské Vinohrady
 orgUrl: https://www.skvflorbal.cz/
-role: Assistant → Head Coach → Consultant
+role: Men's assistant → Juniors head coach → Men's head coach → Consultant
 location: Prague, Czech Republic
 start: '2017'
 end: '2025'
@@ -9,5 +9,10 @@ kind: leadership
 summary: >-
   Floorball coaching track — assistant coach through head coach of the men's Superliga team;
   stayed on as a consultant after stepping down in 2025.
+details:
+  - Assistant with the SKV men's team from 2017.
+  - Coached FBK Olimpija in Ljubljana during Erasmus, 2018–2019.
+  - Juniors head coach, 2019–2022; qualification for the top junior league and playoffs.
+  - Returned to the men's team in 2022; officially head coach in 2024.
 inStrip: false
 order: 5
