@@ -48,6 +48,8 @@ try {
           await page.screenshot({ path: 'docs/review/' + name + '-' + theme + '-' + width + '.png', fullPage: true });
         }
         if (path === '/') {
+          assert.equal(await page.locator('.theme-toggle:visible svg:visible').count(), 1, 'One theme icon at a time');
+          if (width < 900) assert.equal(await page.locator('#nav-toggle svg:visible').count(), 1, 'One menu icon at a time');
           if (await page.locator('.name-note').count()) {
             await page.locator('.name-note summary').click();
             assert.equal(await page.locator('.name-note').getAttribute('open'), '');
@@ -57,11 +59,13 @@ try {
           if (width < 900) {
             await page.locator('#nav-toggle').click();
             assert.equal(await page.locator('#nav-toggle').getAttribute('aria-expanded'), 'true');
+            assert.equal(await page.locator('#nav-toggle svg:visible').count(), 1);
             await page.keyboard.press('Escape');
             assert.equal(await page.locator('#nav-toggle').getAttribute('aria-expanded'), 'false');
           }
           await page.locator('.theme-toggle:visible').click();
           assert.equal(await page.evaluate(() => document.documentElement.dataset.theme), theme === 'light' ? 'dark' : 'light');
+          assert.equal(await page.locator('.theme-toggle:visible svg:visible').count(), 1);
           await page.reload();
           assert.equal(await page.evaluate(() => document.documentElement.dataset.theme), theme === 'light' ? 'dark' : 'light');
           await page.locator('.theme-toggle:visible').click();

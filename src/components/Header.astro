@@ -218,15 +218,15 @@ function isCurrent(href: string) {
     background: var(--surface-hover);
   }
 
-  .site-header__menu-icon--close {
+  .site-header__menu-btn :global(.site-header__menu-icon--close) {
     display: none;
   }
 
-  .site-header__menu-btn[aria-expanded='true'] .site-header__menu-icon--open {
+  .site-header__menu-btn[aria-expanded='true'] :global(.site-header__menu-icon--open) {
     display: none;
   }
 
-  .site-header__menu-btn[aria-expanded='true'] .site-header__menu-icon--close {
+  .site-header__menu-btn[aria-expanded='true'] :global(.site-header__menu-icon--close) {
     display: block;
   }
 

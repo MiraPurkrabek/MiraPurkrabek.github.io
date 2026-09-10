@@ -34,15 +34,15 @@ import Icon from './Icon.astro';
     background: var(--surface-hover);
   }
 
-  .theme-toggle__icon {
+  .theme-toggle :global(.theme-toggle__icon) {
     display: none;
   }
 
-  :global(:root:not([data-theme='dark'])) .theme-toggle__icon--sun {
+  :global(:root:not([data-theme='dark'])) .theme-toggle :global(.theme-toggle__icon--sun) {
     display: block;
   }
 
-  :global(:root[data-theme='dark']) .theme-toggle__icon--moon {
+  :global(:root[data-theme='dark']) .theme-toggle :global(.theme-toggle__icon--moon) {
     display: block;
   }
 </style>
