@@ -13,6 +13,13 @@ import PublicationItem from '../components/PublicationItem.astro';
 import { site } from '../data/site';
 
 const publications = await getCollection('publications');
+const recognition = await getCollection('recognition');
+const awards = recognition
+  .filter((entry) => ['award', 'competition'].includes(entry.data.kind))
+  .sort((a, b) => b.data.year - a.data.year || a.data.order - b.data.order);
+const service = recognition
+  .filter((entry) => entry.data.kind === 'service')
+  .sort((a, b) => a.data.order - b.data.order);
 
 const roleOrder = { 'first-author': 0, 'co-author': 1, supervised: 2 } as const;
 
@@ -41,16 +48,16 @@ const groups = [
 ];
 
 // Title/description per PR-11 §1 "Page titles and descriptions" table — use verbatim.
-const title = 'Publications — Mira Purkrábek';
+const title = 'Publications & recognition — Mira Purkrábek';
 const description =
-  'Peer-reviewed computer vision publications, including first-author papers at CVPR 2025 and ICCV 2025, with code, models and BibTeX.';
+  'Computer vision publications, awards and competition results, including first-author CVPR and ICCV papers and Outstanding Reviewer at CVPR 2025.';
 ---
 
 <BaseLayout title={title} description={description}>
   <Section>
-    <h1 class="pub-hero__title">Publications</h1>
+    <h1 class="pub-hero__title">Publications &amp; recognition</h1>
     <p class="pub-hero__lead">
-      Peer-reviewed work on robust human perception — pose estimation,
+      Papers on robust human perception — pose estimation,
       segmentation and 3D understanding. Also on <a
         href={site.social.googleScholar}
         target="_blank"
@@ -59,9 +66,14 @@ const description =
         >ORCID ↗</a
       >.
     </p>
+    <nav class="pub-jump-links" aria-label="On this page">
+      <a href="#papers">Papers &amp; theses</a>
+      <a href="#recognition">Awards &amp; competitions</a>
+      <a href="#service">Reviewing &amp; service</a>
+    </nav>
   </Section>
 
-  <Section>
+  <Section id="papers">
     {
       groups.map((group) => (
         <div class="pub-group">
@@ -76,6 +88,37 @@ const description =
         </div>
       ))
     }
+  </Section>
+
+  <Section id="recognition" tone="soft">
+    <h2 class="pub-section-heading">Awards &amp; competitions</h2>
+    <ul class="recognition-list">
+      {awards.map(({ id, data }) => (
+        <li id={id} class="recognition-row">
+          <span class="recognition-year">{data.year}</span>
+          <div>
+            <h3>{data.link ? <a href={data.link}>{data.title}</a> : data.title}</h3>
+            <p>{data.org}</p>
+            {data.description && <p class="recognition-detail">{data.description}</p>}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section id="service">
+    <h2 class="pub-section-heading">Reviewing &amp; service</h2>
+    <ul class="recognition-list">
+      {service.map(({ id, data }) => (
+        <li id={id} class="recognition-row">
+          <span class="recognition-year">{id === 'peer-review-service' ? 'Ongoing' : data.year}</span>
+          <div>
+            <h3>{data.link ? <a href={data.link}>{data.title}</a> : data.title}</h3>
+            <p>{data.org}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
   </Section>
 
   <Section size="text">
@@ -122,4 +165,16 @@ const description =
     text-align: center;
     color: var(--text-muted);
   }
+
+  .pub-jump-links { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); margin-top: var(--space-5); font-size: var(--text-sm); }
+  .pub-section-heading { font-size: var(--text-2xl); margin-bottom: var(--space-5); }
+  .recognition-list { list-style: none; padding: 0; border-top: 1px solid var(--border); }
+  .recognition-row { display: grid; grid-template-columns: 5rem minmax(0, 1fr); gap: var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--border); }
+  .recognition-year { font-size: var(--text-xs); color: var(--text-subtle); padding-top: var(--space-1); }
+  .recognition-row h3 { font-size: var(--text-base); line-height: var(--leading-body); }
+  .recognition-row h3 a { color: var(--text); }
+  .recognition-row h3 a:hover { color: var(--accent); }
+  .recognition-row p { color: var(--text-muted); font-size: var(--text-sm); }
+  .recognition-detail { margin-top: var(--space-1); }
+  @media (max-width: 480px) { .recognition-row { grid-template-columns: 3.75rem minmax(0, 1fr); gap: var(--space-3); } }
 </style>

@@ -1,4 +1,4 @@
-org: CTU Prague · Visual Recognition Group
+org: CTU in Prague, Visual Recognition Group
 orgUrl: https://vrg.fel.cvut.cz/
 role: 'Researcher; PhD candidate since 2023 (advisor: prof. Jiří Matas)'
 location: Prague, Czech Republic
@@ -13,4 +13,11 @@ details:
   - State doctoral exam passed with distinction, February 2025.
 inStrip: true
 order: 3
-logo: /assets/logos/ctu.svg
+logo: /assets/logos/vrg.png
+homepage:
+  name: CTU in Prague
+  department: Visual Recognition Group
+  position: Researcher & PhD candidate
+  period: 2019–present · PhD since 2023
+  logoAlt: Visual Recognition Group, CTU in Prague
+  order: 1

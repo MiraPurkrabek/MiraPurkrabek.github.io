@@ -17,21 +17,9 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
-      - name: Inspect official logo assets
+      - name: Prepare official affiliation logos
         if: github.ref == 'refs/heads/redesign'
-        run: |
-          python3 - <<'PY'
-          import urllib.request, re
-          for url in ['https://vrg.fel.cvut.cz/', 'https://newsroom.porsche.com/en.html']:
-              try:
-                  html = urllib.request.urlopen(url, timeout=25).read().decode()
-                  print('SOURCE', url)
-                  for tag in re.findall(r'<(?:img|image|svg|use|link)[^>]+>', html):
-                      if re.search(r'logo|crest|vrg|wappen|porsche', tag, re.I):
-                          print(tag[:2000])
-              except Exception as e:
-                  print(type(e).__name__, str(e))
-          PY
+        run: node scripts/fetch-affiliation-logos.mjs
       - name: Install dependencies
         run: npm ci
       - name: Check types
@@ -53,9 +41,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin redesign
           if [ "$(git rev-parse origin/redesign)" = "$GITHUB_SHA" ]; then
-            git add docs/review
+            git add docs/review public/assets/logos/vrg.png public/assets/logos/porsche-crest.png
             if ! git diff --cached --quiet; then
-              git commit -m "Save redesign screenshots for review [skip ci]"
+              git commit -m "Save official logos and redesign screenshots [skip ci]"
               git push origin HEAD:redesign
             fi
           fi

@@ -11,3 +11,9 @@ inStrip: true
 order: 1
 logo: /assets/logos/qualcomm.svg
 orgUrl: https://www.qualcomm.com/
+homepage:
+  name: Qualcomm
+  department: XR Labs · Amsterdam
+  position: Research Intern
+  period: 2026
+  order: 4

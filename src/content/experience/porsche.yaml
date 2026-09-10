@@ -11,5 +11,11 @@ details:
   - Python automation for daily testing.
 inStrip: true
 order: 4
-logo: /assets/logos/porsche.png
+logo: /assets/logos/porsche-crest.png
 orgUrl: https://www.porscheengineering.com/
+homepage:
+  name: Porsche Engineering
+  position: Software Developer
+  period: 2020–2022
+  logoAlt: Porsche AG crest
+  order: 2

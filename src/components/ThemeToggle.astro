@@ -38,11 +38,11 @@ import Icon from './Icon.astro';
     display: none;
   }
 
-  :root:not([data-theme='dark']) .theme-toggle__icon--sun {
+  :global(:root:not([data-theme='dark'])) .theme-toggle__icon--sun {
     display: block;
   }
 
-  :root[data-theme='dark'] .theme-toggle__icon--moon {
+  :global(:root[data-theme='dark']) .theme-toggle__icon--moon {
     display: block;
   }
 </style>
