@@ -1,0 +1,185 @@
+{
+  "source": "efb3cbb28944c0be5958990db4bf22b480db3828",
+  "checks": [
+    {
+      "path": "/",
+      "width": 320,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 320,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 320,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 320,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 320,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 320,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 390,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 390,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 390,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 390,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 390,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 390,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 768,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 768,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 768,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 768,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 768,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 768,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 1024,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 1024,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 1024,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 1024,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 1024,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 1024,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 1440,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 1440,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 1440,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 1440,
+      "theme": "dark",
+      "result": "pass"
+    }
+  ]
+}
