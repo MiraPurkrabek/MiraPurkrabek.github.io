@@ -4,7 +4,7 @@
 //
 // Grouped by year (newest first), theses in their own group at the end so they never dilute the
 // peer-reviewed list. Within a year, first-author work leads, then co-author, then supervised
-// student work — this reproduces the order the fact sheet already lists them in
+// work — this reproduces the order the fact sheet already lists them in
 // (PR-00-OVERVIEW.md §8 "Publications").
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -115,6 +115,7 @@ const description =
           <div>
             <h3>{data.link ? <a href={data.link}>{data.title}</a> : data.title}</h3>
             <p>{data.org}</p>
+            {data.description && <p class="recognition-detail">{data.description}</p>}
           </div>
         </li>
       ))}

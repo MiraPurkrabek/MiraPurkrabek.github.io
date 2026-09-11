@@ -5,7 +5,7 @@
 // flattened to a single static frame by the image pipeline, so the video files here were
 // pre-rendered once (ffmpeg, webm/vp9 + mp4/h264, muted/looping) and committed under public/.
 export interface VideoPreview {
-  webm: string;
+  webm?: string;
   mp4: string;
   poster: string;
   /** Intrinsic encoded dimensions — kept alongside the files so every <video> ships explicit
@@ -17,6 +17,12 @@ export interface VideoPreview {
 }
 
 export const videoPreviews: Record<string, VideoPreview> = {
+  s23dr: {
+    mp4: '/assets/videos/project-previews/s23dr.mp4',
+    poster: '/assets/img/project-previews/s23dr.webp',
+    width: 960,
+    height: 674,
+  },
   'bbox-mask-pose': {
     webm: '/assets/videos/project-previews/bbox-mask-pose.webm',
     mp4: '/assets/videos/project-previews/bbox-mask-pose.mp4',

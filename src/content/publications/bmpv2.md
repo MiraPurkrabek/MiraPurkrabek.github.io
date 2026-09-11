@@ -4,8 +4,8 @@ authors:
   - Miroslav Purkrábek
   - Constantin Kolomiiets
   - Jiří Matas
-venue: arXiv 2026
-venueLong: arXiv preprint
+venue: In review · 2026
+venueLong: Manuscript under review
 year: 2026
 type: preprint
 role: first-author

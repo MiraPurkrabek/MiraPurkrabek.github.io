@@ -2,13 +2,14 @@
 // Single row on /publications — see docs/redesign_15-08-2026_PRs/PR-08-publications-page.md.
 // Author list keeps Miroslav's name in the exact printed form (never "Mira" — this page stays
 // in the official register). Abstract/BibTeX are native <details>/<summary> disclosures so they
-// work with JavaScript disabled; only the BibTeX copy button needs the script below.
+// work with JavaScript disabled; scripts enhance animation and BibTeX copying.
 import { Image } from 'astro:assets';
 import { type CollectionEntry } from 'astro:content';
 import Button from './Button.astro';
 import Tag from './Tag.astro';
 import Prose from './Prose.astro';
 import Icon from './Icon.astro';
+import { videoPreviews } from '../data/video-previews';
 
 export interface Props {
   publication: CollectionEntry<'publications'>;
@@ -16,6 +17,7 @@ export interface Props {
 
 const { publication } = Astro.props;
 const { data } = publication;
+const preview = videoPreviews[publication.id];
 
 const linkOrder = [
   ['project', 'Project'],
@@ -29,22 +31,35 @@ const linkOrder = [
 
 const links = linkOrder.flatMap(([key, label]) => {
   const href = data.links?.[key];
-  return href ? [{ href, label: data.type === 'challenge' && key === 'project' ? 'Workshop' : data.type === 'challenge' && key === 'demo' ? 'Challenge' : label }] : [];
+  return href ? [{ href, label: data.type === 'challenge' && key === 'arxiv' ? 'arXiv report' : data.type === 'challenge' && key === 'project' ? 'Workshop' : data.type === 'challenge' && key === 'demo' ? 'Challenge' : label }] : [];
 });
 const primaryHref = links[0]?.href;
 ---
 
 <article class="pub-item" id={publication.id}>
   {data.thumbnail && <div class="pub-item__media">
-    <Image
+    {preview ? (
+      <Fragment>
+        <img src={preview.poster} alt={data.thumbnail.alt}
+          width={preview.width} height={preview.height} loading="lazy" />
+        <video muted loop playsinline preload="none" hidden
+          width={preview.width} height={preview.height}
+          aria-hidden="true" data-publication-video>
+          {preview.webm && <source data-src={preview.webm} type="video/webm" />}
+          <source data-src={preview.mp4} type="video/mp4" />
+        </video>
+      </Fragment>
+    ) : <Image
       src={data.thumbnail.src}
       alt={data.thumbnail.alt}
-      width={160}
+      width={640}
+      widths={[160, 320, 480, 640]}
+      sizes="(max-width: 600px) calc(100vw - 48px), 160px"
       format="jpg"
       loading="lazy"
       decoding="async"
       class="pub-item__image"
-    />
+    />}
   </div>}
 
   <div class="pub-item__body">
@@ -80,7 +95,7 @@ const primaryHref = links[0]?.href;
     <p class="pub-item__meta">
       <span>{data.venue}</span>
       {data.type === 'challenge' && <Tag>Challenge entry</Tag>}
-      {data.role === 'supervised' && <Tag>Supervised student work</Tag>}
+      {data.role === 'supervised' && <Tag>Supervised work</Tag>}
     </p>
 
     {
@@ -151,6 +166,7 @@ const primaryHref = links[0]?.href;
   }
 
   .pub-item__media {
+    position: relative;
     flex: 0 0 160px;
     width: 160px;
     height: 110px;
@@ -167,10 +183,19 @@ const primaryHref = links[0]?.href;
       border-color var(--dur) var(--ease);
   }
 
-  .pub-item__media :global(img) {
+  .pub-item__media :global(img),
+  .pub-item__media video {
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+
+  .pub-item__media video:not([hidden]) {
+    position: absolute;
+    inset: var(--space-2);
+    width: calc(100% - 2 * var(--space-2));
+    height: calc(100% - 2 * var(--space-2));
+    background: var(--surface-soft);
   }
 
   .pub-item__body {
@@ -320,17 +345,52 @@ const primaryHref = links[0]?.href;
     line-height: var(--leading-snug);
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
+    .pub-item { flex-direction: column; }
     .pub-item__media {
-      width: 0;
-      height: 0;
-      padding: 0;
-      border-width: 0;
+      flex: none;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
     }
+    .pub-item__body { flex: none; width: 100%; }
   }
 </style>
 
 <script>
+  // Keep the image as a fallback; load animation only near the viewport.
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const previews = document.querySelectorAll<HTMLVideoElement>('[data-publication-video]');
+  const visible = new Set<HTMLVideoElement>();
+  const updatePreview = (video: HTMLVideoElement) => {
+    if (motion.matches || !visible.has(video)) {
+      video.pause();
+      if (motion.matches) video.hidden = true;
+      return;
+    }
+    if (!video.dataset.loaded) {
+      video.querySelectorAll<HTMLSourceElement>('source[data-src]').forEach(source => {
+        source.src = source.dataset.src!;
+      });
+      video.dataset.loaded = 'true';
+      video.load();
+    }
+    void video.play().then(() => {
+      video.hidden = motion.matches;
+    }).catch(() => { video.hidden = true; });
+  };
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const video = entry.target.querySelector<HTMLVideoElement>('video');
+      if (!video) return;
+      if (entry.isIntersecting) visible.add(video);
+      else visible.delete(video);
+      updatePreview(video);
+    });
+  }, { rootMargin: '160px' });
+  previews.forEach(video => observer.observe(video.parentElement!));
+  motion.addEventListener('change', () => previews.forEach(updatePreview));
+
   document.addEventListener('click', (event) => {
     const target = event.target;
     if (!(target instanceof Element)) return;

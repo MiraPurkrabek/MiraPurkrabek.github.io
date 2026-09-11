@@ -10,7 +10,8 @@ venueLong: IEEE International Conference on Development and Learning
 year: 2025
 type: conference
 role: co-author
-awards: []
+awards:
+  - Oral presentation
 selected: false
 summary: >-
   Anonymizes infant faces in video by generating a compatible new identity and face-swapping it in
