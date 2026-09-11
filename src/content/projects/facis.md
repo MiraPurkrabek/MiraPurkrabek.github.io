@@ -40,4 +40,6 @@ processing of images and video, focused on detecting and analysing human figures
 criminal investigations. The software is now in active use by the Police, and the project was
 awarded Excellent Research Results by the Ministry of the Interior in November 2025.
 
-The project also produced an automated sensitive-content detection system, now deployed and used by the Czech Police. Its research outputs include the CVPR 2025 and ICCV 2025 papers.
+The project also produced an automated sensitive-content detection system, now deployed and used by the Czech Police. Its research outputs include [ProbPose (CVPR 2025)](/publications/#probpose) and
+[BBox-Mask-Pose (ICCV 2025)](/publications/#bbox-mask-pose). These papers address
+parts of the broader challenge of analysing people reliably in real-world imagery.

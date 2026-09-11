@@ -32,3 +32,6 @@ labelling further training data. The applied interest in sports video continues 
 clip-retrieval system.
 
 The related recording system serves more than 20 users around the clock and had downloaded more than 300 matches when the two-page CV was written. A server application with a desktop and mobile web interface supports real-time situation analysis during matches.
+
+Research outputs: [BSc thesis](/publications/#bsc-thesis) and
+[MSc thesis](/publications/#msc-thesis).

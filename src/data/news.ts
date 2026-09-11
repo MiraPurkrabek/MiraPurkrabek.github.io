@@ -16,7 +16,7 @@ export const news: NewsItem[] = [
     label: 'May 2026',
     html: 'We (together with <a href="https://jskvrna.github.io/">Jan Skvrna</a>) won the <a href="https://huggingface.co/spaces/usm3d/S23DR2026">S23DR challenge</a> (and $5k prize) at CVPR 2026. I cannot attend due to my last minute preparation for the Qualcomm internship, but come see Jan presenting the work on <a href="https://usm3d.github.io">the Urban Scene Modeling Workshop</a>!',
     shortHtml:
-      'Jan Skvrna and I won the <a href="/work/#s23dr">S23DR challenge at CVPR</a>. Jan presented our work while I was getting ready for Amsterdam.',
+      'Jan Skvrna and I won the <a href="/publications/#s23dr">S23DR challenge at CVPR</a>. Jan presented our work while I was getting ready for Amsterdam.',
   },
   {
     date: '2026-04',

@@ -12,7 +12,7 @@ The user's September brief supersedes earlier verbatim-copy and layout instructi
 | Original eight applied projects and tools | Work, including complete descriptions, links and results |
 | Original teaching instructions | About: course topics, forum, consultations and thesis enquiries |
 | Original coaching history, results, people, articles, podcast and licence | Coaching, with home and About links |
-| Original personal interests and Princess Bride reference | Home and About; discarded template filler such as YOLO |
+| Personal interests: mountains, psychology and epic fantasy | Home and About; discarded template filler such as YOLO |
 | Redesign's research projects, production work, affiliations and all recognition records | Work, Publications, full CV; fewer repeated proof sections on home |
 | Two-page CV: Ljubljana internship, researcher since 2019, annotation coordination | Full CV and experience data |
 | Two-page CV: exact Porsche dates and Prague location | Full CV and experience data |

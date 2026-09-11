@@ -8,42 +8,36 @@ const projects = await getCollection('projects');
 
 const groups = [
   {
-    id: 'research',
-    heading: 'Research',
-    kind: 'research' as const,
-    tone: 'default' as const,
-  },
-  {
-    id: 'applied-systems',
-    heading: 'Applied systems',
-    kind: 'applied' as const,
+    id: 'projects',
+    heading: 'Research & applied projects',
+    kinds: ['research', 'applied'],
     tone: 'default' as const,
   },
   {
     id: 'tools',
     heading: 'Tools & open source',
-    kind: 'tool' as const,
+    kinds: ['tool'],
     tone: 'default' as const,
   },
 ].map((group) => ({
   ...group,
   entries: projects
-    .filter((project) => project.data.kind === group.kind)
+    .filter((project) => group.kinds.includes(project.data.kind))
     .sort((a, b) => a.data.order - b.data.order),
 }));
 
 // Title/description per PR-11 §1 "Page titles and descriptions" table — use verbatim.
 const title = 'Work — Mira Purkrábek';
 const description =
-  'Research on robust human perception and the applied systems built from it: forensic tooling, low-latency video systems, open-source annotation tools.';
+  'Long-term computer vision projects: spatial reasoning at Qualcomm, forensic tools for the Czech Police, infant development research and sports analysis.';
 ---
 
 <BaseLayout title={title} description={description}>
   <Section>
     <h1 class="work-hero__title">Work</h1>
     <p class="work-hero__lead">
-      From research ideas to systems people use: the problems, my part in solving
-      them, and what came out of the work.
+      The longer-running projects behind my work: the problems, the people I work
+      with, and the systems and research that come out of them.
     </p>
   </Section>
 

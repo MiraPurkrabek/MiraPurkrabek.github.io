@@ -6,7 +6,7 @@ start: '2026-06'
 end: '2026-12'
 displayPeriod: Jun – Dec 2026
 kind: internship
-summary: 3D scene reconstruction and understanding
+summary: Spatial reasoning about people and their surroundings for personal AI assistants.
 inStrip: true
 order: 1
 logo: /assets/logos/qualcomm.svg
@@ -16,4 +16,4 @@ homepage:
   department: XR Labs · Amsterdam
   position: Research Intern
   period: '2026'
-  order: 4
+  order: 2

@@ -11,6 +11,8 @@ const TAGS = [
   'Segmentation',
   'Detection',
   '3D Reconstruction',
+  'Spatial Reasoning',
+  'Personal AI',
   'Robustness',
   'Probabilistic Modeling',
   'Synthetic Data',
@@ -78,6 +80,7 @@ const projects = defineCollection({
         .optional(),
       image: z.object({ src: image(), alt: z.string() }).optional(),
       status: z.enum(['active', 'completed', 'internal']).optional(),
+      linkNote: z.string().optional(),
     }),
 });
 
@@ -90,7 +93,7 @@ const publications = defineCollection({
       venue: z.string(),
       venueLong: z.string(),
       year: z.number(),
-      type: z.enum(['conference', 'workshop', 'preprint', 'thesis']),
+      type: z.enum(['conference', 'workshop', 'preprint', 'thesis', 'challenge']),
       role: z.enum(['first-author', 'co-author', 'supervised']),
       awards: z.array(z.string()),
       selected: z.boolean(),
@@ -108,7 +111,7 @@ const publications = defineCollection({
           bibtex: z.string().optional(),
         })
         .optional(),
-      thumbnail: z.object({ src: image(), alt: z.string() }),
+      thumbnail: z.object({ src: image(), alt: z.string() }).optional(),
       bibtex: z.string().optional(),
     }),
 });

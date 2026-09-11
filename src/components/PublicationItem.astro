@@ -29,13 +29,13 @@ const linkOrder = [
 
 const links = linkOrder.flatMap(([key, label]) => {
   const href = data.links?.[key];
-  return href ? [{ href, label }] : [];
+  return href ? [{ href, label: data.type === 'challenge' && key === 'project' ? 'Workshop' : data.type === 'challenge' && key === 'demo' ? 'Challenge' : label }] : [];
 });
 const primaryHref = links[0]?.href;
 ---
 
 <article class="pub-item" id={publication.id}>
-  <div class="pub-item__media">
+  {data.thumbnail && <div class="pub-item__media">
     <Image
       src={data.thumbnail.src}
       alt={data.thumbnail.alt}
@@ -45,7 +45,7 @@ const primaryHref = links[0]?.href;
       decoding="async"
       class="pub-item__image"
     />
-  </div>
+  </div>}
 
   <div class="pub-item__body">
     <h3 class="pub-item__title">
@@ -62,6 +62,7 @@ const primaryHref = links[0]?.href;
     </h3>
 
     <p class="pub-item__authors">
+      {data.type === 'challenge' && 'Contributors: '}
       {
         data.authors.map((author, index) => (
           <>
@@ -78,6 +79,7 @@ const primaryHref = links[0]?.href;
 
     <p class="pub-item__meta">
       <span>{data.venue}</span>
+      {data.type === 'challenge' && <Tag>Challenge entry</Tag>}
       {data.role === 'supervised' && <Tag>Supervised student work</Tag>}
     </p>
 
@@ -105,7 +107,7 @@ const primaryHref = links[0]?.href;
       }
 
       <details class="pub-item__disclosure">
-        <summary>Abstract</summary>
+        <summary>{data.type === 'challenge' ? 'Details' : 'Abstract'}</summary>
         <div class="pub-item__disclosure-body">
           <Prose>
             <p>{data.abstract}</p>

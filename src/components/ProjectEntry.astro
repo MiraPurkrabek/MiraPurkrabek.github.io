@@ -148,7 +148,7 @@ const preview = videoPreviews[project.id];
         </div>
       ) : (
         <p class="project-entry__internal">
-          <em>Internal system — happy to talk about it.</em>
+          <em>{data.linkNote ?? 'Internal system — happy to talk about it.'}</em>
         </p>
       )
     }

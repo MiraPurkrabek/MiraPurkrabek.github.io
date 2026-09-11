@@ -27,4 +27,5 @@ supports analysing and interpreting infant movements and interactions — part o
 to model human behaviour in its earliest stages. The face-anonymization work published as BLANKET
 (ICDL 2025) grew out of the same video data.
 
-Results include the BLANKET paper presented at ICDL 2025 and private infant video data used to evaluate BBoxMaskPose.
+Outputs include [BLANKET (ICDL 2025)](/publications/#blanket), on anonymizing infant faces,
+and private infant video data used to evaluate BBoxMaskPose.
