@@ -14,7 +14,7 @@ summary: >-
 highlights:
   - 'Python backend + Microsoft Power Automate + OneDrive, 30-day history'
   - 'Logs every run and sends failure notifications for near real-time support'
-  - '400+ videos downloaded so far'
+  - 'Over 750 download requests · 1000+ videos downloaded'
 tags:
   - Video Systems
   - Deployment
@@ -25,4 +25,5 @@ An automated system for downloading video from Sokol Královské Vinohrady's spo
 The interface is available on the club's staff-only website and allows downloading footage from
 any camera within a 30-day history. The backend connects a Python service, Microsoft Power
 Automate and Microsoft OneDrive, logs every run, and sends failure notifications so problems get
-caught quickly. So far it has downloaded more than 400 videos.
+caught quickly. It has handled over 750 download requests, with 1000+ videos downloaded through
+the system.

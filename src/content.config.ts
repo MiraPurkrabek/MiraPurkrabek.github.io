@@ -99,6 +99,7 @@ const publications = defineCollection({
       selected: z.boolean(),
       summary: z.string(),
       abstract: z.string(),
+      notes: z.array(z.string()).optional(),
       links: z
         .object({
           project: z.url().optional(),

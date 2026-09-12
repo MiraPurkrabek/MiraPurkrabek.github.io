@@ -130,6 +130,15 @@ const primaryHref = links[0]?.href;
         </div>
       </details>
 
+      {data.notes && (
+        <details class="pub-item__disclosure">
+          <summary>Project notes</summary>
+          <div class="pub-item__disclosure-body">
+            <Prose>{data.notes.map((note) => <p>{note}</p>)}</Prose>
+          </div>
+        </details>
+      )}
+
       {
         data.bibtex && (
           <details class="pub-item__disclosure pub-item__bibtex">

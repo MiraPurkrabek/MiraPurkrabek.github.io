@@ -1,24 +1,29 @@
 ---
 title: 'Qualcomm — people in the picture'
-tagline: Spatial reasoning about people and their surroundings for personal AI assistants
+tagline: Connecting 3D reconstruction, spatial reasoning and human body understanding
 kind: research
-years: '2026'
+years: 'June–December 2026'
 role: Research Intern
 org: 'Qualcomm XR Labs · Amsterdam'
 featured: true
 featuredOrder: 1
 order: 0
 summary: >-
-  Research on spatial reasoning with people in the picture, exploring its role in
-  personal AI assistants.
+  An internal research project connecting 3D reconstruction, spatial reasoning and human body
+  understanding, in the context of personal AI, smart glasses and on-device AI.
 highlights: []
 tags:
+  - 3D Reconstruction
   - Spatial Reasoning
   - Personal AI
 status: active
-linkNote: More details soon.
+linkNote: Internal research; project details are not public.
 ---
 
-At Qualcomm XR Labs in Amsterdam, I'm exploring spatial reasoning with people
-in the picture — both literally and in how a system understands the world around us.
-The work is connected to personal AI assistants.
+At Qualcomm XR Labs in Amsterdam, I work on an internal project connecting 3D reconstruction,
+spatial reasoning and understanding human bodies. It's a natural meeting point between my
+research on people and the question of how an AI system makes sense of the space around them.
+
+The research connects to Qualcomm's focus on personal AI, smart glasses and on-device AI:
+giving personal AI assistants a better understanding of people and their surroundings.
+I can't share the project details yet, but that is the broader direction I'm exploring.

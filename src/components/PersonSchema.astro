@@ -5,6 +5,8 @@
 // <h1> (which reads "Mira Purkrábek"): this is the official register that has to match Google
 // Scholar, ORCID and LinkedIn for entity resolution.
 import { site } from '../data/site';
+import { getCollection } from 'astro:content';
+const education = (await getCollection('education')).sort((a, b) => a.data.order - b.data.order);
 
 export interface Props {
   description: string;
@@ -15,6 +17,7 @@ const { description } = Astro.props;
 const person = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${site.siteUrl}/#person`,
   name: site.legalName,
   alternateName: ['Mira Purkrábek', 'Miroslav Purkrabek'],
   url: site.siteUrl,
@@ -39,6 +42,15 @@ const person = {
     name: 'Czech Technical University in Prague',
     url: 'https://fel.cvut.cz/en',
   },
+  subjectOf: ['/about/', '/work/', '/publications/', '/coaching/'].map((path) => ({
+    '@type': 'WebPage', url: new URL(path, site.siteUrl).toString(),
+  })),
+  hasCredential: education.filter(({ data }) => !data.degree.includes('in progress')).map(({ data }) => ({
+    '@type': 'EducationalOccupationalCredential',
+    name: `${data.degree} · ${data.field}`,
+    credentialCategory: data.degree,
+    recognizedBy: { '@type': 'CollegeOrUniversity', name: data.institution },
+  })),
   knowsAbout: [
     'Human pose estimation',
     'Computer vision',
@@ -46,6 +58,22 @@ const person = {
     '3D reconstruction',
     'Video analysis',
     'Robust perception',
+    'Spatial reasoning',
+    'Human body shape estimation',
+    'Vision-language models',
+    'Personal AI',
+    'Python',
+    'C / C++',
+    'PyTorch',
+    'OpenCV',
+    'SLURM',
+    'Git',
+    'SMPL',
+    'CUDA',
+    'Blender',
+    'MMCV',
+    'Teaching and research supervision',
+    'Floorball coaching',
   ],
   sameAs: [
     site.social.github,

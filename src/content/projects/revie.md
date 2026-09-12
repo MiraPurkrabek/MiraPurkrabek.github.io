@@ -14,7 +14,7 @@ summary: >-
 highlights:
   - 'Under 0.5 s latency, at least 6 simultaneous 4K cameras'
   - 'Local mini-PC backend, accessible from any browser'
-  - 'Used in both training and matches'
+  - 'Used daily by 10+ SKV coaches in training since the 2025/26 play-down and playoffs'
 tags:
   - Video Systems
   - Deployment
@@ -27,5 +27,9 @@ status: active
 SKV Revie saves the last 30 seconds of footage on demand, so coaches can pull up a clip and give
 feedback immediately after a play. The backend runs on a local mini-PC with a browser-accessible
 frontend, sustaining under 0.5 seconds of latency across at least 6 simultaneous 4K camera feeds.
-The system is used during both practices and matches at Sokol Královské Vinohrady. It is currently
-closed-source for internal club use — happy to talk about it on request.
+I built it as a web app so coaches could use it across operating systems and devices without
+installing anything.
+
+Revie was used during the 2025/26 men's play-down and the women's playoffs. Since then,
+10+ SKV coaches have used it daily during training. It remains closed-source for internal
+club use. If you're a coach interested in using Revie, [feel free to contact me](mailto:mira.purkrabek@gmail.com).

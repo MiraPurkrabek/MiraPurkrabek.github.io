@@ -9,11 +9,9 @@ const year = new Date().getFullYear();
     ><div class="footer-inner">
       <p>© {year} {site.legalName}</p>
       <nav aria-label="Footer">
-        <a href="/cv/">Full CV</a><a href="/news/">Archive</a><a
+        <a href={site.cvPath}>CV (PDF)</a><a href="/news/">Archive</a><a
           href="/coaching/">Coaching</a
-        ><a href={site.social.orcid}>ORCID</a><a
-          href="https://www.facebook.com/miroslav.purkrabek">Facebook</a
-        ><a href={`mailto:${site.email.university}`}>CTU email</a>
+        ><a href={site.social.orcid}>ORCID</a><a href={`mailto:${site.email.university}`}>CTU email</a>
       </nav>
     </div></Container
   >

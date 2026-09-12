@@ -15,11 +15,15 @@ import { site } from '../data/site';
 const publications = await getCollection('publications');
 const recognition = await getCollection('recognition');
 const awards = recognition
-  .filter((entry) => ['award', 'competition'].includes(entry.data.kind))
+  .filter((entry) => ['award', 'competition', 'selection'].includes(entry.data.kind))
   .sort((a, b) => b.data.year - a.data.year || a.data.order - b.data.order);
 const service = recognition
   .filter((entry) => entry.data.kind === 'service')
   .sort((a, b) => a.data.order - b.data.order);
+
+const talks = recognition
+  .filter((entry) => entry.data.kind === 'talk')
+  .sort((a, b) => b.data.year - a.data.year || (b.data.month ?? 0) - (a.data.month ?? 0));
 
 const roleOrder = { 'first-author': 0, 'co-author': 1, supervised: 2 } as const;
 
@@ -69,6 +73,7 @@ const description =
     <nav class="pub-jump-links" aria-label="On this page">
       <a href="#papers">Papers, challenges &amp; theses</a>
       <a href="#recognition">Awards &amp; competitions</a>
+      <a href="#talks">Talks</a>
       <a href="#service">Reviewing &amp; service</a>
     </nav>
   </Section>
@@ -106,6 +111,23 @@ const description =
     </ul>
   </Section>
 
+  <Section id="talks">
+    <h2 class="pub-section-heading">Talks</h2>
+    <ul class="recognition-list">
+      {talks.map(({ id, data }) => (
+        <li id={id} class="recognition-row">
+          <span class="recognition-year">{data.year}</span>
+          <div>
+            <h3>{data.link ? <a href={data.link}>{data.title}</a> : data.title}</h3>
+            <p>{data.org}</p>
+            {data.description && <p class="recognition-detail">{data.description}</p>}
+          </div>
+        </li>
+      ))}
+    </ul>
+    <p class="recognition-detail">My AI4Sports invited talk and co-organization are listed under <a href="#ai4sports-2024">service</a>.</p>
+  </Section>
+
   <Section id="service">
     <h2 class="pub-section-heading">Reviewing &amp; service</h2>
     <ul class="recognition-list">
@@ -124,7 +146,8 @@ const description =
 
   <Section size="text">
     <p class="pub-closing">
-      <a href="/work/">Projects and systems behind these papers</a>
+      <a href="/work/">Projects and systems behind these papers</a> ·
+      <a href="https://pypi.org/project/exococotools/">Extended OKS evaluation package</a>
     </p>
   </Section>
 </BaseLayout>

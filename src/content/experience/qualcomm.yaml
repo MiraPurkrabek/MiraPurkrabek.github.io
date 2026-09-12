@@ -6,7 +6,7 @@ start: '2026-06'
 end: '2026-12'
 displayPeriod: Jun – Dec 2026
 kind: internship
-summary: Spatial reasoning about people and their surroundings for personal AI assistants.
+summary: Connecting 3D reconstruction, spatial reasoning and human body understanding for personal AI, smart glasses and on-device AI.
 inStrip: true
 order: 1
 logo: /assets/logos/qualcomm.svg

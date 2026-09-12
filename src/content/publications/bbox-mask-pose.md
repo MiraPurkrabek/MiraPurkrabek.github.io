@@ -27,6 +27,9 @@ abstract: >-
   OCHuman dataset and to detector-free methods on COCO dataset, combining the best from both
   approaches and matching state of art performance in both settings. Code and data for research
   purposes are available on the project website.
+notes:
+  - 'The two-page CV records an AP comparison of 41.3 to 49.2 against human-centric foundation models; see the paper for the evaluation setup.'
+  - 'The shared BBoxMaskPose / BMPv2 repository had 200+ GitHub stars in the two-page CV. This is a historical snapshot, not a live counter.'
 links:
   project: https://mirapurkrabek.github.io/BBox-Mask-Pose/
   code: https://github.com/mirapurkrabek/BBoxMaskPose

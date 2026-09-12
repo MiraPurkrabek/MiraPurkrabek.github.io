@@ -44,7 +44,7 @@ export const site: SiteConfig = {
     current: 'Amsterdam',
   },
   tagline:
-    'Computer vision researcher and engineer. Prague · currently Amsterdam.',
+    'Computer vision researcher and engineer.',
   email: {
     primary: 'mira.purkrabek@gmail.com',
     university: 'miroslav.purkrabek@fel.cvut.cz',

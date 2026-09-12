@@ -26,6 +26,8 @@ abstract: >-
   improves robustness along the edges of the bounding box and offers better flexibility in
   keypoint evaluation. The code and data for research purposes are available on the project
   website.
+notes:
+  - 'The two-page CV records 50+ GitHub stars and 350+ downloads of exococotools, the evaluation package implementing Extended OKS. These are historical figures, not live counters.'
 links:
   code: https://github.com/MiraPurkrabek/ProbPose_code
   project: https://mirapurkrabek.github.io/ProbPose/

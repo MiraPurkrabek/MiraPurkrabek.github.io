@@ -24,6 +24,8 @@ abstract: >-
   An ablation study shows that anatomical plausibility, a property prior research focused on, is
   not a prerequisite for effective performance. The introduced dataset and the corresponding code
   are available on the project website.
+notes:
+  - 'The two-page CV records 50+ GitHub stars for RePoGen. This is a historical figure, not a live counter.'
 links:
   code: https://github.com/MiraPurkrabek/RePoGen
   project: https://mirapurkrabek.github.io/RePoGen-paper/

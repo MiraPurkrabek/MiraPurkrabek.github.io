@@ -1,9 +1,12 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import Prose from '../components/Prose.astro';
 import Contact from '../components/home/Contact.astro';
 import { site } from '../data/site';
+import { coverage } from '../data/coverage';
+const education = (await getCollection('education')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
@@ -27,12 +30,13 @@ import { site } from '../data/site';
       <p>
         At Porsche Engineering, I worked on Macan control-unit software and on
         the High Power Charging platform for Taycan and other electric vehicles.
-        In 2023, I started my PhD in the <a href="https://vrg.fel.cvut.cz/"
+        I've been a researcher in the <a href="https://vrg.fel.cvut.cz/"
           >Visual Recognition Group at CTU Prague</a
-        >, with <a href="https://cmp.felk.cvut.cz/~matas/">Jiří Matas</a>. Since
-        then I've visited <a href="https://virtualhumans.mpi-inf.mpg.de/"
+        > since February 2019, and started my PhD in February 2023 with
+        <a href="https://cmp.felk.cvut.cz/~matas/">Jiří Matas</a>. Since then I've visited <a href="https://virtualhumans.mpi-inf.mpg.de/"
           >Gerard Pons-Moll's group in Tübingen</a
-        > and joined Qualcomm XR Labs in Amsterdam for a research internship.
+        > (December 2025–March 2026) and joined Qualcomm XR Labs in Amsterdam
+        for a research internship (June–December 2026).
       </p>
       <p>
         Human pose estimation was my starting point: understanding how people
@@ -69,7 +73,7 @@ import { site } from '../data/site';
         >.
       </p>
       <p>
-        <a href="/cv/">Experience, education and awards</a> · <a
+        <a href="/publications/#recognition">Awards, talks and service</a> · <a
           href={site.cvPath}>Two-page CV</a
         > · <a href="/news/">Earlier notes, 2022–2026</a>
       </p>
@@ -85,8 +89,11 @@ import { site } from '../data/site';
           href="https://arxiv.org/abs/2601.08982">SAM-pose2seg</a
         >, awarded Best Student Paper at CVWW 2026, and <a
           href="https://arxiv.org/abs/2501.08815">PC-CSE</a
-        >. I'm happy to discuss thesis ideas and research opportunities in my
-        field.
+        >. Students I supervise have won prizes before even finishing their
+        bachelor's degrees. Helping someone find their own research direction
+        and write their first paper is a part of the work I particularly enjoy.
+        I also coordinate our team's annotation work. I'm happy to discuss thesis
+        ideas and research opportunities in my field.
       </p>
       <ul>
         <li>For homework questions, please use the student forum.</li><li>
@@ -101,7 +108,14 @@ import { site } from '../data/site';
         Erasmus, I also coached FBK Olimpija in Ljubljana for a few months. Back
         in Prague, I took over as juniors' head coach, then became head coach of
         the men's Superliga team in 2024. We worked with a young team and a
-        small budget, and reached the best results in the club's history.
+        small budget, and reached the best results in the club's history through
+        clear roles, shared effort and team spirit.
+      </p>
+      <p>
+        Those years taught me to enjoy both sides of a team: supporting someone
+        else's direction as an assistant, and taking responsibility as head
+        coach. I bring that same approach to research: contribute to the shared
+        work, help others move forward, and lead when needed.
       </p>
       <p>
         Some of the juniors I coached now play for the senior team. Watching
@@ -114,9 +128,56 @@ import { site } from '../data/site';
       </p>
       <h2 id="personal">Away from work</h2>
       <p>
-        I enjoy travelling and being in the mountains. At home, I read
-        psychology and epic fantasy. Steven Erikson’s <em>Malazan Book of the Fallen</em>
-        is a particular favourite.
+        I enjoy mountains, travel, speciality coffee, psychology and epic
+        fantasy. Steven Erikson’s <em>Malazan Book of the Fallen</em> is a
+        particular favourite. The coffee hobby once became a small
+        <a href="/work/#vrg-coffee">coffee-rating web app for our group at VRG</a>.
+      </p>
+      <h2 id="education">Education</h2>
+      <ul class="education-list">
+        {education.map(({ data }) => (
+          <li>
+            <h3>{data.degree} · {data.field}</h3>
+            <p class="detail-meta">{data.period} · {data.institution}</p>
+            {data.note && <p>{data.note}</p>}
+            {data.thesisLink && <a href={data.thesisLink}>Thesis</a>}
+          </li>
+        ))}
+      </ul>
+      <p>
+        During my Erasmus exchange (October 2018–March 2019), I had my first
+        computer vision research internship at the University of Ljubljana's
+        <a href="https://www.vicos.si/">Visual Cognitive Systems Laboratory</a>,
+        advised by prof. Matej Kristan.
+      </p>
+      <h2 id="skills">Technical skills</h2>
+      <p>
+        These are my core skills. AI-assisted coding (or “vibe coding”) now helps
+        me pick up other technologies quickly and put them to practical use.
+      </p>
+      <dl class="skills">
+        <dt>Python</dt>
+        <dd>Research implementations and deep learning, including training PMPose-h
+        for more than ten days on eight GPUs using SLURM; daily automated testing
+        at Porsche.</dd>
+        <dt>C / C++</dt>
+        <dd>Production automotive control-unit software, Plug &amp; Charge for
+        Porsche's charger, and an autonomous robot in a university course.</dd>
+        <dt>Frameworks &amp; tools</dt>
+        <dd>PyTorch, OpenCV, SLURM, Git, SMPL, CUDA, Blender and MMCV.</dd>
+      </dl>
+      <h2 id="elsewhere">Elsewhere</h2>
+      <p class="detail-meta">Interviews, features &amp; coverage</p>
+      <ul class="coverage-list">
+        {coverage.map((item) => (
+          <li>
+            <a href={item.url}>{item.title}</a>
+            <span class="detail-meta">{item.source} · {item.language}</span>
+          </li>
+        ))}
+      </ul>
+      <p>
+        For a compact overview, <a href={site.cvPath}>download my two-page CV</a>.
       </p>
     </Prose>
   </Section>
@@ -127,6 +188,17 @@ import { site } from '../data/site';
     font-size: var(--text-3xl);
     margin-bottom: 1rem;
   }
+  .education-list, .coverage-list { list-style: none; padding: 0; }
+  .education-list li, .coverage-list li {
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--border);
+  }
+  .education-list h3 { font-size: var(--text-base); margin-top: 0; }
+  .education-list p { margin-top: var(--space-2); color: var(--text-muted); }
+  .detail-meta { font-size: var(--text-sm); color: var(--text-subtle); }
+  .coverage-list .detail-meta { display: block; margin-top: var(--space-1); }
+  .skills dt { font-weight: 600; margin-top: var(--space-4); }
+  .skills dd { margin: var(--space-1) 0 0; color: var(--text-muted); }
   .lead {
     font-size: 1.1875rem;
     color: var(--text-muted);
