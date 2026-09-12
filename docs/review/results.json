@@ -1,5 +1,5 @@
 {
-  "source": "e4edb5733f4b027b4b1ceeacc9b3614285fe3837",
+  "source": "fcca4c58f3a2915bcd9aaed6a1014b51a9a68c93",
   "checks": [
     {
       "path": "/",
@@ -20,6 +20,12 @@
       "result": "pass"
     },
     {
+      "path": "/about/",
+      "width": 320,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
       "path": "/",
       "width": 320,
       "theme": "dark",
@@ -38,6 +44,12 @@
       "result": "pass"
     },
     {
+      "path": "/about/",
+      "width": 320,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
       "path": "/",
       "width": 390,
       "theme": "light",
@@ -56,6 +68,12 @@
       "result": "pass"
     },
     {
+      "path": "/about/",
+      "width": 390,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
       "path": "/",
       "width": 390,
       "theme": "dark",
@@ -70,6 +88,108 @@
     {
       "path": "/publications/",
       "width": 390,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/about/",
+      "width": 390,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 480,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 480,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 480,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/about/",
+      "width": 480,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 480,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 480,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 480,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/about/",
+      "width": 480,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 600,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 600,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 600,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/about/",
+      "width": 600,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 600,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 600,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 600,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/about/",
+      "width": 600,
       "theme": "dark",
       "result": "pass"
     },
@@ -92,6 +212,12 @@
       "result": "pass"
     },
     {
+      "path": "/about/",
+      "width": 768,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
       "path": "/",
       "width": 768,
       "theme": "dark",
@@ -106,6 +232,60 @@
     {
       "path": "/publications/",
       "width": 768,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/about/",
+      "width": 768,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 820,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 820,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 820,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/about/",
+      "width": 820,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
+      "path": "/",
+      "width": 820,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/work/",
+      "width": 820,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/publications/",
+      "width": 820,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/about/",
+      "width": 820,
       "theme": "dark",
       "result": "pass"
     },
@@ -128,6 +308,12 @@
       "result": "pass"
     },
     {
+      "path": "/about/",
+      "width": 1024,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
       "path": "/",
       "width": 1024,
       "theme": "dark",
@@ -141,6 +327,12 @@
     },
     {
       "path": "/publications/",
+      "width": 1024,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/about/",
       "width": 1024,
       "theme": "dark",
       "result": "pass"
@@ -164,6 +356,12 @@
       "result": "pass"
     },
     {
+      "path": "/about/",
+      "width": 1440,
+      "theme": "light",
+      "result": "pass"
+    },
+    {
       "path": "/",
       "width": 1440,
       "theme": "dark",
@@ -177,6 +375,12 @@
     },
     {
       "path": "/publications/",
+      "width": 1440,
+      "theme": "dark",
+      "result": "pass"
+    },
+    {
+      "path": "/about/",
       "width": 1440,
       "theme": "dark",
       "result": "pass"
