@@ -59,7 +59,7 @@ try {
           assert.equal(await page.locator('#s23dr a[href="https://arxiv.org/abs/2606.06695"]').count(), 1);
           assert.match(await page.locator('#bmpv2 .pub-item__meta').innerText(), /In review/);
           assert.match(await page.locator('#blanket .pub-item__award').innerText(), /Oral/);
-          assert.match(await page.locator('#pc-cse .pub-item__meta').innerText(), /Supervised work/);
+          assert.match(await page.locator('#pc-cse .pub-item__meta').innerText(), /Supervised work/i);
           assert.match(await page.locator('#peer-review-service').innerText(), /AAAI/);
           assert.equal(await page.locator('#service #ai4sports-2024').count(), 1);
         }

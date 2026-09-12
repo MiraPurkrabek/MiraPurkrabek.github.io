@@ -28,4 +28,7 @@ Kept the existing layouts, typography, colours, light/dark portraits and navigat
 - Local Chromium download timed out. The existing redesign-only build workflow provides
   desktop/mobile and light/dark browser checks and review screenshots without deployment.
 
+The existing browser review had failed on the previous commit because CSS uppercased
+“Supervised work”. Its content assertion now accepts that case transformation.
+
 No changes to deployment workflows or the live branch (`master` in this repository).
