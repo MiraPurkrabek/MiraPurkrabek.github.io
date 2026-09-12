@@ -6,7 +6,7 @@ years: '2019–'
 role: Lead developer
 org: 'CTU Prague'
 featured: false
-order: 12
+order: 7
 summary: >-
   Multi-camera tracking and re-identification of floorball players from video, started as
   bachelor's and master's thesis research and carried on since.

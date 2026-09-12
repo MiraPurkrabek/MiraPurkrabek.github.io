@@ -1,4 +1,4 @@
-// Typed content collections for every fact the site shows about Mira.
+// Typed content collections for every fact the site shows about Míra.
 // See docs/redesign_15-08-2026_PRs/PR-03-content-model.md for the schema spec and
 // docs/redesign_15-08-2026_PRs/PR-00-OVERVIEW.md §8 for the source-of-truth fact sheet.
 
@@ -78,7 +78,7 @@ const projects = defineCollection({
           article: z.string().optional(),
         })
         .optional(),
-      image: z.object({ src: image(), alt: z.string() }).optional(),
+      image: z.object({ src: image(), alt: z.string(), presentation: z.enum(['photo', 'logo']).optional() }).optional(),
       status: z.enum(['active', 'completed', 'internal']).optional(),
       linkNote: z.string().optional(),
     }),

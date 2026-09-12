@@ -1,5 +1,5 @@
 ---
-title: 'Qualcomm — people in the picture'
+title: Spatial reasoning
 tagline: Connecting 3D reconstruction, spatial reasoning and human body understanding
 kind: research
 years: 'June–December 2026'
@@ -16,6 +16,10 @@ tags:
   - 3D Reconstruction
   - Spatial Reasoning
   - Personal AI
+image:
+  src: '../../assets/img/qualcomm.svg'
+  alt: 'Qualcomm logo'
+  presentation: logo
 status: active
 linkNote: Internal research; project details are not public.
 ---

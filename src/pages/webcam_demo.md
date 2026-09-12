@@ -3,7 +3,7 @@ layout: ../layouts/ArticleLayout.astro
 title: 'Webcam Demo'
 subtitle: 'How I Did My CVPR Poster Session Live Demo'
 # Title/description per PR-11 §1 "Page titles and descriptions" table — use verbatim. seoTitle
-# has no " — Mira Purkrábek" suffix (unlike every other page) because the headline plus suffix
+# has no " — Míra Purkrabek" suffix (unlike every other page) because the headline plus suffix
 # would blow the 60-char title budget; see ArticleLayout's seoTitle doc comment.
 seoTitle: 'How I ran a live webcam demo at my CVPR poster'
 description: 'A practical guide to running a live GPU-backed demo from a tablet at a poster session.'

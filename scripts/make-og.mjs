@@ -27,7 +27,7 @@ const COLORS = {
   accent: '#0e5c68',
 };
 
-const NAME = 'Mira Purkrábek';
+const NAME = 'Míra Purkrabek';
 const LEGAL_NAME_CAPTION = '(Miroslav Purkrábek)';
 const ROLE = 'Computer vision researcher and engineer';
 const DOMAIN = 'mirapurkrabek.github.io';

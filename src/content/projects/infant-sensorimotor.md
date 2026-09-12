@@ -8,7 +8,7 @@ years: '2024–'
 role: Contributor
 org: 'CTU Prague'
 featured: false
-order: 10
+order: 3
 summary: >-
   2D pose estimation of infants in video, contributing to a larger project modelling infant
   sensorimotor development, led by Matej Hoffmann.

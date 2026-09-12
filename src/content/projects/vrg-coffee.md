@@ -6,7 +6,7 @@ years: 'Retired'
 role: Developer & host
 org: CTU Prague · Visual Recognition Group
 featured: false
-order: 7.5
+order: 8
 summary: >-
   A coffee-rating web app I built and hosted for VRG, with a web frontend on Vercel and a
   Supabase database. Adoption stayed limited, so I retired the hosted version.
@@ -14,6 +14,10 @@ highlights: []
 tags:
   - Tooling
   - Deployment
+image:
+  src: '../../assets/img/VRGCoffee-logo-transparent.png'
+  alt: 'VRG Coffee logo: a coffee bean in the colours of the Visual Recognition Group'
+  presentation: logo
 status: completed
 linkNote: Hosted version retired; source repository is private.
 ---

@@ -6,7 +6,7 @@ years: '2020–2022'
 role: Software developer
 org: 'Porsche Engineering'
 featured: false
-order: 9
+order: 2
 summary: >-
   Control-unit software for the Porsche Macan, and High Power Charging software for Taycan and other electric vehicles.
 highlights:
@@ -19,7 +19,7 @@ links:
   article: https://www.smart-emotion.de/article/405-800-volts-explained-why-porsche-redefined-charging-times-and-efficiency/
 image:
   src: '../../assets/img/Porsche_HPC.jpg'
-  alt: "Porsche High Power Charging hardware — one of the components of the charging platform Mira's team built software for."
+  alt: "Porsche High Power Charging hardware — one of the components of the charging platform Míra's team built software for."
 status: completed
 ---
 

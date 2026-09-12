@@ -21,10 +21,6 @@ const service = recognition
   .filter((entry) => entry.data.kind === 'service')
   .sort((a, b) => a.data.order - b.data.order);
 
-const talks = recognition
-  .filter((entry) => entry.data.kind === 'talk')
-  .sort((a, b) => b.data.year - a.data.year || (b.data.month ?? 0) - (a.data.month ?? 0));
-
 const roleOrder = { 'first-author': 0, 'co-author': 1, supervised: 2 } as const;
 
 const theses = publications
@@ -52,7 +48,7 @@ const groups = [
 ];
 
 // Title/description per PR-11 §1 "Page titles and descriptions" table — use verbatim.
-const title = 'Publications & recognition — Mira Purkrábek';
+const title = 'Publications & recognition — Míra Purkrabek';
 const description =
   'Computer vision publications, awards and competition results, including first-author CVPR and ICCV papers and Outstanding Reviewer at CVPR 2025.';
 ---
@@ -73,7 +69,6 @@ const description =
     <nav class="pub-jump-links" aria-label="On this page">
       <a href="#papers">Papers, challenges &amp; theses</a>
       <a href="#recognition">Awards &amp; competitions</a>
-      <a href="#talks">Talks</a>
       <a href="#service">Reviewing &amp; service</a>
     </nav>
   </Section>
@@ -109,23 +104,6 @@ const description =
         </li>
       ))}
     </ul>
-  </Section>
-
-  <Section id="talks">
-    <h2 class="pub-section-heading">Talks</h2>
-    <ul class="recognition-list">
-      {talks.map(({ id, data }) => (
-        <li id={id} class="recognition-row">
-          <span class="recognition-year">{data.year}</span>
-          <div>
-            <h3>{data.link ? <a href={data.link}>{data.title}</a> : data.title}</h3>
-            <p>{data.org}</p>
-            {data.description && <p class="recognition-detail">{data.description}</p>}
-          </div>
-        </li>
-      ))}
-    </ul>
-    <p class="recognition-detail">My AI4Sports invited talk and co-organization are listed under <a href="#ai4sports-2024">service</a>.</p>
   </Section>
 
   <Section id="service">

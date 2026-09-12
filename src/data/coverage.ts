@@ -7,8 +7,8 @@ export const coverage = [
   },
   {
     title: 'Reconstructing roofs from photos: our S23DR win at CVPR 2026',
-    source: 'CTU FEE', language: 'Czech',
-    url: 'https://fel.cvut.cz/cs/aktualne/novinky/84587-staci-vyfotit-dum-a-ai-dopocita-strechu-doktorandi-fel-cvut-zvitezili-v-prestizni-svetove-soutezi',
+    source: 'Lupa.cz', language: 'Czech',
+    url: 'https://www.lupa.cz/aktuality/dva-doktorandi-z-cvut-uci-ai-videt-strechy-domu-skrz-zdi-zaujali-behem-jedne-z-nejprestiznejsich-konferenci-o-pocitacovem-videni/',
   },
   {
     title: 'RePoGen and the Best Poster Award at FG 2024',

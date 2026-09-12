@@ -1,6 +1,6 @@
-# Mira Purkrábek
+# Míra Purkrabek
 
-> Goes by Mira; publishes and is credited academically as Miroslav Purkrábek.
+> Goes by Míra; publishes and is credited academically as Miroslav Purkrábek.
 
 Computer vision researcher and engineer. PhD candidate at CTU Prague (Visual Recognition
 Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR Labs, Amsterdam
@@ -30,7 +30,7 @@ Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR 
 - Revie: built a browser-based instant sports-video replay system, with under 0.5 seconds
   latency across at least six simultaneous 4K cameras. Used in the 2025/26 men's play-down
   and women's playoffs; since then used daily during training by 10+ SKV coaches.
-  Coaches interested in Revie can contact Mira.
+  Coaches interested in Revie can contact Míra.
 - SKV camera download system: over 750 download requests and 1000+ videos downloaded;
   Python, Microsoft Power Automate and OneDrive, with a 30-day history and failure alerts.
 - VRG coffee ratings: built and hosted a simple public web app for internal group use,
@@ -39,7 +39,7 @@ Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR 
   did not really use it, so the hosted version was retired to stop paying for unused
   Vercel and Supabase hosting. Source repository is private.
 - Core skills: Python, C/C++, PyTorch, OpenCV, SLURM, Git, SMPL, CUDA, Blender and MMCV.
-  AI-assisted coding helps Mira learn and use other technologies quickly.
+  With vibe coding, Míra is picking up new languages and technologies much faster.
 - Teaching: Pattern Recognition and Machine Learning (RPZ) at CTU. Co-supervises student
   research, including SAM-pose2seg (Best Student Paper, CVWW 2026) and PC-CSE. Students
   he supervises have won prizes before finishing their bachelor's degrees.
@@ -48,7 +48,7 @@ Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR 
 - Personal interests: mountains, travel, speciality coffee, psychology and epic fantasy,
   especially Steven Erikson's Malazan Book of the Fallen.
 - The site combines a detailed career record with personal stories. Education and skills
-  are on About; projects are on Work; papers, awards, talks and service are on Publications.
+  are on About; projects are on Work; papers, awards and service are on Publications.
   The PDF is the compact CV. There is no separate HTML CV page.
 
 ## Links
@@ -61,7 +61,6 @@ Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR 
 - Teaching and supervision: https://mirapurkrabek.github.io/about/#teaching
 - External interviews and coverage: https://mirapurkrabek.github.io/about/#elsewhere
 - Awards and competitions: https://mirapurkrabek.github.io/publications/#recognition
-- Talks: https://mirapurkrabek.github.io/publications/#talks
 - Reviewing and service: https://mirapurkrabek.github.io/publications/#service
 - CV (PDF): https://mirapurkrabek.github.io/CV_twopage.pdf
 - Coaching: https://mirapurkrabek.github.io/coaching/

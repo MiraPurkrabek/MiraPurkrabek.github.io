@@ -7,7 +7,7 @@ years: '2024–'
 role: Contributor
 org: 'University of West Bohemia'
 featured: false
-order: 11
+order: 4
 summary: >-
   2D animal pose estimation that improves re-identification of individual lynxes from camera-trap
   images, for a project led by Lukáš Picek.

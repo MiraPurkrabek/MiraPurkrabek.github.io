@@ -13,11 +13,11 @@ details:
   - State doctoral exam passed with distinction, February 2025.
 inStrip: true
 order: 3
-logo: /assets/logos/vrg.png
+logo: /assets/logos/ctu-vrg.svg
 homepage:
   name: CTU in Prague
   department: Visual Recognition Group
   position: Researcher & PhD candidate
   period: 2019–present · PhD since 2023
-  logoAlt: Visual Recognition Group, CTU in Prague
+  logoAlt: CTU lion and Visual Recognition Group logo
   order: 1

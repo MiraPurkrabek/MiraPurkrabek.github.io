@@ -2,7 +2,7 @@
 // schema.org/Person JSON-LD, rendered on the homepage only. See
 // docs/redesign_15-08-2026_PRs/PR-11-seo-metadata-redirects.md §2 and
 // PR-00-OVERVIEW.md §7 "Naming" — `name`/`alternateName` intentionally differ from the visible
-// <h1> (which reads "Mira Purkrábek"): this is the official register that has to match Google
+// <h1> (which reads "Míra Purkrabek"): this is the official register that has to match Google
 // Scholar, ORCID and LinkedIn for entity resolution.
 import { site } from '../data/site';
 import { getCollection } from 'astro:content';
@@ -18,8 +18,8 @@ const person = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': `${site.siteUrl}/#person`,
-  name: site.legalName,
-  alternateName: ['Mira Purkrábek', 'Miroslav Purkrabek'],
+  name: site.name,
+  alternateName: [site.legalName, 'Miroslav Purkrabek'],
   url: site.siteUrl,
   image: new URL(site.ogImage, site.siteUrl).toString(),
   email: `mailto:${site.email.primary}`,

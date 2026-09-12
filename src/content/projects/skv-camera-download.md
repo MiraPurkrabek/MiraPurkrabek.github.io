@@ -7,7 +7,7 @@ years: '2024–'
 role: Lead developer
 org: 'Sokol Královské Vinohrady'
 featured: false
-order: 7
+order: 6
 summary: >-
   An automated backend that downloads and archives video from SKV's sports-hall cameras, with a
   30-day history and failure alerting.
@@ -18,6 +18,9 @@ highlights:
 tags:
   - Video Systems
   - Deployment
+image:
+  src: '../../assets/img/rieger-arena.jpg'
+  alt: 'Floorball at SKV’s Rieger Arena in Prague'
 status: active
 ---
 

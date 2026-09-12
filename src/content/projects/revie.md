@@ -7,7 +7,7 @@ years: '2024–'
 role: Lead developer
 org: 'Sokol Královské Vinohrady'
 featured: false
-order: 6
+order: 5
 summary: >-
   A system for instant clip retrieval from a sports-hall camera system — press a button and the
   last 30 seconds are ready to download from any browser.

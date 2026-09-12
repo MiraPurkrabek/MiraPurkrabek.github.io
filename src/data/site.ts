@@ -3,7 +3,7 @@
 // and §8 "Fact sheet" for the source of every value below.
 
 export interface SiteConfig {
-  /** Casual register — wordmark, headings, body prose. Always "Mira", never "Miroslav" here. */
+  /** Casual register — wordmark, headings, body prose. Always "Míra", never "Miroslav" here. */
   name: string;
   /** Official register — footer copyright line, schema.org/Person `name` (PR-11). */
   legalName: string;
@@ -36,7 +36,7 @@ export interface SiteConfig {
 }
 
 export const site: SiteConfig = {
-  name: 'Mira Purkrábek',
+  name: 'Míra Purkrabek',
   legalName: 'Miroslav Purkrábek',
   role: 'Computer vision researcher and engineer',
   location: {
