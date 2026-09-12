@@ -27,6 +27,8 @@ Kept the existing layouts, typography, colours, light/dark portraits and navigat
   no duplicate HTML IDs; valid Person JSON-LD.
 - Local Chromium download timed out. The existing redesign-only build workflow provides
   desktop/mobile and light/dark browser checks and review screenshots without deployment.
+- GitHub review passed all 64 browser checks. Reviewed the desktop About and mobile dark
+  homepage screenshots; corrected missing spaces before inline links revealed by that review.
 
 The existing browser review had failed on the previous commit because CSS uppercased
 “Supervised work”. Its content assertion now accepts that case transformation.
