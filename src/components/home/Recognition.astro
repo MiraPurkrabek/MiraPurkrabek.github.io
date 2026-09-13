@@ -1,12 +1,7 @@
 ---
-// Homepage recognition list — see
-// docs/redesign_15-08-2026_PRs/PR-06-home-recognition-contact.md §1.
-//
 // Data-driven from the `recognition` collection (unlike Beyond/Contact, this section has no
-// "use verbatim" copy block — the PR's mock text is illustrative, not literal). Rows read
-// `title`/`org`/`year`/`link` straight off the collection so a future award just needs a new
-// YAML file, no component change. Sorted by the collection's own `order` field (already
-// newest-first) rather than `year desc`, matching Timeline's convention.
+// hard-coded copy). Rows read `title`/`org`/`year`/`link` directly, so a new award only needs a
+// YAML entry. Results follow the collection's explicit `order` field.
 import { getCollection } from 'astro:content';
 import Section from '../Section.astro';
 import SectionHeading from '../SectionHeading.astro';

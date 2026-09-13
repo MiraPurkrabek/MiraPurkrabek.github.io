@@ -1,6 +1,6 @@
-# Míra Purkrabek
+# Mira Purkrabek
 
-> Goes by Míra; publishes and is credited academically as Miroslav Purkrábek.
+> Goes by Mra; publishes and is credited academically as Miroslav Purkrábek.
 
 Computer vision researcher and engineer. PhD candidate at CTU Prague (Visual Recognition
 Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR Labs, Amsterdam
@@ -30,7 +30,7 @@ Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR 
 - Revie: built a browser-based instant sports-video replay system, with under 0.5 seconds
   latency across at least six simultaneous 4K cameras. Used in the 2025/26 men's play-down
   and women's playoffs; since then used daily during training by 10+ SKV coaches.
-  Coaches interested in Revie can contact Míra.
+  Coaches interested in Revie can contact Mira.
 - SKV camera download system: over 750 download requests and 1000+ videos downloaded;
   Python, Microsoft Power Automate and OneDrive, with a 30-day history and failure alerts.
 - VRG coffee ratings: built and hosted a simple public web app for internal group use,
@@ -39,7 +39,7 @@ Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR 
   did not really use it, so the hosted version was retired to stop paying for unused
   Vercel and Supabase hosting. Source repository is private.
 - Core skills: Python, C/C++, PyTorch, OpenCV, SLURM, Git, SMPL, CUDA, Blender and MMCV.
-  With vibe coding, Míra is picking up new languages and technologies much faster.
+  With vibe coding, Mira is picking up new languages and technologies much faster.
 - Teaching: Pattern Recognition and Machine Learning (RPZ) at CTU. Co-supervises student
   research, including SAM-pose2seg (Best Student Paper, CVWW 2026) and PC-CSE. Students
   he supervises have won prizes before finishing their bachelor's degrees.

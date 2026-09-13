@@ -1,13 +1,7 @@
 ---
-// Homepage selected publications — see
-// docs/redesign_15-08-2026_PRs/PR-06-home-recognition-contact.md §2.
-//
 // Data-driven from the `publications` collection. The heading uses each paper's short project
-// name (matched by id against the `projects` collection, e.g. "BBox-Mask-Pose") rather than the
-// full academic title, paired with the collection's own homepage-ready `summary` — the same
-// summary field ProjectFeature uses, so no new "no abstracts on the homepage" copy is invented
-// here. Link buttons render whatever `links` exist per entry (mirrors PR-05's FACIS precedent:
-// "the button row simply shows what exists").
+// name (matched by id against `projects`) rather than a full academic title. Link buttons render
+// the available links for each entry.
 import { getCollection } from 'astro:content';
 import Section from '../Section.astro';
 import SectionHeading from '../SectionHeading.astro';

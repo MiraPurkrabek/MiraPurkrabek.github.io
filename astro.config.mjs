@@ -2,10 +2,8 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Paths that exist in `dist/` but aren't real content pages: the internal styleguide, the
-// rebuilt 404 (noindex), the legacy-URL redirect stubs (meta-refresh + canonical, not content),
-// and the BBox-MaskPose redirect stub (points at a different repo's site). See
-// docs/redesign_15-08-2026_PRs/PR-11-seo-metadata-redirects.md §4.
+// Paths that exist in `dist/` but are not indexable content pages: the internal styleguide, the
+// noindex 404 page, legacy-URL redirect stubs, and the BBox-MaskPose redirect to another site.
 const sitemapExcludedPaths = new Set([
   '/styleguide/',
   '/404/',
@@ -43,9 +41,8 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => !sitemapExcludedPaths.has(new URL(page).pathname),
-      // /CV.pdf is a real top-level page in the site's IA (linked from every page's nav), just
-      // not an Astro route — @astrojs/sitemap only walks built HTML pages, so it needs adding
-      // by hand. See IMPLEMENTATION_NOTES.md, PR-11.
+      // The CV files are public top-level resources, but not Astro routes, so the sitemap needs
+      // them added explicitly.
       customPages: [
         'https://mirapurkrabek.github.io/CV.pdf',
         'https://mirapurkrabek.github.io/CV_twopage.pdf',

@@ -1,11 +1,7 @@
 ---
-// /publications — full publication list. See
-// docs/redesign_15-08-2026_PRs/PR-08-publications-page.md.
-//
 // Grouped by year (newest first), theses in their own group at the end so they never dilute the
 // peer-reviewed list. Within a year, first-author work leads, then co-author, then supervised
-// work — this reproduces the order the fact sheet already lists them in
-// (PR-00-OVERVIEW.md §8 "Publications").
+// work.
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
@@ -47,8 +43,7 @@ const groups = [
   { heading: 'Theses', entries: theses },
 ];
 
-// Title/description per PR-11 §1 "Page titles and descriptions" table — use verbatim.
-const title = 'Publications & recognition — Míra Purkrabek';
+const title = 'Publications & recognition — Mira Purkrabek';
 const description =
   'Computer vision publications, awards and competition results, including first-author CVPR and ICCV papers and Outstanding Reviewer at CVPR 2025.';
 ---

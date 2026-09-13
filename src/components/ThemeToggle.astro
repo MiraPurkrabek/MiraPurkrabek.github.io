@@ -1,8 +1,6 @@
 ---
-// Two-state light/dark toggle (not the three-state light/dark/system cycle the design doc
-// sketches) — the OS default is already honoured on first visit by the inline bootstrap script
-// in BaseLayout, and a two-state cycle keeps the icon logic and the click handler simple.
-// See PR-02 §8 for the explicit "acceptable simplification" carve-out.
+// Two-state light/dark toggle. The OS default is honoured on first visit by BaseLayout's inline
+// bootstrap script, while a two-state cycle keeps the icon logic and click handler simple.
 import Icon from './Icon.astro';
 ---
 

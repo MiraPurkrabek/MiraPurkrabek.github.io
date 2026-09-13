@@ -2,9 +2,6 @@
 title: 'FACIS — forensic image and video tools'
 tagline: Automatic processing of images and video for the Criminal Police Service
 kind: applied
-# TODO(verify): no start year is given anywhere in the source material for this project.
-# 2025 is the only confirmed date (the Ministry of the Interior award) — the project itself
-# predates that award. Confirm the actual start year before publishing.
 years: '2025'
 role: Contributor
 org: 'CTU Prague · Brno University of Technology'

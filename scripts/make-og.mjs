@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 // Generates public/og/default.png — the site's single static Open Graph image (1200x630).
-// SVG source rendered to PNG with sharp, so the design stays editable/regenerable rather than
-// being a one-off Figma export. See
-// docs/redesign_15-08-2026_PRs/PR-11-seo-metadata-redirects.md §3.
+// SVG source rendered to PNG with sharp, so the design stays editable and regenerable rather than
+// being a one-off image export.
 //
 // Run with: node scripts/make-og.mjs
 
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import sharp from 'sharp';
@@ -27,7 +26,7 @@ const COLORS = {
   accent: '#0e5c68',
 };
 
-const NAME = 'Míra Purkrabek';
+const NAME = 'Mira Purkrabek';
 const LEGAL_NAME_CAPTION = '(Miroslav Purkrábek)';
 const ROLE = 'Computer vision researcher and engineer';
 const DOMAIN = 'mirapurkrabek.github.io';

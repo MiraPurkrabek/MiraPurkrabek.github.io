@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-// Throwaway-turned-useful external link checker (PR-12 QA pass). Scans the built dist/ output
-// for every external href and confirms it resolves with a 2xx/3xx status. No new dependency —
-// uses Node's built-in fetch. Run `npm run build` first.
+// Scans built `dist/` output for every external href and confirms a 2xx/3xx response. It uses
+// Node's built-in fetch; run `npm run build` first.
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 

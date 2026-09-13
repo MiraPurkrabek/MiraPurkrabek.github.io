@@ -7,6 +7,7 @@ import { resolve, extname, sep } from 'node:path';
 import assert from 'node:assert/strict';
 
 const root = resolve('dist');
+const reviewDir = process.env.REVIEW_DIR || '.review';
 const mime = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript',
   '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg',
   '.webp': 'image/webp', '.avif': 'image/avif', '.woff2': 'font/woff2',
@@ -21,7 +22,7 @@ const server = createServer(async (req, res) => {
   } catch { res.writeHead(404).end(); }
 });
 await new Promise(r => server.listen(4321, '127.0.0.1', r));
-await mkdir('docs/review', { recursive: true });
+await mkdir(reviewDir, { recursive: true });
 const browser = await chromium.launch();
 const results = [];
 try {
@@ -45,7 +46,7 @@ try {
         assert.deepEqual(broken, [], 'Broken images');
         if (width === 1440 || width === 390 || (width === 768 && path === "/")) {
           const name = path === '/' ? 'home' : path.slice(1, -1);
-          await page.screenshot({ path: 'docs/review/' + name + '-' + theme + '-' + width + '.png', fullPage: true });
+          await page.screenshot({ path: reviewDir + '/' + name + '-' + theme + '-' + width + '.png', fullPage: true });
         }
         if (path === '/publications/') {
           const media = await page.locator('.pub-item__media').evaluateAll(items => items.map(item => {
@@ -79,7 +80,7 @@ try {
           if (await page.locator('.name-note').count()) {
             await page.locator('.name-note summary').click();
             assert.equal(await page.locator('.name-note').getAttribute('open'), '');
-            if (width === 1440 && theme === 'light') await page.screenshot({ path: 'docs/review/name-note.png', fullPage: false });
+            if (width === 1440 && theme === 'light') await page.screenshot({ path: reviewDir + '/name-note.png', fullPage: false });
             await page.locator('.name-note summary').click();
           }
           if (width < 900) {
@@ -115,9 +116,9 @@ try {
     const video = document.querySelector('#s23dr video');
     return video && video.hidden && video.paused;
   });
-  await animatedPage.locator('#s23dr').screenshot({ path: 'docs/review/challenge-mobile.png' });
+  await animatedPage.locator('#s23dr').screenshot({ path: reviewDir + '/challenge-mobile.png' });
   await animatedContext.close();
-  await writeFile('docs/review/results.json' , JSON.stringify({ source: process.env.GITHUB_SHA, checks: results }, null, 2) + '\n');
+  await writeFile(reviewDir + '/results.json' , JSON.stringify({ source: process.env.GITHUB_SHA, checks: results }, null, 2) + '\n');
   console.log('Passed browser checks:', results.length);
 } finally {
   await browser.close();

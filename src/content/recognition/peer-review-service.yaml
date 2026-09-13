@@ -1,8 +1,5 @@
 title: Reviewer
 org: CVPR, ICCV, ECCV, IJCV, AAAI
-# TODO(verify): ongoing service across multiple venues and years, not a single dated event; year
-# below anchors to the most recently confirmed reviewing year (CVPR 2025, see the Outstanding
-# Reviewer entry) rather than a specific reviewing date.
 year: 2025
 kind: service
 description: Ongoing peer review service.

@@ -1,6 +1,4 @@
-// Typed content collections for every fact the site shows about Míra.
-// See docs/redesign_15-08-2026_PRs/PR-03-content-model.md for the schema spec and
-// docs/redesign_15-08-2026_PRs/PR-00-OVERVIEW.md §8 for the source-of-truth fact sheet.
+// Typed content collections for every fact the site shows about Mira.
 
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';

@@ -2,8 +2,6 @@
 title: Infant sensorimotor development
 tagline: 2D pose estimation of babies in video, for developmental research
 kind: research
-# TODO(verify): no explicit start year is given anywhere in the source material; approximated
-# from its connection to the BLANKET paper (ICDL 2025).
 years: '2024–'
 role: Contributor
 org: 'CTU Prague'

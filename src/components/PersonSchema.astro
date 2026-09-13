@@ -1,9 +1,6 @@
 ---
-// schema.org/Person JSON-LD, rendered on the homepage only. See
-// docs/redesign_15-08-2026_PRs/PR-11-seo-metadata-redirects.md §2 and
-// PR-00-OVERVIEW.md §7 "Naming" — `name`/`alternateName` intentionally differ from the visible
-// <h1> (which reads "Míra Purkrabek"): this is the official register that has to match Google
-// Scholar, ORCID and LinkedIn for entity resolution.
+// schema.org/Person JSON-LD, rendered on the homepage only. The official and casual name forms
+// are both present to support entity resolution across academic and professional profiles.
 import { site } from '../data/site';
 import { getCollection } from 'astro:content';
 const education = (await getCollection('education')).sort((a, b) => a.data.order - b.data.order);
@@ -30,8 +27,6 @@ const person = {
     name: 'Visual Recognition Group, Czech Technical University in Prague',
     url: 'https://vrg.fel.cvut.cz/',
   },
-  // TODO(remove): this internship ends December 2026 (PR-00-OVERVIEW.md §8 "Experience") —
-  // `worksFor` must be deleted once it's over so this never implies a lapsed affiliation.
   worksFor: {
     '@type': 'Organization',
     name: 'Qualcomm',

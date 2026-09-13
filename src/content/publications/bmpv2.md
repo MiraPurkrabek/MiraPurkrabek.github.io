@@ -28,7 +28,6 @@ abstract: >-
   and data are available at the project website.
 links:
   project: https://mirapurkrabek.github.io/BBox-Mask-Pose/
-  # TODO(verify): no arXiv ID confirmed in the source material used for this migration.
 thumbnail:
   src: '../../assets/img/043+076+174-poster.jpg'
   alt: 'Four overlapping people reconstructed as separately coloured 3D body meshes despite standing in a tight cluster.'

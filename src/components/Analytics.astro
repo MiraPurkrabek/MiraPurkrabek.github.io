@@ -1,7 +1,6 @@
 ---
-// GA4, async, production builds only, rendered after the page content so it can never block
-// first paint. Skipped on /styleguide (internal reference, not real traffic). See
-// docs/redesign_15-08-2026_PRs/PR-11-seo-metadata-redirects.md §7.
+// GA4 is async and production-only, rendered after content so it cannot block first paint.
+// It is skipped on the internal styleguide.
 const MEASUREMENT_ID = 'G-1YMZGNY57C';
 const isStyleguide = Astro.url.pathname.replace(/\/$/, '') === '/styleguide';
 const shouldLoad = import.meta.env.PROD && !isStyleguide;

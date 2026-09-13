@@ -1,7 +1,6 @@
 ---
-// Reusable long-form article layout — used as a Markdown `layout:` frontmatter target, so props
-// arrive nested under `frontmatter` (Astro's standard shape for Markdown-layout components), not
-// spread onto Astro.props directly. See docs/redesign_15-08-2026_PRs/PR-10-article-layout-webcam-demo.md.
+// Reusable long-form article layout. Markdown-layout props arrive nested under `frontmatter`,
+// rather than directly on `Astro.props`.
 import BaseLayout from './BaseLayout.astro';
 import Section from '../components/Section.astro';
 import Prose from '../components/Prose.astro';
@@ -17,9 +16,7 @@ export interface Frontmatter {
   /** Raw HTML string rendered as a Callout right after the header — the only way to get a real
    * Callout onto a plain Markdown page without an MDX integration. */
   tldr?: string;
-  /** Overrides the <title>/OG title. Defaults to `${title} — ${site.name}`, but a long,
-   * SEO-written headline (see PR-11 §1) can blow the 60-char title budget once that suffix is
-   * appended — set this to use the headline verbatim, with no suffix. */
+  /** Overrides the default title suffix when an article headline needs to stand on its own. */
   seoTitle?: string;
 }
 

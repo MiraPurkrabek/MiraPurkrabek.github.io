@@ -1,11 +1,9 @@
-// Typed site config consumed by Header, Footer, and (from PR-11) SEO/JSON-LD.
-// See docs/redesign_15-08-2026_PRs/PR-00-OVERVIEW.md §7 "Naming" for the name/legalName split
-// and §8 "Fact sheet" for the source of every value below.
+// Typed site config consumed by shared UI, SEO metadata, and structured data.
 
 export interface SiteConfig {
-  /** Casual register — wordmark, headings, body prose. Always "Míra", never "Miroslav" here. */
+  /** Casual register — wordmark, headings, and body prose. */
   name: string;
-  /** Official register — footer copyright line, schema.org/Person `name` (PR-11). */
+  /** Official register — footer copyright line and schema.org/Person `name`. */
   legalName: string;
   role: string;
   location: {
@@ -27,7 +25,7 @@ export interface SiteConfig {
   };
   cvPath: string;
   siteUrl: string;
-  /** Default Open Graph image, relative to site root. Generated in PR-11. */
+  /** Default Open Graph image, relative to the site root. */
   ogImage: string;
   availability: {
     show: boolean;
@@ -36,7 +34,7 @@ export interface SiteConfig {
 }
 
 export const site: SiteConfig = {
-  name: 'Míra Purkrabek',
+  name: 'Mira Purkrabek',
   legalName: 'Miroslav Purkrábek',
   role: 'Computer vision researcher and engineer',
   location: {

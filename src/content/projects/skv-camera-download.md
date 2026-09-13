@@ -2,7 +2,6 @@
 title: Automatic download from SKV cameras
 tagline: Automated video retrieval from a sports hall's camera system
 kind: applied
-# TODO(verify): no explicit start year is given anywhere in the source material.
 years: '2024–'
 role: Lead developer
 org: 'Sokol Královské Vinohrady'

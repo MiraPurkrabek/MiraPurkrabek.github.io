@@ -2,7 +2,6 @@
 title: Animal identification from camera traps
 tagline: 2D animal pose estimation improving lynx re-identification
 kind: research
-# TODO(verify): no explicit start year is given anywhere in the source material.
 years: '2024–'
 role: Contributor
 org: 'University of West Bohemia'

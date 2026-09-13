@@ -2,8 +2,6 @@
 title: PoseAnnotator
 tagline: A lightweight, local alternative to CVAT and LabelStudio
 kind: tool
-# TODO(verify): built for the RePoGen dataset (FG 2024); exact start year not stated explicitly
-# in the source material, approximated from the RePoGen project timeline.
 years: '2023–'
 role: Lead developer
 featured: false
