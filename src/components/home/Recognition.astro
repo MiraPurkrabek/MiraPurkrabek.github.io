@@ -1,0 +1,85 @@
+---
+// Data-driven from the `recognition` collection (unlike Beyond/Contact, this section has no
+// hard-coded copy). Rows read `title`/`org`/`year`/`link` directly, so a new award only needs a
+// YAML entry. Results follow the collection's explicit `order` field.
+import { getCollection } from 'astro:content';
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+
+const recognition = await getCollection('recognition');
+const selected = recognition
+  .filter((entry) => entry.data.selected)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Section id="recognition">
+  <SectionHeading eyebrow="External validation" heading="Recognition" />
+
+  <ul class="recognition__list">
+    {
+      selected.map((entry) => (
+        <li class="recognition__row">
+          <span class="recognition__year">{entry.data.year}</span>
+          <span class="recognition__text">
+            {entry.data.link ? (
+              <a href={entry.data.link} target="_blank" rel="noopener">
+                {entry.data.title}
+              </a>
+            ) : (
+              entry.data.title
+            )}
+            {' · '}
+            {entry.data.org}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="recognition__service">
+    Reviewer for CVPR, ICCV, ECCV and IJCV · Technical organizer, CVWW 2026.
+  </p>
+</Section>
+
+<style>
+  .recognition__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .recognition__row {
+    display: flex;
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--border);
+    break-inside: avoid;
+  }
+
+  .recognition__year {
+    flex: 0 0 auto;
+    width: 3.5rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-subtle);
+  }
+
+  .recognition__text {
+    color: var(--text);
+    line-height: var(--leading-snug);
+  }
+
+  .recognition__service {
+    margin-top: var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 720px) {
+    .recognition__list {
+      columns: 2;
+      column-gap: var(--space-8);
+    }
+  }
+</style>

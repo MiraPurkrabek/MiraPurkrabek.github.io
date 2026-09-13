@@ -1,0 +1,428 @@
+---
+// A publication row keeps Miroslav's printed academic name. Native <details>/<summary>
+// disclosures work without JavaScript; scripts enhance animation and BibTeX copying.
+import { Image } from 'astro:assets';
+import { type CollectionEntry } from 'astro:content';
+import Button from './Button.astro';
+import Tag from './Tag.astro';
+import Prose from './Prose.astro';
+import Icon from './Icon.astro';
+import { videoPreviews } from '../data/video-previews';
+import { site } from '../data/site';
+
+export interface Props {
+  publication: CollectionEntry<'publications'>;
+}
+
+const { publication } = Astro.props;
+const { data } = publication;
+const preview = videoPreviews[publication.id];
+
+const linkOrder = [
+  ['project', 'Project'],
+  ['paper', 'Paper'],
+  ['arxiv', 'arXiv'],
+  ['code', 'Code'],
+  ['demo', 'Demo'],
+  ['models', 'Models'],
+  ['dataset', 'Dataset'],
+] as const;
+
+const links = linkOrder.flatMap(([key, label]) => {
+  const href = data.links?.[key];
+  return href ? [{ href, label: data.type === 'challenge' && key === 'arxiv' ? 'arXiv report' : data.type === 'challenge' && key === 'project' ? 'Workshop' : data.type === 'challenge' && key === 'demo' ? 'Challenge' : label }] : [];
+});
+const primaryHref = links[0]?.href;
+---
+
+<article class="pub-item" id={publication.id}>
+  {data.thumbnail && <div class="pub-item__media">
+    {preview ? (
+      <Fragment>
+        <img src={preview.poster} alt={data.thumbnail.alt}
+          width={preview.width} height={preview.height} loading="lazy" />
+        <video muted loop playsinline preload="none" hidden
+          width={preview.width} height={preview.height}
+          aria-hidden="true" data-publication-video>
+          {preview.webm && <source data-src={preview.webm} type="video/webm" />}
+          <source data-src={preview.mp4} type="video/mp4" />
+        </video>
+      </Fragment>
+    ) : <Image
+      src={data.thumbnail.src}
+      alt={data.thumbnail.alt}
+      width={640}
+      widths={[160, 320, 480, 640]}
+      sizes="(max-width: 600px) calc(100vw - 48px), 160px"
+      format="jpg"
+      loading="lazy"
+      decoding="async"
+      class="pub-item__image"
+    />}
+  </div>}
+
+  <div class="pub-item__body">
+    <h3 class="pub-item__title">
+      {
+        primaryHref ? (
+          <a href={primaryHref} target="_blank" rel="noopener">
+            {data.title}
+            <Icon name="arrow-up-right" size={18} />
+          </a>
+        ) : (
+          data.title
+        )
+      }
+    </h3>
+
+    <p class="pub-item__authors">
+      {data.type === 'challenge' && 'Contributors: '}
+      {
+        data.authors.map((author, index) => (
+          <>
+            {index > 0 && ', '}
+            {author === site.officialName ? (
+              <strong class="pub-item__author--self">{author}</strong>
+            ) : (
+              author
+            )}
+          </>
+        ))
+      }
+    </p>
+
+    <p class="pub-item__meta">
+      <span>{data.venue}</span>
+      {data.type === 'challenge' && <Tag>Challenge entry</Tag>}
+      {data.role === 'supervised' && <Tag>Supervised work</Tag>}
+    </p>
+
+    {
+      data.awards.length > 0 && (
+        <p class="pub-item__award">★ {data.awards.join(', ')}</p>
+      )
+    }
+
+    <p class="pub-item__summary">{data.summary}</p>
+
+    <div class="pub-item__links">
+      {
+        links.map((link) => (
+          <Button
+            href={link.href}
+            variant="secondary"
+            size="sm"
+            icon="arrow-up-right"
+            target="_blank"
+          >
+            {link.label}
+          </Button>
+        ))
+      }
+
+      <details class="pub-item__disclosure">
+        <summary>{data.type === 'challenge' ? 'Details' : 'Abstract'}</summary>
+        <div class="pub-item__disclosure-body">
+          <Prose>
+            <p>{data.abstract}</p>
+          </Prose>
+        </div>
+      </details>
+
+      {data.notes && (
+        <details class="pub-item__disclosure">
+          <summary>Project notes</summary>
+          <div class="pub-item__disclosure-body">
+            <Prose>{data.notes.map((note) => <p>{note}</p>)}</Prose>
+          </div>
+        </details>
+      )}
+
+      {
+        data.bibtex && (
+          <details class="pub-item__disclosure pub-item__bibtex">
+            <summary>BibTeX</summary>
+            <div class="pub-item__disclosure-body">
+              <div class="pub-item__bibtex-controls">
+                <button type="button" class="pub-item__copy" data-copy-bibtex>
+                  Copy
+                </button>
+                <span
+                  class="visually-hidden"
+                  role="status"
+                  aria-live="polite"
+                  data-copy-status
+                />
+              </div>
+              {/* prettier-ignore */}
+              <pre tabindex="0"><code>{data.bibtex}</code></pre>
+            </div>
+          </details>
+        )
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  .pub-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    padding-block: var(--space-5);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pub-item__media {
+    position: relative;
+    flex: 0 0 160px;
+    width: 160px;
+    height: 110px;
+    box-sizing: border-box;
+    padding: var(--space-2);
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition:
+      width var(--dur) var(--ease),
+      height var(--dur) var(--ease),
+      padding var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
+  }
+
+  .pub-item__media :global(img),
+  .pub-item__media video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .pub-item__media video:not([hidden]) {
+    position: absolute;
+    inset: var(--space-2);
+    width: calc(100% - 2 * var(--space-2));
+    height: calc(100% - 2 * var(--space-2));
+    background: var(--surface-soft);
+  }
+
+  .pub-item__body {
+    flex: 1 1 320px;
+    min-width: 0;
+  }
+
+  .pub-item__title {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .pub-item__title a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-1);
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .pub-item__title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .pub-item__title :global(svg) {
+    flex: 0 0 auto;
+  }
+
+  .pub-item__authors {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .pub-item__author--self {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .pub-item__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+    font-size: 0.875rem;
+    color: var(--text-subtle);
+  }
+
+  .pub-item__award {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .pub-item__summary {
+    max-width: var(--width-text);
+    margin-top: var(--space-4);
+    color: var(--text-muted);
+    line-height: var(--leading-snug);
+  }
+
+  .pub-item__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--space-2) var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .pub-item__disclosure summary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    padding-inline: var(--space-4);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    list-style: none;
+    transition:
+      background-color var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
+  }
+
+  .pub-item__disclosure summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .pub-item__disclosure summary::after {
+    content: '▾';
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .pub-item__disclosure[open] summary::after {
+    transform: rotate(-180deg);
+  }
+
+  .pub-item__disclosure summary:hover {
+    background: var(--surface-hover);
+    border-color: var(--text-subtle);
+  }
+
+  .pub-item__disclosure[open] {
+    flex: 1 1 100%;
+  }
+
+  .pub-item__disclosure-body {
+    margin-top: var(--space-4);
+  }
+
+  .pub-item__bibtex-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--space-2);
+  }
+
+  .pub-item__copy {
+    padding: var(--space-1) var(--space-3);
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .pub-item__copy:hover {
+    background: var(--surface-hover);
+  }
+
+  .pub-item__bibtex pre {
+    margin: 0;
+    padding: var(--space-4);
+    background: var(--surface-soft);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+  }
+
+  @media (max-width: 600px) {
+    .pub-item { flex-direction: column; }
+    .pub-item__media {
+      flex: none;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
+    }
+    .pub-item__body { flex: none; width: 100%; }
+  }
+</style>
+
+<script>
+  // Keep the image as a fallback; load animation only near the viewport.
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const previews = document.querySelectorAll<HTMLVideoElement>('[data-publication-video]');
+  const visible = new Set<HTMLVideoElement>();
+  const updatePreview = (video: HTMLVideoElement) => {
+    if (motion.matches || !visible.has(video)) {
+      video.pause();
+      if (motion.matches) video.hidden = true;
+      return;
+    }
+    if (!video.dataset.loaded) {
+      video.querySelectorAll<HTMLSourceElement>('source[data-src]').forEach(source => {
+        source.src = source.dataset.src!;
+      });
+      video.dataset.loaded = 'true';
+      video.load();
+    }
+    void video.play().then(() => {
+      video.hidden = motion.matches;
+    }).catch(() => { video.hidden = true; });
+  };
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const video = entry.target.querySelector<HTMLVideoElement>('video');
+      if (!video) return;
+      if (entry.isIntersecting) visible.add(video);
+      else visible.delete(video);
+      updatePreview(video);
+    });
+  }, { rootMargin: '160px' });
+  previews.forEach(video => observer.observe(video.parentElement!));
+  motion.addEventListener('change', () => previews.forEach(updatePreview));
+
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    const button = target.closest<HTMLButtonElement>('[data-copy-bibtex]');
+    if (!button) return;
+
+    const pre = button.closest('.pub-item__bibtex')?.querySelector('pre');
+    const text = pre?.textContent?.trim() ?? '';
+    const status = button.parentElement?.querySelector('[data-copy-status]');
+
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        button.textContent = 'Copied';
+        if (status) status.textContent = 'BibTeX copied to clipboard';
+        window.setTimeout(() => {
+          button.textContent = 'Copy';
+          if (status) status.textContent = '';
+        }, 1500);
+      })
+      .catch(() => {
+        if (status)
+          status.textContent =
+            'Could not copy automatically. Select and copy the BibTeX below.';
+      });
+  });
+</script>

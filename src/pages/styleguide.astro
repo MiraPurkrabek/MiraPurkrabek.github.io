@@ -1,0 +1,698 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import Tag from '../components/Tag.astro';
+import Icon, { type IconName } from '../components/Icon.astro';
+import Prose from '../components/Prose.astro';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const publications = (await getCollection('publications')).sort(
+  (a, b) => b.data.year - a.data.year,
+);
+const experience = (await getCollection('experience')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const recognition = (await getCollection('recognition')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const education = (await getCollection('education')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const contentCollections = [
+  { label: 'Projects', count: projects.length },
+  { label: 'Publications', count: publications.length },
+  { label: 'Experience', count: experience.length },
+  { label: 'Recognition', count: recognition.length },
+  { label: 'Education', count: education.length },
+];
+
+const colorGroups: {
+  label: string;
+  tokens: { name: string; desc: string }[];
+}[] = [
+  {
+    label: 'Surfaces',
+    tokens: [
+      { name: '--page-bg', desc: 'Page background' },
+      { name: '--surface', desc: 'Card / raised surface' },
+      { name: '--surface-soft', desc: 'Tinted cards, code blocks' },
+      { name: '--surface-hover', desc: 'Hover background' },
+    ],
+  },
+  {
+    label: 'Text',
+    tokens: [
+      { name: '--text', desc: 'Primary text' },
+      { name: '--text-muted', desc: 'Secondary text' },
+      { name: '--text-subtle', desc: 'Metadata, captions' },
+    ],
+  },
+  {
+    label: 'Borders',
+    tokens: [
+      { name: '--border', desc: 'Default border' },
+      { name: '--border-strong', desc: 'Hover / emphasis border' },
+    ],
+  },
+  {
+    label: 'Accent',
+    tokens: [
+      { name: '--accent', desc: 'Links, buttons, marks' },
+      { name: '--accent-hover', desc: 'Accent hover state' },
+      { name: '--accent-soft', desc: 'Accent-tinted background' },
+      { name: '--accent-contrast', desc: 'Text on accent fill' },
+    ],
+  },
+];
+
+const typeScale: { token: string; label: string }[] = [
+  { token: '--text-xs', label: 'Metadata' },
+  { token: '--text-sm', label: 'Captions, labels' },
+  { token: '--text-base', label: 'Body text' },
+  { token: '--text-lg', label: 'Lead paragraphs' },
+  { token: '--text-xl', label: 'Card titles' },
+  { token: '--text-2xl', label: 'Section headings' },
+  { token: '--text-3xl', label: 'Page titles' },
+  { token: '--text-4xl', label: 'Hero name' },
+];
+
+const spacingScale = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+const iconNames: IconName[] = [
+  'github',
+  'google-scholar',
+  'linkedin',
+  'orcid',
+  'mail',
+  'download',
+  'arrow-up-right',
+  'arrow-right',
+  'sun',
+  'moon',
+  'menu',
+  'close',
+];
+---
+
+<BaseLayout
+  title="Styleguide — Mira Purkrabek"
+  description="Internal reference of the design system: tokens, type, spacing, components, both themes."
+  noindex
+>
+  <Section id="colors">
+    <SectionHeading
+      eyebrow="Tokens"
+      heading="Colour"
+      lead="Toggle the theme to verify both palettes."
+    />
+    <div class="swatch-groups">
+      {
+        colorGroups.map((group) => (
+          <div class="swatch-group">
+            <p class="swatch-group__label">{group.label}</p>
+            <div class="swatch-grid">
+              {group.tokens.map((token) => (
+                <div class="swatch">
+                  <span
+                    class="swatch__color"
+                    style={`background: var(${token.name})`}
+                  />
+                  <span class="swatch__name">{token.name}</span>
+                  <span class="swatch__desc">{token.desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section id="type" tone="soft">
+    <SectionHeading eyebrow="Tokens" heading="Type scale" />
+    <div class="type-scale">
+      {
+        typeScale.map((step) => (
+          <div class="type-scale__row">
+            <span class="type-scale__meta">
+              {step.token} · {step.label}
+            </span>
+            <span
+              class="type-scale__sample"
+              style={`font-size: var(${step.token})`}
+            >
+              Purkrabek
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section id="spacing">
+    <SectionHeading eyebrow="Tokens" heading="Spacing scale" />
+    <div class="spacing-scale">
+      {
+        spacingScale.map((step) => (
+          <div class="spacing-scale__row">
+            <span class="spacing-scale__meta">--space-{step}</span>
+            <span
+              class="spacing-scale__bar"
+              style={`width: var(--space-${step})`}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section id="buttons" tone="soft">
+    <SectionHeading eyebrow="Components" heading="Buttons" />
+    <div class="component-row">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="primary" icon="arrow-right">With icon</Button>
+      <Button variant="secondary" icon="download" iconPosition="leading"
+        >Download CV</Button
+      >
+      <Button variant="primary" size="sm">Small</Button>
+      <Button variant="secondary" size="sm">Small</Button>
+    </div>
+  </Section>
+
+  <Section id="tags">
+    <SectionHeading eyebrow="Components" heading="Tags" />
+    <div class="component-row">
+      <Tag>Human Pose Estimation</Tag>
+      <Tag>Robust Computer Vision</Tag>
+      <Tag>Probabilistic Modeling</Tag>
+    </div>
+  </Section>
+
+  <Section id="cards" tone="soft">
+    <SectionHeading eyebrow="Components" heading="Cards" />
+    <div class="card-grid">
+      <Card>
+        <p class="card-demo__eyebrow">Static</p>
+        <h3 class="card-demo__title">Default surface</h3>
+        <p class="card-demo__body">
+          A card with no link — used for a unit of information that isn't itself
+          a target.
+        </p>
+      </Card>
+      <Card tone="soft">
+        <p class="card-demo__eyebrow">Static · soft</p>
+        <h3 class="card-demo__title">Soft tone</h3>
+        <p class="card-demo__body">
+          Same shape, tinted background — for cards inside an already-soft
+          section.
+        </p>
+      </Card>
+      <Card href="#cards">
+        <p class="card-demo__eyebrow">Interactive</p>
+        <h3 class="card-demo__title">Linked card</h3>
+        <p class="card-demo__body">
+          Hover or focus to see the border, shadow and lift transition.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <Section id="icons">
+    <SectionHeading
+      eyebrow="Components"
+      heading="Icons"
+      lead="1.5px stroke, 24×24 viewBox, currentColor."
+    />
+    <div class="icon-grid">
+      {
+        iconNames.map((name) => (
+          <div class="icon-grid__item">
+            <Icon name={name} />
+            <span>{name}</span>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section id="links" tone="soft">
+    <SectionHeading eyebrow="Components" heading="Links & focus" />
+    <p class="link-demo">
+      This is a <a href="#links">standard inline link</a> — hover to see the accent
+      shift, or tab to it to see the focus ring. Buttons above are keyboard-reachable
+      in source order.
+    </p>
+  </Section>
+
+  <Section id="prose">
+    <SectionHeading
+      eyebrow="Components"
+      heading="Prose"
+      lead="Long-form typography used by About, Coaching and article pages."
+    />
+    <Prose>
+      <h3>A sample heading</h3>
+      <p>
+        Body copy sits at <code>--text-base</code> with <code
+          >--leading-body</code
+        > line height. Czech diacritics render correctly in Inter: Jiří Matas,
+        Sokol Královské Vinohrady.
+      </p>
+      <ul>
+        <li>First-author papers at CVPR 2025 and ICCV 2025</li>
+        <li>Runs at under 0.5&nbsp;s latency on six 4K cameras</li>
+      </ul>
+      <blockquote>
+        A blockquote uses a left rule and muted, italic text.
+      </blockquote>
+      <table>
+        <thead>
+          <tr>
+            <th>Venue</th>
+            <th>Year</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CVPR</td>
+            <td>2025</td>
+            <td>First author</td>
+          </tr>
+          <tr>
+            <td>ICCV</td>
+            <td>2025</td>
+            <td>First author</td>
+          </tr>
+        </tbody>
+      </table>
+      <figure>
+        <div class="prose-figure-placeholder" aria-hidden="true"></div>
+        <figcaption>A figure caption, set smaller and muted.</figcaption>
+      </figure>
+    </Prose>
+  </Section>
+
+  <Section id="content" tone="soft">
+    <SectionHeading
+      eyebrow="Collections"
+      heading="Content"
+      lead="Entry counts and key fields for the collections that power the website."
+    />
+
+    <div class="content-counts">
+      {
+        contentCollections.map((c) => (
+          <div class="content-counts__item">
+            <span class="content-counts__count">{c.count}</span>
+            <span class="content-counts__label">{c.label}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="content-table-wrap">
+      <h3 class="content-table__heading">
+        Projects ({projects.length})
+      </h3>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Kind</th>
+            <th>Years</th>
+            <th>Featured</th>
+            <th>Tags</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            projects.map((p) => (
+              <tr>
+                <td>{p.data.title}</td>
+                <td>{p.data.kind}</td>
+                <td>{p.data.years}</td>
+                <td>{p.data.featured ? `✓ (${p.data.featuredOrder})` : '—'}</td>
+                <td>{p.data.tags.join(', ')}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-table-wrap">
+      <h3 class="content-table__heading">
+        Publications ({publications.length})
+      </h3>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Venue</th>
+            <th>Year</th>
+            <th>Role</th>
+            <th>Awards</th>
+            <th>Selected</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            publications.map((p) => (
+              <tr>
+                <td>{p.data.title}</td>
+                <td>{p.data.venue}</td>
+                <td>{p.data.year}</td>
+                <td>{p.data.role}</td>
+                <td>{p.data.awards.join(', ') || '—'}</td>
+                <td>{p.data.selected ? '✓' : '—'}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-table-wrap">
+      <h3 class="content-table__heading">
+        Experience ({experience.length})
+      </h3>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Org</th>
+            <th>Role</th>
+            <th>Period</th>
+            <th>Kind</th>
+            <th>In strip</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            experience.map((e) => (
+              <tr>
+                <td>{e.data.org}</td>
+                <td>{e.data.role}</td>
+                <td>{e.data.displayPeriod}</td>
+                <td>{e.data.kind}</td>
+                <td>{e.data.inStrip ? '✓' : '—'}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-table-wrap">
+      <h3 class="content-table__heading">
+        Recognition ({recognition.length})
+      </h3>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Org</th>
+            <th>Year</th>
+            <th>Kind</th>
+            <th>Selected</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            recognition.map((r) => (
+              <tr>
+                <td>{r.data.title}</td>
+                <td>{r.data.org}</td>
+                <td>{r.data.year}</td>
+                <td>{r.data.kind}</td>
+                <td>{r.data.selected ? '✓' : '—'}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-table-wrap">
+      <h3 class="content-table__heading">
+        Education ({education.length})
+      </h3>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Degree</th>
+            <th>Field</th>
+            <th>Institution</th>
+            <th>Period</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            education.map((ed) => (
+              <tr>
+                <td>{ed.data.degree}</td>
+                <td>{ed.data.field}</td>
+                <td>{ed.data.institution}</td>
+                <td>{ed.data.period}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  .swatch-groups {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-7);
+  }
+
+  .swatch-group__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-subtle);
+    margin-bottom: var(--space-3);
+  }
+
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .swatch__color {
+    display: block;
+    height: 56px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+  }
+
+  .swatch__name {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text);
+  }
+
+  .swatch__desc {
+    font-size: var(--text-xs);
+    color: var(--text-subtle);
+  }
+
+  .type-scale {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .type-scale__row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .type-scale__meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-subtle);
+  }
+
+  .type-scale__sample {
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .spacing-scale {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .spacing-scale__row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .spacing-scale__meta {
+    width: 8ch;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-subtle);
+  }
+
+  .spacing-scale__bar {
+    height: var(--space-4);
+    background: var(--accent);
+    border-radius: var(--radius-sm);
+  }
+
+  .component-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-5);
+  }
+
+  .card-demo__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-subtle);
+    margin-bottom: var(--space-2);
+  }
+
+  .card-demo__title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-2);
+  }
+
+  .card-demo__body {
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: var(--space-5);
+  }
+
+  .icon-grid__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-align: center;
+  }
+
+  .link-demo {
+    max-width: var(--width-text);
+  }
+
+  .prose-figure-placeholder {
+    height: 160px;
+    border-radius: var(--radius-md);
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+  }
+
+  .content-counts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+
+  .content-counts__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .content-counts__count {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .content-counts__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-subtle);
+  }
+
+  .content-table-wrap {
+    margin-top: var(--space-8);
+    overflow-x: auto;
+  }
+
+  .content-table-wrap:first-of-type {
+    margin-top: 0;
+  }
+
+  .content-table__heading {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-3);
+  }
+
+  .content-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  .content-table th {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-subtle);
+    text-align: left;
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--border-strong);
+    white-space: nowrap;
+  }
+
+  .content-table td {
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    vertical-align: top;
+  }
+
+  .content-table td:first-child {
+    color: var(--text);
+  }
+</style>

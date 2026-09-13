@@ -1,0 +1,269 @@
+---
+import { Picture } from 'astro:assets';
+import Container from '../Container.astro';
+import Icon from '../Icon.astro';
+import { site } from '../../data/site';
+import portrait from '../../assets/img/SKV_square_centered.png';
+import darkPortrait from '../../assets/img/SKV_square_centered_dark.png';
+---
+
+<section class="intro">
+  <Container size="page">
+    <div class="intro__grid">
+      <div class="intro__copy">
+        <p class="intro__role">Computer vision researcher &amp; engineer</p>
+        <div class="intro__name">
+          <h1>{site.preferredName}</h1>
+          <details class="name-note">
+            <summary>Mira or Miroslav?</summary>
+            <p>Mira is short for Miroslav — the name you'll find on my papers.
+              It's pronounced roughly{' '}
+              <span class="name-note__sound">“MEE-rah”</span>.</p>
+          </details>
+        </div>
+        <p class="intro__lead">
+          I work on understanding people, their bodies and the world around them
+          through images and videos.
+        </p>
+        <p>
+          I'm a PhD researcher at <a href="https://vrg.fel.cvut.cz/"
+            >CTU Prague</a
+          >, advised by <a href="https://cmp.felk.cvut.cz/~matas/">Jiří Matas</a
+          >, and currently at <a href="https://www.qualcomm.com/"
+            >Qualcomm XR Labs</a
+          > in Amsterdam. My PhD is about human bodies — detecting people,
+          estimating their pose and shape, and understanding their motion.
+          I also explore 3D reconstruction, spatial reasoning and how
+          vision-language models understand people. I like turning these ideas
+          into useful tools, from analysing complex footage to helping personal
+          AI assistants understand our surroundings.
+        </p>
+        <p class="intro__personal">
+          I've also spent eight years <a href="/coaching/">coaching floorball</a
+          >. Away from both, I like mountains, speciality coffee and a good epic fantasy book.
+        </p>
+        <div class="intro__links" aria-label="Profile and contact links">
+          <a href={`mailto:${site.email.primary}`}><Icon name="mail" size={19} />Email</a>
+          <a href={site.cvPath} aria-label="CV (PDF, 2 pages)"><Icon name="download" size={19} />CV <span>(2 pages)</span></a>
+          <a href={site.social.googleScholar}><Icon name="google-scholar" size={19} />Scholar</a>
+          <a href={site.social.github}><Icon name="github" size={19} />GitHub</a>
+          <a href={site.social.linkedin}><Icon name="linkedin" size={19} />LinkedIn</a>
+        </div>
+      </div>
+      <figure class="intro__portrait">
+        <Picture
+          class="portrait-light"
+          src={portrait}
+          alt="Mira Purkrabek"
+          formats={['avif', 'webp']}
+          fallbackFormat="jpg"
+          width={480}
+          height={520}
+          fit="cover"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <Picture
+          class="portrait-dark"
+          src={darkPortrait}
+          alt="Mira Purkrabek"
+          formats={['avif', 'webp']}
+          fallbackFormat="jpg"
+          width={480}
+          height={520}
+          fit="cover"
+          loading="eager"
+        />
+      </figure>
+    </div>
+    <section class="intro__highlights" aria-labelledby="highlights-heading">
+      <h2 id="highlights-heading">A few highlights</h2>
+      <ul class="intro__proof">
+        <li><a href="/publications/#papers">
+          <span class="intro__proof-label">First-author research</span>
+          <strong>CVPR &amp; ICCV</strong>
+          <span class="intro__proof-detail">Robust human perception <Icon name="arrow-up-right" size={16} /></span>
+        </a></li>
+        <li><a href="/work/#facis">
+          <span class="intro__proof-label">Forensic tools</span>
+          <strong>Used by the Czech Police</strong>
+          <span class="intro__proof-detail">Research in everyday use <Icon name="arrow-up-right" size={16} /></span>
+        </a></li>
+        <li><a href="/publications/#s23dr">
+          <span class="intro__proof-label">S23DR · CVPR 2026</span>
+          <strong>1st place</strong>
+          <span class="intro__proof-detail">3D reconstruction challenge <Icon name="arrow-up-right" size={16} /></span>
+        </a></li>
+      </ul>
+    </section>
+  </Container>
+</section>
+<style>
+  .intro { padding-top: var(--space-7); }
+  .intro__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: var(--space-8);
+    align-items: start;
+  }
+  .intro__copy { min-width: 0; container-type: inline-size; }
+  .intro__role {
+    color: var(--accent);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    margin-bottom: var(--space-2);
+  }
+  .intro__name {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+  h1 {
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+  }
+  .name-note { font-size: var(--text-xs); }
+  .name-note summary {
+    color: var(--text-subtle);
+    cursor: pointer;
+    list-style: none;
+    text-decoration: underline dotted;
+    text-underline-offset: 0.25em;
+    padding-block: var(--space-2);
+  }
+  .name-note summary::-webkit-details-marker { display: none; }
+  .name-note summary:hover, .name-note[open] summary { color: var(--accent); }
+  .name-note p {
+    position: absolute;
+    z-index: 5;
+    top: 100%;
+    left: 0;
+    width: min(100%, 24rem);
+    padding: var(--space-4);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+    color: var(--text);
+    font-size: var(--text-sm);
+    line-height: var(--leading-body);
+  }
+  .name-note__sound { white-space: nowrap; color: var(--accent); }
+  .intro__lead {
+    font-size: var(--text-lg);
+    line-height: 1.5;
+    margin-bottom: var(--space-3);
+    max-width: 45ch;
+  }
+  .intro__copy > p:not(.intro__role):not(.intro__lead) { color: var(--text-muted); }
+  .intro__personal { margin-top: var(--space-3); }
+  .intro__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2) var(--space-3);
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+  }
+  .intro__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex: 1 0 auto;
+    justify-content: center;
+    min-height: 44px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  @container (max-width: 34rem) {
+    .intro__links a { flex: 0 0 calc((100% - 2 * var(--space-3)) / 3); }
+  }
+  @container (max-width: 24rem) {
+    .intro__links a { flex-basis: calc((100% - var(--space-3)) / 2); }
+  }
+  .intro__links a:hover { text-decoration: underline; }
+  .intro__links :global(svg) { flex-shrink: 0; }
+  .intro__links span { color: var(--text-subtle); font-size: var(--text-xs); }
+  .intro__portrait { padding-top: var(--space-1); }
+  .intro__portrait :global(img) {
+    width: 100%;
+    aspect-ratio: 12 / 13;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+  }
+  .intro__portrait :global(.portrait-dark) { display: none; }
+  :global(:root[data-theme='dark']) .intro__portrait :global(.portrait-light) { display: none; }
+  :global(:root[data-theme='dark']) .intro__portrait :global(.portrait-dark) { display: block; }
+  .intro__highlights { margin-block: var(--space-5) var(--space-6); }
+  .intro__highlights h2 {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    margin-bottom: var(--space-3);
+    color: var(--text-muted);
+  }
+  .intro__proof {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    list-style: none;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--accent-soft);
+    overflow: hidden;
+  }
+  .intro__proof li + li { border-left: 1px solid var(--border-strong); }
+  .intro__proof a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    text-decoration: none;
+    color: var(--text);
+  }
+  .intro__proof a:hover { background: var(--surface-soft); }
+  .intro__proof a:focus-visible { outline-offset: -3px; }
+  .intro__proof-label { color: var(--accent); font-size: var(--text-sm); font-weight: 500; }
+  .intro__proof strong { font-size: var(--text-lg); font-weight: 600; line-height: var(--leading-snug); }
+  .intro__proof-detail {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2) var(--space-3);
+    margin-top: auto;
+    color: var(--text-muted);
+    font-size: var(--text-xs);
+  }
+  .intro__proof-detail :global(svg) { flex-shrink: 0; color: var(--accent); }
+  @media (max-width: 900px) {
+    .intro__grid { grid-template-columns: minmax(0, 1fr) 180px; gap: var(--space-6); }
+    .intro__proof a { padding: var(--space-4); }
+  }
+  @media (max-width: 640px) {
+    .intro { padding-top: var(--space-5); }
+    .intro__grid { grid-template-columns: minmax(0, 1fr) 100px; gap: var(--space-4); }
+    .intro__copy { display: contents; }
+    .intro__role { grid-column: 1; align-self: end; margin: 0; font-size: 0.875rem; }
+    .intro__name { grid-column: 1; margin: 0; gap: var(--space-1); }
+    h1 { font-size: 2rem; }
+    .name-note p { width: min(24rem, calc(100vw - 2 * var(--gutter))); max-width: none; }
+    .intro__portrait { grid-column: 2; grid-row: 1 / 3; padding: 0; }
+    .intro__copy > p:not(.intro__role), .intro__links { grid-column: 1 / -1; margin: 0; }
+    .intro__links a { flex: 0 0 calc((100% - 2 * var(--space-3)) / 3); }
+    .intro__proof { grid-template-columns: 1fr; }
+    .intro__proof li + li { border-left: 0; border-top: 1px solid var(--border-strong); }
+    .intro__proof a { gap: var(--space-1); }
+  }
+  @media (max-width: 480px) {
+    .intro__links a { flex-basis: calc((100% - var(--space-3)) / 2); }
+  }
+  @media (max-width: 360px) {
+    .intro__links a { flex-basis: 100%; }
+  }
+</style>

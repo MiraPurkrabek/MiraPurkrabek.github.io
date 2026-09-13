@@ -1,0 +1,19 @@
+org: Qualcomm
+timelineOrg: Qualcomm · Amsterdam
+role: Research Intern, XR Labs
+location: Amsterdam, Netherlands
+start: '2026-06'
+end: '2026-12'
+displayPeriod: Jun – Dec 2026
+kind: internship
+summary: Connecting 3D reconstruction, spatial reasoning and human body understanding for personal AI, smart glasses and on-device AI.
+inStrip: true
+order: 1
+logo: /assets/logos/qualcomm.svg
+orgUrl: https://www.qualcomm.com/
+homepage:
+  name: Qualcomm
+  department: XR Labs · Amsterdam
+  position: Research Intern
+  period: '2026'
+  order: 2

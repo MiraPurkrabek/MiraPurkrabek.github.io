@@ -1,0 +1,21 @@
+org: Porsche Engineering Services
+role: Software Developer — Automotive & High Power Charging
+location: Prague, Czech Republic
+start: '2020-03'
+end: '2022-07'
+displayPeriod: Mar 2020 – Jul 2022
+kind: industry
+summary: Macan control-unit software and High Power Charging software for Taycan and other electric vehicles.
+details:
+  - C/C++ production software, including Plug & Charge.
+  - Python automation for daily testing.
+inStrip: true
+order: 4
+logo: /assets/logos/porsche-crest.png
+orgUrl: https://www.porscheengineering.com/
+homepage:
+  name: Porsche Engineering
+  position: Software Developer
+  period: 2020–2022
+  logoAlt: Porsche AG crest
+  order: 4

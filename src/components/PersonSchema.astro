@@ -1,0 +1,116 @@
+---
+// The homepage describes one person and one website. Stable @ids connect Mira's preferred public
+// name with his official academic name and with profiles that use either form.
+import { site } from '../data/site';
+import { getCollection } from 'astro:content';
+const education = (await getCollection('education')).sort((a, b) => a.data.order - b.data.order);
+
+export interface Props {
+  description: string;
+}
+
+const { description } = Astro.props;
+
+const homeUrl = new URL('/', site.siteUrl).toString();
+const websiteId = `${homeUrl}#website`;
+const webpageId = `${homeUrl}#webpage`;
+const personId = `${homeUrl}#person`;
+
+const person = {
+  '@type': 'Person',
+  '@id': personId,
+  name: site.preferredName,
+  alternateName: [site.officialName],
+  url: homeUrl,
+  image: new URL(site.ogImage, site.siteUrl).toString(),
+  email: `mailto:${site.email.primary}`,
+  jobTitle: 'Computer Vision Researcher',
+  description,
+  mainEntityOfPage: { '@id': webpageId },
+  affiliation: {
+    '@type': 'Organization',
+    name: 'Visual Recognition Group, Czech Technical University in Prague',
+    url: 'https://vrg.fel.cvut.cz/',
+  },
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Qualcomm',
+    url: 'https://www.qualcomm.com/',
+  },
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Czech Technical University in Prague',
+    url: 'https://fel.cvut.cz/en',
+  },
+  subjectOf: ['/about/', '/work/', '/publications/', '/coaching/'].map((path) => ({
+    '@type': 'WebPage', url: new URL(path, site.siteUrl).toString(),
+  })),
+  hasCredential: education.filter(({ data }) => !data.degree.includes('in progress')).map(({ data }) => ({
+    '@type': 'EducationalOccupationalCredential',
+    name: `${data.degree} · ${data.field}`,
+    credentialCategory: data.degree,
+    recognizedBy: { '@type': 'CollegeOrUniversity', name: data.institution },
+  })),
+  knowsAbout: [
+    'Human pose estimation',
+    'Computer vision',
+    'Machine learning',
+    '3D reconstruction',
+    'Video analysis',
+    'Robust perception',
+    'Spatial reasoning',
+    'Human body shape estimation',
+    'Vision-language models',
+    'Personal AI',
+    'Python',
+    'C / C++',
+    'PyTorch',
+    'OpenCV',
+    'SLURM',
+    'Git',
+    'SMPL',
+    'CUDA',
+    'Blender',
+    'MMCV',
+    'Teaching and research supervision',
+    'Floorball coaching',
+  ],
+  sameAs: [
+    site.social.github,
+    site.social.googleScholar,
+    site.social.orcid,
+    site.social.linkedin,
+    site.institutionalProfile,
+  ],
+};
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: homeUrl,
+      name: site.preferredName,
+      alternateName: [site.officialName],
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': webpageId,
+      url: homeUrl,
+      name: site.preferredName,
+      description,
+      isPartOf: { '@id': websiteId },
+      mainEntity: { '@id': personId },
+    },
+    person,
+  ],
+};
+---
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+/>

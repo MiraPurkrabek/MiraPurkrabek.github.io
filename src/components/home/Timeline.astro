@@ -1,0 +1,110 @@
+---
+import { getCollection } from 'astro:content';
+import Icon from '../Icon.astro';
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { site } from '../../data/site';
+
+const experience = await getCollection('experience');
+const timelineEntries = experience
+  .filter((entry) => entry.data.kind !== 'leadership')
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Section id="experience" tone="soft">
+  <SectionHeading eyebrow="Trajectory" heading="Experience" />
+
+  <ol class="timeline">
+    {
+      timelineEntries.map((entry) => (
+        <li class="timeline__entry">
+          <p class="timeline__period">{entry.data.displayPeriod}</p>
+          <div class="timeline__body">
+            <p class="timeline__org">
+              {entry.data.timelineOrg ?? entry.data.org}
+            </p>
+            <h3 class="timeline__role">{entry.data.role}</h3>
+            <p class="timeline__summary">{entry.data.summary}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+
+  <div class="timeline__actions">
+    <a href="/about"
+      >Full background on the About page <Icon
+        name="arrow-right"
+        size={16}
+      /></a
+    >
+    <a href={site.cvPath} target="_blank" rel="noopener">
+      CV (PDF) <Icon name="download" size={16} />
+    </a>
+  </div>
+</Section>
+
+<style>
+  .timeline {
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .timeline__entry {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    padding-block: var(--space-6);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline__period,
+  .timeline__org {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .timeline__period {
+    color: var(--text-subtle);
+  }
+
+  .timeline__org {
+    margin-bottom: var(--space-2);
+    color: var(--text-subtle);
+    text-transform: uppercase;
+  }
+
+  .timeline__role {
+    margin-bottom: var(--space-2);
+    font-size: var(--text-base);
+    line-height: var(--leading-snug);
+  }
+
+  .timeline__summary {
+    color: var(--text-muted);
+  }
+
+  .timeline__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-6);
+    margin-top: var(--space-6);
+  }
+
+  .timeline__actions a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+
+  @media (min-width: 640px) {
+    .timeline__entry {
+      grid-template-columns: 160px minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+  }
+</style>

@@ -1,0 +1,108 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import ProjectEntry from '../components/ProjectEntry.astro';
+
+const projects = await getCollection('projects');
+
+const groups = [
+  {
+    id: 'projects',
+    heading: 'Research & applied projects',
+    kinds: ['research', 'applied'],
+    tone: 'default' as const,
+  },
+  {
+    id: 'tools',
+    heading: 'Tools & open source',
+    kinds: ['tool'],
+    tone: 'default' as const,
+  },
+].map((group) => ({
+  ...group,
+  entries: projects
+    .filter((project) => group.kinds.includes(project.data.kind))
+    .sort((a, b) => a.data.order - b.data.order),
+}));
+
+const title = 'Work — Mira Purkrabek';
+const description =
+  'Long-term computer vision projects: spatial reasoning at Qualcomm, forensic tools for the Czech Police, infant development research and sports analysis.';
+---
+
+<BaseLayout title={title} description={description}>
+  <Section>
+    <h1 class="work-hero__title">Work</h1>
+    <p class="work-hero__lead">
+      The longer-running projects behind my work: the problems, the people I work
+      with, and the systems and research that come out of them.
+    </p>
+  </Section>
+
+  {
+    groups.map((group) => (
+      <Section id={group.id} tone={group.tone}>
+        <h2 class="work-group__heading">{group.heading}</h2>
+        <div class="work-group__list">
+          {group.entries.map((entry) => (
+            <ProjectEntry project={entry} />
+          ))}
+        </div>
+      </Section>
+    ))
+  }
+
+  <Section size="text">
+    <p class="work-closing">
+      Papers, awards and reviewing recognition are collected in <a href="/publications/">Publications</a>.
+    </p>
+  </Section>
+
+  <Section size="text" tone="soft">
+    <h2 class="work-notes__heading">Notes &amp; write-ups</h2>
+    <p class="work-notes__line">
+      <a href="/webcam_demo/">How I Did My CVPR Poster Session Live Demo</a> — running
+      a live, interactive pose demo off a tablet mounted on the poster board, computed
+      on a remote GPU server.
+    </p>
+  </Section>
+</BaseLayout>
+
+<style>
+  .work-hero__title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .work-hero__lead {
+    max-width: var(--width-text);
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    color: var(--text-muted);
+  }
+
+  .work-group__heading {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-7);
+  }
+
+  .work-group__list {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .work-closing {
+    text-align: center;
+    color: var(--text-muted);
+  }
+
+  .work-notes__heading {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .work-notes__line {
+    color: var(--text-muted);
+  }
+</style>

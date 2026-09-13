@@ -1,0 +1,42 @@
+---
+title: 'FACIS — forensic image and video tools'
+tagline: Automatic processing of images and video for the Criminal Police Service
+kind: applied
+years: '2025'
+role: Contributor
+org: 'CTU Prague · Brno University of Technology'
+featured: true
+featuredOrder: 4
+featuredMeta: 'Applied system · CTU + BUT · Ministry of the Interior'
+order: 1
+summary: >-
+  A suite of forensic tools that automatically processes images and video of human figures for
+  the Czech Police's Criminal Police Service.
+highlights:
+  - Commissioned by the Ministry of the Interior for the Police of the Czech Republic's Criminal
+    Police Service
+  - Now in active use by the Police
+  - Awarded Excellent Research Results by the Ministry of the Interior, November 2025
+tags:
+  - Human Pose Estimation
+  - Detection
+  - Deployment
+links:
+  grant: https://starfos.tacr.cz/cs/projekty/VJ02010041
+linkLabels:
+  grant: Grant description
+image:
+  src: '../../assets/img/PCR.png'
+  alt: "Emblem of the Police of the Czech Republic, whose Criminal Police Service commissioned and now uses FACIS."
+status: active
+---
+
+A collaboration with Brno University of Technology (VUT), commissioned by the Ministry of the
+Interior for the Police of the Czech Republic's Criminal Police Service. The tools automate the
+processing of images and video, focused on detecting and analysing human figures to support
+criminal investigations. The software is now in active use by the Police, and the project was
+awarded Excellent Research Results by the Ministry of the Interior in November 2025.
+
+The project also produced an automated sensitive-content detection system, now deployed and used by the Czech Police. Its research outputs include [ProbPose (CVPR 2025)](/publications/#probpose) and
+[BBox-Mask-Pose (ICCV 2025)](/publications/#bbox-mask-pose). These papers address
+parts of the broader challenge of analysing people reliably in real-world imagery.

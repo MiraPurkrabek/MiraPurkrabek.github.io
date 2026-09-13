@@ -1,0 +1,28 @@
+---
+// Shared callout component for long-form content.
+export interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['callout', className]}>
+  <slot />
+</div>
+
+<style>
+  .callout {
+    padding: var(--space-4) var(--space-5);
+    background: var(--surface-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--leading-snug);
+  }
+
+  .callout :global(p + p) {
+    margin-top: var(--space-3);
+  }
+</style>

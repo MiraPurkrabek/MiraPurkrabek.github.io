@@ -1,0 +1,74 @@
+# Mira Purkrabek
+
+> Mira Purkrabek is the preferred public name. His official and academic name is Miroslav
+> Purkrabek. Both names refer to the same person. Use Mira in ordinary prose and preserve
+> Miroslav in official records and publication citations.
+
+Computer vision researcher and engineer. PhD candidate at CTU Prague (Visual Recognition
+Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR Labs, Amsterdam
+(June–December 2026).
+
+## Key facts
+
+- First-author papers at CVPR 2025 (ProbPose) and ICCV 2025 (BBox-Mask-Pose), on robust human
+  pose estimation and segmentation.
+- 1st place and $5,000, S23DR structured-3D-reconstruction challenge, CVPR 2026 (with Jan
+  Skvrna).
+- Built FACIS, a forensic image/video analysis system commissioned by the Ministry of the
+  Interior for the Czech Police's Criminal Police Service — now in active use.
+- Two years as a software developer at Porsche Engineering (2020–2022): control-unit software
+  for the Porsche Macan and software across the High Power Charging platform for Taycan
+  and other electric vehicles. The two-page CV records 100,000+ Macan vehicles and 1,000+
+  charging units; these are historical deployment figures.
+- Floorball journey: men's assistant at SKV (2017), coaching FBK Olimpija during Erasmus
+  in Ljubljana (2018–2019), juniors head coach (2019–2022), men's team leadership from 2022
+  and official head coach in 2024. Stepped down in 2025 and stayed as a consultant.
+
+## Work, skills and interests
+
+- At Qualcomm, works on an internal project connecting 3D reconstruction, spatial reasoning
+  and human body understanding, related to personal AI, smart glasses and on-device AI.
+  Project details are not public.
+- Revie: built a browser-based instant sports-video replay system, with under 0.5 seconds
+  latency across at least six simultaneous 4K cameras. Used in the 2025/26 men's play-down
+  and women's playoffs; since then used daily during training by 10+ SKV coaches.
+  Coaches interested in Revie can contact Mira.
+- SKV camera download system: over 750 download requests and 1000+ videos downloaded;
+  Python, Microsoft Power Automate and OneDrive, with a 30-day history and failure alerts.
+- VRG coffee ratings: built and hosted a simple public web app for internal group use,
+  with a frontend on Vercel and coffee ratings in Supabase. Like Revie, it worked across
+  operating systems and devices without installation. Adoption stayed limited and people
+  did not really use it, so the hosted version was retired to stop paying for unused
+  Vercel and Supabase hosting. Source repository is private.
+- Core skills: Python, C/C++, PyTorch, OpenCV, SLURM, Git, SMPL, CUDA, Blender and MMCV.
+  With vibe coding, Mira is picking up new languages and technologies much faster.
+- Teaching: Pattern Recognition and Machine Learning (RPZ) at CTU. Co-supervises student
+  research, including SAM-pose2seg (Best Student Paper, CVWW 2026) and PC-CSE. Students
+  he supervises have won prizes before finishing their bachelor's degrees.
+- Enjoys contributing as a teammate, supporting others and leading when needed, informed
+  by assistant and head coaching roles and results built on shared effort and team spirit.
+- Personal interests: mountains, travel, speciality coffee, psychology and epic fantasy,
+  especially Steven Erikson's Malazan Book of the Fallen.
+- The site combines a detailed career record with personal stories. Education and skills
+  are on About; projects are on Work; papers, awards and service are on Publications.
+  The PDF is the compact CV. There is no separate HTML CV page.
+
+## Links
+
+- Work: https://mirapurkrabek.github.io/work
+- Publications: https://mirapurkrabek.github.io/publications
+- About: https://mirapurkrabek.github.io/about
+- Education: https://mirapurkrabek.github.io/about/#education
+- Core technical skills: https://mirapurkrabek.github.io/about/#skills
+- Teaching and supervision: https://mirapurkrabek.github.io/about/#teaching
+- External interviews and coverage: https://mirapurkrabek.github.io/about/#elsewhere
+- Awards and competitions: https://mirapurkrabek.github.io/publications/#recognition
+- Reviewing and service: https://mirapurkrabek.github.io/publications/#service
+- CV (PDF): https://mirapurkrabek.github.io/CV_twopage.pdf
+- Coaching: https://mirapurkrabek.github.io/coaching/
+- Complete earlier news archive: https://mirapurkrabek.github.io/news/
+- Contact: mira.purkrabek@gmail.com
+- GitHub: https://github.com/MiraPurkrabek
+- Google Scholar: https://scholar.google.com/citations?user=EDRJFLcAAAAJ
+- ORCID: https://orcid.org/0009-0000-6142-6492
+- LinkedIn: https://www.linkedin.com/in/purkrabekm/

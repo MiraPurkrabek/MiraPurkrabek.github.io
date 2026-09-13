@@ -1,0 +1,359 @@
+---
+import { Image } from 'astro:assets';
+import { render, type CollectionEntry } from 'astro:content';
+import Button from './Button.astro';
+import Tag from './Tag.astro';
+import Icon from './Icon.astro';
+import { videoPreviews } from '../data/video-previews';
+
+export interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+const { Content } = await render(project);
+
+const defaultLinkOrder = [
+  ['project', 'Project'],
+  ['paper', 'Paper'],
+  ['code', 'Code'],
+  ['demo', 'Demo'],
+  ['models', 'Models'],
+  ['dataset', 'Dataset'],
+  ['grant', 'Grant'],
+  ['article', 'Article'],
+] as const;
+
+const fallbackLabels = Object.fromEntries(defaultLinkOrder) as Record<
+  (typeof defaultLinkOrder)[number][0],
+  string
+>;
+
+const links = defaultLinkOrder.flatMap(([key]) => {
+  const href = data.links?.[key];
+  return href
+    ? [{ href, label: data.linkLabels?.[key] ?? fallbackLabels[key] }]
+    : [];
+});
+const primaryHref = links[0]?.href;
+const meta = [data.years, data.role, data.org].filter(Boolean).join(' · ');
+const preview = videoPreviews[project.id];
+---
+
+<article
+  id={project.id}
+  class:list={['project-entry', { 'project-entry--no-image': !data.image, 'project-entry--logo': data.image?.presentation === 'logo' }]}
+>
+  {
+    data.image && (
+      <div class="project-entry__media">
+        {preview ? (
+          <Fragment>
+          <video
+            class="project-entry__image"
+            muted
+            loop
+            playsinline
+            preload="none"
+            data-poster={preview.poster}
+            width={preview.width}
+            height={preview.height}
+            aria-label={data.image.alt}
+            data-lazy-video
+          >
+            <source data-src={preview.webm} type="video/webm" />
+            <source data-src={preview.mp4} type="video/mp4" />
+          </video>
+          <noscript>
+            <img
+              src={preview.poster}
+              alt={data.image.alt}
+              width={preview.width}
+              height={preview.height}
+              class="project-entry__image"
+            />
+          </noscript>
+          </Fragment>
+        ) : (
+          <Image
+            src={data.image.src}
+            alt={data.image.alt}
+            loading="lazy"
+            decoding="async"
+            class="project-entry__image"
+          />
+        )}
+      </div>
+    )
+  }
+
+  <div class="project-entry__body">
+    <p class="project-entry__meta">{meta}</p>
+    <h3 class="project-entry__title">
+      {
+        primaryHref ? (
+          <a href={primaryHref} target="_blank" rel="noopener">
+            {data.title}
+            <Icon name="arrow-up-right" size={18} />
+          </a>
+        ) : (
+          data.title
+        )
+      }
+    </h3>
+    <p class="project-entry__tagline">{data.tagline}</p>
+    <div class="project-entry__description">
+      <Content />
+    </div>
+
+    {
+      data.highlights.length > 0 && (
+        <ul class="project-entry__highlights">
+          {data.highlights.map((highlight) => (
+            <li>{highlight}</li>
+          ))}
+        </ul>
+      )
+    }
+
+    {
+      data.tags.length > 0 && (
+        <div class="project-entry__tags">
+          {data.tags.map((tag) => (
+            <Tag>{tag}</Tag>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      links.length > 0 ? (
+        <div
+          class="project-entry__links"
+          role="group"
+          aria-label={`${data.title} links`}
+        >
+          {links.map(({ href, label }) => (
+            <Button
+              href={href}
+              variant="secondary"
+              size="sm"
+              icon="arrow-up-right"
+              target="_blank"
+            >
+              {label}
+            </Button>
+          ))}
+        </div>
+      ) : (
+        <p class="project-entry__internal">
+          <em>{data.linkNote ?? 'Internal system — happy to talk about it.'}</em>
+        </p>
+      )
+    }
+  </div>
+</article>
+
+<script>
+  // Poster images are lazy-loaded the same way as the video sources below — a <video poster>
+  // has no native loading="lazy" equivalent, so without this every card's poster (tens of KB
+  // each) would fetch eagerly on page load regardless of scroll position, competing with the
+  // actually-critical above-the-fold resources for bandwidth. Reduced motion still gets the
+  // poster (it's just a static image) but never fetches or plays the video itself.
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)',
+  ).matches;
+  const videos = document.querySelectorAll(
+    '.project-entry video[data-lazy-video]',
+  );
+
+  const hydrateVideo = (video: HTMLVideoElement) => {
+    if (!video.poster && video.dataset.poster) {
+      video.poster = video.dataset.poster;
+    }
+
+    if (video.dataset.lazyVideoHydrated) return;
+    video.dataset.lazyVideoHydrated = 'true';
+    if (prefersReducedMotion) return;
+
+    const sources = video.querySelectorAll('source[data-src]');
+    sources.forEach((source) => {
+      if (source instanceof HTMLSourceElement && source.dataset.src) {
+        source.src = source.dataset.src;
+      }
+    });
+    if (sources.length > 0) {
+      video.load();
+      void video.play().catch(() => undefined);
+    }
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const video = entry.target;
+          if (video instanceof HTMLVideoElement) {
+            hydrateVideo(video);
+            observer.unobserve(video);
+          }
+        });
+      },
+      { rootMargin: '200px 0px' },
+    );
+
+    videos.forEach((video) => {
+      if (video instanceof HTMLVideoElement) observer.observe(video);
+    });
+  } else {
+    videos.forEach((video) => {
+      if (video instanceof HTMLVideoElement) hydrateVideo(video);
+    });
+  }
+</script>
+
+<style>
+  .project-entry {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--border);
+    transition:
+      border-color var(--dur) var(--ease),
+      box-shadow var(--dur) var(--ease);
+  }
+
+  .project-entry:hover {
+    border-color: var(--border-strong);
+    box-shadow: none;
+  }
+
+  .project-entry__media {
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    padding: var(--space-3);
+    box-sizing: border-box;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+  }
+
+  .project-entry__media :global(img),
+  .project-entry__media :global(video) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .project-entry--logo .project-entry__media { padding: var(--space-5); }
+  :global(:root[data-theme='dark']) #qualcomm-spatial-reasoning .project-entry__media {
+    background: #eef3fa;
+  }
+
+  .project-entry__meta {
+    margin-bottom: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-subtle);
+  }
+
+  .project-entry__title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-2);
+  }
+
+  .project-entry__title a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-1);
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .project-entry__title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .project-entry__title :global(svg) {
+    flex: 0 0 auto;
+  }
+
+  .project-entry__tagline {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .project-entry__description {
+    margin-top: var(--space-3);
+    color: var(--text-muted);
+    line-height: var(--leading-snug);
+  }
+
+  .project-entry__description :global(p + p) {
+    margin-top: var(--space-3);
+  }
+
+  .project-entry__highlights {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project-entry__highlights li {
+    position: relative;
+    padding-left: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .project-entry__highlights li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    border-radius: var(--radius-full);
+    background: var(--accent);
+  }
+
+  .project-entry__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .project-entry__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .project-entry__internal {
+    margin-top: var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--text-subtle);
+  }
+
+  @media (min-width: 640px) {
+    .project-entry {
+      grid-template-columns: 210px minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .project-entry--no-image {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

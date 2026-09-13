@@ -1,0 +1,112 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+
+export interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'md' | 'sm';
+  icon?: IconName;
+  iconPosition?: 'leading' | 'trailing';
+  type?: 'button' | 'submit';
+  target?: string;
+  rel?: string;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  icon,
+  iconPosition = 'trailing',
+  type = 'button',
+  target,
+  rel,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const iconSize = size === 'sm' ? 16 : 18;
+const relValue =
+  target === '_blank' ? [rel, 'noopener'].filter(Boolean).join(' ') : rel;
+---
+
+<Tag
+  class:list={['btn', className]}
+  data-variant={variant}
+  data-size={size}
+  href={href}
+  type={href ? undefined : type}
+  target={target}
+  rel={relValue}
+  {...rest}
+>
+  {icon && iconPosition === 'leading' && <Icon name={icon} size={iconSize} />}
+  <span><slot /></span>
+  {icon && iconPosition === 'trailing' && <Icon name={icon} size={iconSize} />}
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    padding-inline: var(--space-5);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition:
+      background-color var(--dur) var(--ease),
+      color var(--dur) var(--ease),
+      border-color var(--dur) var(--ease),
+      transform var(--dur) var(--ease);
+  }
+
+  .btn[data-size='sm'] {
+    min-height: 44px;
+    padding-inline: var(--space-4);
+    font-size: var(--text-xs);
+  }
+
+  .btn[data-variant='primary'] {
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  .btn[data-variant='primary']:hover {
+    background: var(--accent-hover);
+  }
+
+  .btn[data-variant='secondary'] {
+    background: var(--surface);
+    color: var(--text);
+    border-color: var(--border-strong);
+  }
+
+  .btn[data-variant='secondary']:hover {
+    background: var(--surface-hover);
+    border-color: var(--text-subtle);
+  }
+
+  .btn[data-variant='ghost'] {
+    background: transparent;
+    color: var(--accent);
+    padding-inline: var(--space-2);
+  }
+
+  .btn[data-variant='ghost']:hover {
+    color: var(--accent-hover);
+    background: var(--accent-soft);
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+</style>

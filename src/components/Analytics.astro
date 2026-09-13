@@ -1,0 +1,27 @@
+---
+// GA4 is async and production-only, rendered after content so it cannot block first paint.
+// It is skipped on the internal styleguide.
+const MEASUREMENT_ID = 'G-1YMZGNY57C';
+const isStyleguide = Astro.url.pathname.replace(/\/$/, '') === '/styleguide';
+const shouldLoad = import.meta.env.PROD && !isStyleguide;
+---
+
+{
+  shouldLoad && (
+    <>
+      <script
+        is:inline
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`}
+      />
+      <script is:inline define:vars={{ MEASUREMENT_ID }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', MEASUREMENT_ID);
+      </script>
+    </>
+  )
+}

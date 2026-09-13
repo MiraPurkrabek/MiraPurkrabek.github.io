@@ -1,0 +1,27 @@
+---
+export interface Props {
+  size?: 'page' | 'text' | 'narrow';
+  class?: string;
+}
+
+const { size = 'page', class: className } = Astro.props;
+---
+
+<div class:list={['container', className]} data-size={size}>
+  <slot />
+</div>
+
+<style>
+  .container {
+    width: min(100% - 2 * var(--gutter), var(--width-page));
+    margin-inline: auto;
+  }
+
+  .container[data-size='text'] {
+    width: min(100% - 2 * var(--gutter), var(--width-text));
+  }
+
+  .container[data-size='narrow'] {
+    width: min(100% - 2 * var(--gutter), var(--width-narrow));
+  }
+</style>

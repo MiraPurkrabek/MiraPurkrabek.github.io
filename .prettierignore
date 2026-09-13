@@ -1,0 +1,11 @@
+# build output
+dist/
+.astro/
+
+# static assets served as-is
+public/
+
+# lockfile
+package-lock.json
+
+*.md

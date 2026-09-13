@@ -1,0 +1,155 @@
+---
+// Data-driven from the `publications` collection. The heading uses each paper's short project
+// name (matched by id against `projects`) rather than a full academic title. Link buttons render
+// the available links for each entry.
+import { getCollection } from 'astro:content';
+import Section from '../Section.astro';
+import SectionHeading from '../SectionHeading.astro';
+import Button from '../Button.astro';
+import { site } from '../../data/site';
+
+const [publications, projects] = await Promise.all([
+  getCollection('publications'),
+  getCollection('projects'),
+]);
+
+const selected = publications
+  .filter((entry) => entry.data.selected)
+  .sort((a, b) => b.data.year - a.data.year);
+
+const linkOrder = [
+  ['project', 'Project'],
+  ['paper', 'Paper'],
+  ['arxiv', 'arXiv'],
+  ['code', 'Code'],
+  ['demo', 'Demo'],
+  ['models', 'Models'],
+  ['dataset', 'Dataset'],
+] as const;
+
+const surname = (name: string) => name.trim().split(/\s+/).pop() ?? name;
+
+const rows = selected.map((pub) => {
+  const project = projects.find((p) => p.id === pub.id);
+  const shortTitle = project?.data.title ?? pub.data.title;
+  const authors = pub.data.authors.map(surname).join(', ');
+  const links = linkOrder.flatMap(([key, label]) => {
+    const href = pub.data.links?.[key];
+    return href ? [{ href, label }] : [];
+  });
+
+  return { id: pub.id, shortTitle, authors, links, data: pub.data };
+});
+---
+
+<Section id="publications">
+  <SectionHeading
+    eyebrow="Peer-reviewed"
+    heading="Selected publications"
+    seeAll={{ href: '/publications', label: 'All publications' }}
+  />
+
+  <ul class="pub-list">
+    {
+      rows.map((row) => (
+        <li class="pub-row">
+          <p class="pub-row__title">
+            {row.shortTitle} — {row.data.summary}
+          </p>
+          <div class="pub-row__foot">
+            <p class="pub-row__meta">
+              {row.data.venue} · {row.authors}
+              {row.data.awards.length > 0 && (
+                <span class="pub-row__award">
+                  {' '}
+                  · {row.data.awards.join(', ')}
+                </span>
+              )}
+            </p>
+            {row.links.length > 0 && (
+              <div
+                class="pub-row__links"
+                role="group"
+                aria-label={`${row.shortTitle} links`}
+              >
+                {row.links.map((link) => (
+                  <Button
+                    href={link.href}
+                    variant="ghost"
+                    size="sm"
+                    icon="arrow-up-right"
+                    target="_blank"
+                  >
+                    {link.label}
+                  </Button>
+                ))}
+              </div>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="pub-list__note">
+    Full list, including supervised work, on the publications page. <a
+      href={site.social.googleScholar}
+      target="_blank"
+      rel="noopener">Google Scholar ↗</a
+    >
+  </p>
+</Section>
+
+<style>
+  .pub-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .pub-row {
+    padding-block: var(--space-6);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pub-row__title {
+    max-width: 68ch;
+    margin-bottom: var(--space-3);
+    font-size: var(--text-base);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+  }
+
+  .pub-row__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-6);
+  }
+
+  .pub-row__meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-subtle);
+  }
+
+  .pub-row__award {
+    color: var(--accent);
+  }
+
+  .pub-row__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-2);
+    margin-left: calc(var(--space-2) * -1);
+  }
+
+  .pub-list__note {
+    margin-top: var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+</style>

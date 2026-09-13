@@ -1,0 +1,75 @@
+---
+// Two-state light/dark toggle. The OS default is honoured on first visit by BaseLayout's inline
+// bootstrap script, while a two-state cycle keeps the icon logic and click handler simple.
+import Icon from './Icon.astro';
+---
+
+<button type="button" class="theme-toggle" aria-label="Toggle theme">
+  <Icon name="sun" class="theme-toggle__icon theme-toggle__icon--sun" />
+  <Icon name="moon" class="theme-toggle__icon theme-toggle__icon--moon" />
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    transition:
+      border-color var(--dur) var(--ease),
+      background-color var(--dur) var(--ease);
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--border-strong);
+    background: var(--surface-hover);
+  }
+
+  .theme-toggle :global(.theme-toggle__icon) {
+    display: none;
+  }
+
+  :global(:root:not([data-theme='dark'])) .theme-toggle :global(.theme-toggle__icon--sun) {
+    display: block;
+  }
+
+  :global(:root[data-theme='dark']) .theme-toggle :global(.theme-toggle__icon--moon) {
+    display: block;
+  }
+</style>
+
+<script>
+  // Header renders this component twice (desktop nav + mobile controls), so instances are
+  // wired up by class, not id, and every click keeps both in sync.
+  const STORAGE_KEY = 'theme';
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.theme-toggle');
+
+  const currentTheme = () => (root.dataset.theme === 'dark' ? 'dark' : 'light');
+
+  const updateLabels = () => {
+    const theme = currentTheme();
+    const next = theme === 'dark' ? 'light' : 'dark';
+    buttons.forEach((button) => {
+      button.setAttribute('aria-label', `Theme: ${theme}. Switch to ${next}.`);
+    });
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const next = currentTheme() === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      localStorage.setItem(STORAGE_KEY, next);
+      updateLabels();
+    });
+  });
+
+  updateLabels();
+</script>

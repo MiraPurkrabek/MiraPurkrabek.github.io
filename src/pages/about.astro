@@ -1,0 +1,206 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Prose from '../components/Prose.astro';
+import Contact from '../components/home/Contact.astro';
+import { site } from '../data/site';
+import { coverage } from '../data/coverage';
+const education = (await getCollection('education')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="About — Mira Purkrabek"
+  description="Mira Purkrabek: computer vision research, engineering, teaching at CTU Prague, floorball coaching, and life outside work."
+>
+  <Section size="text">
+    <h1>About me</h1>
+    <Prose>
+      <p class="lead">
+        I'm Mira. I work in computer vision, used to spend most evenings in a
+        floorball hall, and like being in the mountains whenever I can.
+      </p>
+      <h2>Research, via a sports hall</h2>
+      <p>
+        My first computer vision projects grew out of floorball. For my
+        bachelor's and master's theses at CTU, I worked on tracking players
+        across cameras. It was a way to connect something I was studying with a
+        sport I already spent a lot of time thinking about.
+      </p>
+      <p>
+        At Porsche Engineering, I worked on Macan control-unit software and on
+        the High Power Charging platform for Taycan and other electric vehicles.
+        I've been a researcher in the <a href="https://vrg.fel.cvut.cz/"
+          >Visual Recognition Group at CTU Prague</a
+        > since February 2019, and started my PhD in February 2023 with{' '}
+        <a href="https://cmp.felk.cvut.cz/~matas/">Jiří Matas</a>. Since then I've visited <a href="https://virtualhumans.mpi-inf.mpg.de/"
+          >Gerard Pons-Moll's group in Tübingen</a
+        > (December 2025–March 2026) and joined Qualcomm XR Labs in Amsterdam
+        for a research internship (June–December 2026).
+      </p>
+      <p>
+        Human pose estimation was my starting point: understanding how people
+        move and how to recover that reliably from images. My PhD grew from
+        there into broader human body analysis, including detection, segmentation,
+        pose and shape. I'm now extending that work into 3D reconstruction,
+        spatial reasoning and how vision-language models understand people in
+        their surroundings. At Qualcomm, I explore these questions in the
+        context of personal AI assistants.
+      </p>
+      <p>
+        I'm drawn to the gap between a promising research result and something
+        people can rely on. I think of it as the “last 10%”: the difficult cases
+        and practical constraints that a strong benchmark score can hide.
+        When I hear that a problem is solved, my first instinct is to stress-test
+        that claim. What happens with an unfamiliar camera angle, a crowded
+        scene or a body partly outside the frame?
+      </p>
+      <p>
+        For me, those failures are often where the next research question begins.
+        I like developing new methods with a concrete use in mind, letting the
+        needs of the people using a system shape what I investigate and how I
+        evaluate it. The aim is to advance what works in practice as well as
+        what is possible in research.
+      </p>
+      <p>
+        That interest has led to <a href="/publications/"
+          >ProbPose, BBox-Mask-Pose and RePoGen</a
+        >, as well as datasets and evaluation metrics including CropCOCO,
+        Extended OKS and OCHuman-Pose. I release code, models and demos, and
+        build tools with the people using them: police analysts,
+        infant-development researchers and floorball coaches. <a href="/work/"
+          >All projects</a
+        >.
+      </p>
+      <p>
+        <a href="/publications/#recognition">Awards and service</a> · <a
+          href={site.cvPath}>Two-page CV</a
+        > · <a href="/news/">Earlier notes, 2022–2026</a>
+      </p>
+      <h2 id="teaching">Teaching and supervision</h2>
+      <p>
+        I teach <a href="https://cw.fel.cvut.cz/wiki/courses/b4b33rpz/start"
+          >RPZ — Pattern Recognition and Machine Learning</a
+        > at CTU. The course covers statistical decision theory, perceptrons, AdaBoost,
+        support vector machines and neural networks.
+      </p>
+      <p>
+        I also co-supervise research, including <a
+          href="https://arxiv.org/abs/2601.08982">SAM-pose2seg</a
+        >, awarded Best Student Paper at CVWW 2026, and <a
+          href="https://arxiv.org/abs/2501.08815">PC-CSE</a
+        >. Students I supervise have won prizes before even finishing their
+        bachelor's degrees. Helping someone find their own research direction
+        and write their first paper is a part of the work I particularly enjoy.
+        I also coordinate our team's annotation work. I'm happy to discuss thesis
+        ideas and research opportunities in my field.
+      </p>
+      <ul>
+        <li>For homework questions, please use the student forum.</li><li>
+          I don't keep fixed consultation hours; <a
+            href={`mailto:${site.email.university}`}>email me</a
+          > to arrange a meeting.
+        </li>
+      </ul>
+      <h2 id="coaching">A few years on the sidelines</h2>
+      <p>
+        I joined Sokol Královské Vinohrady in 2017 as an assistant coach. During
+        Erasmus, I also coached FBK Olimpija in Ljubljana for a few months. Back
+        in Prague, I took over as juniors' head coach, then became head coach of
+        the men's Superliga team in 2024. We worked with a young team and a
+        small budget, and reached the best results in the club's history through
+        clear roles, shared effort and team spirit.
+      </p>
+      <p>
+        Those years taught me to enjoy both sides of a team: supporting someone
+        else's direction as an assistant, and taking responsibility as head
+        coach. I bring that same approach to research: contribute to the shared
+        work, help others move forward, and lead when needed.
+      </p>
+      <p>
+        Some of the juniors I coached now play for the senior team. Watching
+        that progression is what I remember most fondly. I stepped down in
+        summer 2025 to focus on research, and stayed on as a consultant.
+      </p>
+      <p>
+        <a href="/coaching/">More about coaching</a>, including the seasons, the
+        people, and a podcast conversation in Czech.
+      </p>
+      <h2 id="personal">Away from work</h2>
+      <p>
+        I enjoy mountains, travel, speciality coffee, psychology and epic
+        fantasy. Steven Erikson’s <em>Malazan Book of the Fallen</em> is a
+        particular favourite. The coffee hobby once became a small{' '}
+        <a href="/work/#vrg-coffee">coffee-rating web app for our group at VRG</a>.
+      </p>
+      <h2 id="education">Education</h2>
+      <ul class="education-list">
+        {education.map(({ data }) => (
+          <li>
+            <h3>{data.degree} · {data.field}</h3>
+            <p class="detail-meta">{data.period} · {data.institution}</p>
+            {data.note && <p>{data.note}</p>}
+            {data.thesisLink && <a href={data.thesisLink}>Thesis</a>}
+          </li>
+        ))}
+      </ul>
+      <p>
+        During my Erasmus exchange (October 2018–March 2019), I had my first
+        computer vision research internship at the University of Ljubljana's{' '}
+        <a href="https://www.vicos.si/">Visual Cognitive Systems Laboratory</a>,
+        advised by prof. Matej Kristan.
+      </p>
+      <h2 id="skills">Technical skills</h2>
+      <p>
+        These are my core skills — but really, with vibe coding I’m now
+        picking up new languages and technologies much faster.
+      </p>
+      <dl class="skills">
+        <dt>Python</dt>
+        <dd>Research implementations and deep learning, including training PMPose-h
+        for more than ten days on eight GPUs using SLURM; daily automated testing
+        at Porsche.</dd>
+        <dt>C / C++</dt>
+        <dd>Production automotive control-unit software, Plug &amp; Charge for
+        Porsche's charger, and an autonomous robot in a university course.</dd>
+        <dt>Frameworks &amp; tools</dt>
+        <dd>PyTorch, OpenCV, SLURM, Git, SMPL, CUDA, Blender and MMCV.</dd>
+      </dl>
+      <h2 id="elsewhere">Elsewhere</h2>
+      <p class="detail-meta">Interviews, features &amp; coverage</p>
+      <ul class="coverage-list">
+        {coverage.map((item) => (
+          <li>
+            <a href={item.url}>{item.title}</a>
+            <span class="detail-meta">{item.source} · {item.language}</span>
+          </li>
+        ))}
+      </ul>
+      <p>
+        For a compact overview, <a href={site.cvPath}>download my two-page CV</a>.
+      </p>
+    </Prose>
+  </Section>
+  <Contact />
+</BaseLayout>
+<style>
+  h1 {
+    font-size: var(--text-3xl);
+    margin-bottom: 1rem;
+  }
+  .education-list, .coverage-list { list-style: none; padding: 0; }
+  .education-list li, .coverage-list li {
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--border);
+  }
+  .education-list h3 { font-size: var(--text-base); margin-top: 0; }
+  .education-list p { margin-top: var(--space-2); color: var(--text-muted); }
+  .detail-meta { font-size: var(--text-sm); color: var(--text-subtle); }
+  .coverage-list .detail-meta { display: block; margin-top: var(--space-1); }
+  .skills dt { font-weight: 600; margin-top: var(--space-4); }
+  .skills dd { margin: var(--space-1) 0 0; color: var(--text-muted); }
+  .lead {
+    font-size: 1.1875rem;
+    color: var(--text-muted);
+  }
+</style>
