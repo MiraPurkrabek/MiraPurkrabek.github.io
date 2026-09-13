@@ -1,7 +1,7 @@
 ---
 title: Improving 2D Human Pose Estimation in Rare Camera Views with Synthetic Data
 authors:
-  - Miroslav Purkrábek
+  - Miroslav Purkrabek
   - Jiří Matas
 venue: FG 2024
 venueLong: 18th IEEE International Conference on Automatic Face and Gesture Recognition

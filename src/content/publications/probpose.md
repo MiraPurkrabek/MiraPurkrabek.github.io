@@ -1,7 +1,7 @@
 ---
 title: 'ProbPose: A Probabilistic Approach to 2D Human Pose Estimation'
 authors:
-  - Miroslav Purkrábek
+  - Miroslav Purkrabek
   - Jiří Matas
 venue: CVPR 2025
 venueLong: IEEE/CVF Conference on Computer Vision and Pattern Recognition

@@ -1,0 +1,80 @@
+---
+// Machine-readable publication records preserve academic bylines while linking Mira's official
+// author name back to the same Person entity as the homepage.
+import type { CollectionEntry } from 'astro:content';
+import { site } from '../data/site';
+
+export interface Props {
+  publications: CollectionEntry<'publications'>[];
+  title: string;
+  description: string;
+}
+
+const { publications, title, description } = Astro.props;
+const pageUrl = new URL('/publications/', site.siteUrl).toString();
+const personId = `${new URL('/', site.siteUrl).toString()}#person`;
+
+const articles = publications.map(({ id, data }) => {
+  const sameAs = [data.links?.paper, data.links?.arxiv].filter(
+    (url): url is string => Boolean(url),
+  );
+
+  return {
+    '@type': 'ScholarlyArticle',
+    '@id': `${pageUrl}#${id}`,
+    url: `${pageUrl}#${id}`,
+    name: data.title,
+    headline: data.title,
+    description: data.summary,
+    abstract: data.abstract,
+    datePublished: String(data.year),
+    author: data.authors.map((author) =>
+      author === site.officialName
+        ? { '@type': 'Person', '@id': personId }
+        : { '@type': 'Person', name: author },
+    ),
+    isPartOf: {
+      '@type': 'CreativeWork',
+      name: data.venueLong,
+    },
+    ...(sameAs.length > 0 ? { sameAs } : {}),
+    ...(data.awards.length > 0 ? { award: data.awards } : {}),
+  };
+});
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: site.preferredName,
+      alternateName: [site.officialName],
+      url: new URL('/', site.siteUrl).toString(),
+    },
+    {
+      '@type': 'CollectionPage',
+      '@id': `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: title,
+      description,
+      about: { '@id': personId },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: articles.length,
+        itemListElement: articles.map((article, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          item: article,
+        })),
+      },
+    },
+  ],
+};
+---
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+/>

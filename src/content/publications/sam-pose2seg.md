@@ -2,7 +2,7 @@
 title: 'SAM-pose2seg: Pose-Guided Human Instance Segmentation in Crowds'
 authors:
   - Constantin Kolomiiets
-  - Miroslav Purkrábek
+  - Miroslav Purkrabek
   - Jiří Matas
 venue: CVWW 2026
 venueLong: 29th Computer Vision Winter Workshop

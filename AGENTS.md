@@ -16,6 +16,12 @@ like LinkedIn, a generic corporate landing page, or an academic-template CV. Avo
 inflated claims, dense CV tables, and visual noise; personal material is part of the story, not a
 marketing prop.
 
+Use `Mira Purkrabek` as the preferred human-facing name in the site's own headings, navigation,
+prose, and social previews. `Miroslav Purkrabek` is the official and academic name: preserve it in
+the CV, exact publication author lists, metadata, and machine-readable identity aliases. Connect
+the names once in the homepage explanation, but do not repeat the explanation in visible site
+copy. Always spell both forms with ASCII characters; do not add diacritics to Mira's name.
+
 Support people, recruiters, HR teams, scrapers, and LLMs at once. Important facts belong in clear
 visible HTML with meaningful headings and links, never only in images, animation, or client-side
 interactions. Keep metadata, canonical URLs, JSON-LD, sitemap/robots data, and `public/llms.txt`
@@ -57,7 +63,8 @@ and with the rendered content.
 Indexable routes are `/`, `/work`, `/publications`, `/about`, `/coaching`, `/news`, and
 `/webcam_demo/`, plus the downloadable CVs. `/styleguide` and `/404` are `noindex`.
 `astro.config.mjs` owns redirects and sitemap exclusions. `Seo.astro` emits page metadata, the
-home page emits Person JSON-LD, and `robots.txt` points crawlers to the sitemap.
+home page emits connected WebSite/ProfilePage/Person JSON-LD, the publications page emits
+publication JSON-LD, and `robots.txt` points crawlers to the sitemap.
 
 ## Working rules
 

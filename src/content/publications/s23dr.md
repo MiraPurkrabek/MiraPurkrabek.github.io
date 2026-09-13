@@ -2,7 +2,7 @@
 title: 'S23DR 2026 Winning Solution'
 authors:
   - Jan Škvrna
-  - Miroslav Purkrábek
+  - Miroslav Purkrabek
   - Lukáš Neumann
 venue: 'CVPR 2026 · Urban Scene Modeling Workshop'
 venueLong: Urban Scene Modeling Workshop at CVPR 2026

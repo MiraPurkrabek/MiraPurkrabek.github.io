@@ -1,10 +1,10 @@
 // Typed site config consumed by shared UI, SEO metadata, and structured data.
 
 export interface SiteConfig {
-  /** Casual register — wordmark, headings, and body prose. */
-  name: string;
-  /** Official register — footer copyright line and schema.org/Person `name`. */
-  legalName: string;
+  /** Public register — wordmark, headings, body prose, and primary metadata. */
+  preferredName: string;
+  /** Official and academic register — CV, publication bylines, and identity aliases. */
+  officialName: string;
   role: string;
   location: {
     home: string;
@@ -23,6 +23,7 @@ export interface SiteConfig {
     linkedin: string;
     orcid: string;
   };
+  institutionalProfile: string;
   cvPath: string;
   siteUrl: string;
   /** Default Open Graph image, relative to the site root. */
@@ -34,8 +35,8 @@ export interface SiteConfig {
 }
 
 export const site: SiteConfig = {
-  name: 'Mira Purkrabek',
-  legalName: 'Miroslav Purkrábek',
+  preferredName: 'Mira Purkrabek',
+  officialName: 'Miroslav Purkrabek',
   role: 'Computer vision researcher and engineer',
   location: {
     home: 'Prague',
@@ -50,9 +51,11 @@ export const site: SiteConfig = {
   social: {
     github: 'https://github.com/MiraPurkrabek',
     googleScholar: 'https://scholar.google.com/citations?user=EDRJFLcAAAAJ',
-    linkedin: 'https://www.linkedin.com/in/miroslav-purkrábek-0051a2243/',
+    linkedin: 'https://www.linkedin.com/in/purkrabekm/',
     orcid: 'https://orcid.org/0009-0000-6142-6492',
   },
+  institutionalProfile:
+    'https://fel.cvut.cz/en/faculty/people/29221-miroslav-purkrabek',
   cvPath: '/CV_twopage.pdf',
   siteUrl: 'https://mirapurkrabek.github.io',
   ogImage: '/og/default.png',

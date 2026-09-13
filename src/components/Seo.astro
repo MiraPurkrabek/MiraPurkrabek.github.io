@@ -20,7 +20,7 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, site.siteUrl).toString();
 const absoluteOgImage = new URL(ogImage, site.siteUrl).toString();
-const ogImageAlt = `${site.name} — ${site.role}`;
+const ogImageAlt = `${site.preferredName} — ${site.role}`;
 ---
 
 <title>{title}</title>
@@ -34,7 +34,7 @@ const ogImageAlt = `${site.name} — ${site.role}`;
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:image" content={absoluteOgImage} />
 <meta property="og:image:alt" content={ogImageAlt} />
-<meta property="og:site_name" content={site.name} />
+<meta property="og:site_name" content={site.preferredName} />
 <meta property="og:locale" content="en_US" />
 
 <meta name="twitter:card" content="summary_large_image" />

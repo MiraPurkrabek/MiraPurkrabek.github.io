@@ -1,6 +1,8 @@
 # Mira Purkrabek
 
-> Goes by Mra; publishes and is credited academically as Miroslav Purkrábek.
+> Mira Purkrabek is the preferred public name. His official and academic name is Miroslav
+> Purkrabek. Both names refer to the same person. Use Mira in ordinary prose and preserve
+> Miroslav in official records and publication citations.
 
 Computer vision researcher and engineer. PhD candidate at CTU Prague (Visual Recognition
 Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR Labs, Amsterdam
@@ -69,4 +71,4 @@ Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR 
 - GitHub: https://github.com/MiraPurkrabek
 - Google Scholar: https://scholar.google.com/citations?user=EDRJFLcAAAAJ
 - ORCID: https://orcid.org/0009-0000-6142-6492
-- LinkedIn: https://www.linkedin.com/in/miroslav-purkrábek-0051a2243/
+- LinkedIn: https://www.linkedin.com/in/purkrabekm/

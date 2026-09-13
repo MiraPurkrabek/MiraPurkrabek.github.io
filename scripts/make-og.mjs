@@ -27,7 +27,6 @@ const COLORS = {
 };
 
 const NAME = 'Mira Purkrabek';
-const LEGAL_NAME_CAPTION = '(Miroslav Purkrábek)';
 const ROLE = 'Computer vision researcher and engineer';
 const DOMAIN = 'mirapurkrabek.github.io';
 
@@ -101,12 +100,11 @@ async function main() {
 
   <rect width="${WIDTH}" height="${HEIGHT}" fill="${COLORS.pageBg}" />
 
-  <text x="${textX}" y="267" font-size="64" font-weight="600" fill="${COLORS.text}" letter-spacing="-1">${escapeXml(NAME)}</text>
-  <text x="${textX}" y="309" font-size="26" font-weight="500" fill="${COLORS.textSubtle}">${escapeXml(LEGAL_NAME_CAPTION)}</text>
+  <text x="${textX}" y="290" font-size="64" font-weight="600" fill="${COLORS.text}" letter-spacing="-1">${escapeXml(NAME)}</text>
 
-  <rect x="${textX}" y="345" width="64" height="4" rx="2" fill="${COLORS.accent}" />
+  <rect x="${textX}" y="330" width="64" height="4" rx="2" fill="${COLORS.accent}" />
 
-  <text x="${textX}" y="403" font-size="28" font-weight="500" fill="${COLORS.textMuted}">${escapeXml(ROLE)}</text>
+  <text x="${textX}" y="390" font-size="28" font-weight="500" fill="${COLORS.textMuted}">${escapeXml(ROLE)}</text>
 
   <text x="${textX}" y="${HEIGHT - 64}" font-size="22" font-weight="500" fill="${COLORS.textSubtle}">${escapeXml(DOMAIN)}</text>
 

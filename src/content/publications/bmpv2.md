@@ -1,7 +1,7 @@
 ---
 title: 'BBoxMaskPose v2: Expanding Mutual Conditioning to 3D'
 authors:
-  - Miroslav Purkrábek
+  - Miroslav Purkrabek
   - Constantin Kolomiiets
   - Jiří Matas
 venue: In review · 2026

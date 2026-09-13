@@ -1,5 +1,5 @@
 /* Inter Variable, self-hosted — latin + latin-ext subsets only (latin-ext carries the Czech
-   diacritics used throughout the site: "Purkrábek", "Jiří", "Královské"). Hand-picked from
+   diacritics used throughout the site: "Jiří", "Královské"). Hand-picked from
    @fontsource-variable/inter/wght.css rather than importing the full file, which also bundles
    cyrillic/greek/vietnamese subsets this site never needs. */
 

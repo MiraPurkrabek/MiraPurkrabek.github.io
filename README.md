@@ -20,11 +20,17 @@ The site should help Mira get hired through concrete evidence and honest context
 describing him as a person. Use factual, warm, specific, scannable writing. Avoid buzzwords,
 inflated claims, dense CV tables, visual noise, and a LinkedIn-like presentation.
 
+Use `Mira Purkrabek` as the preferred human-facing name in the site's own headings, navigation,
+prose, and social previews. `Miroslav Purkrabek` is the official and academic name: preserve it in
+the CV, exact publication author lists, metadata, and machine-readable identity aliases. Connect
+the names once in the homepage explanation, but do not repeat the explanation in visible site
+copy. Always spell both forms with ASCII characters; do not add diacritics to Mira's name.
+
 Humans and machines are equal readers. Important facts belong in clear visible HTML with meaningful
 headings and links; do not hide them only in images, animation, or JavaScript. Keep crawler-facing
-metadata (`robots.txt`, sitemap, canonical metadata, Person JSON-LD, and `public/llms.txt`) current
-whenever a public fact, route, or contact detail changes. Machine-readable summaries must match the
-visible site and never invent facts.
+metadata (`robots.txt`, sitemap, canonical metadata, identity and publication JSON-LD, and
+`public/llms.txt`) current whenever a public fact, route, or contact detail changes.
+Machine-readable summaries must match the visible site and never invent facts.
 
 ## Branches and release flow
 
@@ -64,7 +70,8 @@ education, and recognition in their collection entries rather than duplicating f
 Indexable routes are `/`, `/work`, `/publications`, `/about`, `/coaching`, `/news`, and
 `/webcam_demo/`, plus the downloadable CVs. `/styleguide` and `/404` are `noindex`.
 `astro.config.mjs` owns legacy redirects and sitemap exclusions. `Seo.astro` emits per-page
-metadata, the home page emits Person JSON-LD, and `robots.txt` advertises the sitemap.
+metadata, the home page emits connected WebSite/ProfilePage/Person JSON-LD, the publications page
+emits publication JSON-LD, and `robots.txt` advertises the sitemap.
 
 ## Implementation
 

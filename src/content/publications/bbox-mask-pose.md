@@ -1,7 +1,7 @@
 ---
 title: 'Detection, Pose Estimation and Segmentation for Multiple Bodies: Closing the Virtuous Circle'
 authors:
-  - Miroslav Purkrábek
+  - Miroslav Purkrabek
   - Jiří Matas
 venue: ICCV 2025
 venueLong: IEEE/CVF International Conference on Computer Vision

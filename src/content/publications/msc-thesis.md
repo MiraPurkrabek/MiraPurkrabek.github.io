@@ -1,7 +1,7 @@
 ---
 title: Discovery, tracking and redetection of floorball players from multiple cameras
 authors:
-  - Miroslav Purkrábek
+  - Miroslav Purkrabek
 venue: MSc Thesis, CTU Prague
 venueLong: "Master's thesis, Czech Technical University in Prague"
 year: 2022

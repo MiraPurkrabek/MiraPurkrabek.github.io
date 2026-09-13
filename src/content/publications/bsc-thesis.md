@@ -1,7 +1,7 @@
 ---
 title: Floorball Player Tracking from a Top-View Camera
 authors:
-  - Miroslav Purkrábek
+  - Miroslav Purkrabek
 venue: BSc Thesis, CTU Prague
 venueLong: "Bachelor's thesis, Czech Technical University in Prague"
 year: 2020

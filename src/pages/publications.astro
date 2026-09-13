@@ -6,6 +6,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import PublicationItem from '../components/PublicationItem.astro';
+import PublicationsSchema from '../components/PublicationsSchema.astro';
 import { site } from '../data/site';
 
 const publications = await getCollection('publications');
@@ -45,10 +46,17 @@ const groups = [
 
 const title = 'Publications & recognition — Mira Purkrabek';
 const description =
-  'Computer vision publications, awards and competition results, including first-author CVPR and ICCV papers and Outstanding Reviewer at CVPR 2025.';
+  'Computer vision publications by Mira Purkrabek (Miroslav Purkrabek), plus awards and competition results including first-author CVPR and ICCV papers.';
 ---
 
 <BaseLayout title={title} description={description}>
+  <Fragment slot="head">
+    <PublicationsSchema
+      publications={publications}
+      title={title}
+      description={description}
+    />
+  </Fragment>
   <Section>
     <h1 class="pub-hero__title">Publications &amp; recognition</h1>
     <p class="pub-hero__lead">
