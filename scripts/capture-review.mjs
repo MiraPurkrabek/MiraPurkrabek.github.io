@@ -58,7 +58,7 @@ try {
           assert.ok(media.every(box => box.width > 100 && box.height > 80), 'Visible publication media');
           if (width <= 600) assert.ok(media.every(box => box.bodyTop >= box.bottom), 'Media above text on narrow screens');
           assert.equal(await page.locator('#s23dr a[href="https://arxiv.org/abs/2606.06695"]').count(), 1);
-          assert.match(await page.locator('#bmpv2 .pub-item__meta').innerText(), /In review/);
+          assert.equal(await page.locator('#bmpv2 .pub-item__meta').innerText(), 'IJCV 2026');
           assert.match(await page.locator('#blanket .pub-item__award').innerText(), /Oral/);
           assert.match(await page.locator('#pc-cse .pub-item__meta').innerText(), /Supervised work/i);
           assert.match(await page.locator('#peer-review-service').innerText(), /AAAI/);

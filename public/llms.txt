@@ -10,8 +10,10 @@ Group, advisor: prof. Jiří Matas), currently a research intern at Qualcomm XR 
 
 ## Key facts
 
-- First-author papers at CVPR 2025 (ProbPose) and ICCV 2025 (BBox-Mask-Pose), on robust human
-  pose estimation and segmentation.
+- First-author papers at CVPR 2025 (ProbPose), ICCV 2025 (BBox-Mask-Pose) and IJCV 2026
+  (BBoxMaskPose v2), on robust human pose estimation and segmentation. BBoxMaskPose v2 is
+  a journal extension of BBox-Mask-Pose, extending mutual conditioning to 3D pose estimation
+  in crowded scenes.
 - 1st place and $5,000, S23DR structured-3D-reconstruction challenge, CVPR 2026 (with Jan
   Skvrna).
 - Built FACIS, a forensic image/video analysis system commissioned by the Ministry of the
