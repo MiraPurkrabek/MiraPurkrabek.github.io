@@ -4,10 +4,11 @@ authors:
   - Miroslav Purkrabek
   - Constantin Kolomiiets
   - Jiří Matas
-venue: In review · 2026
-venueLong: Manuscript under review
+venue: IJCV 2026
+venueLong: International Journal of Computer Vision
 year: 2026
-type: preprint
+type: journal
+extendsPublication: bbox-mask-pose
 role: first-author
 awards: []
 selected: false
